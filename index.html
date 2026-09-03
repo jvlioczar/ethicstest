@@ -569,7 +569,7 @@ const PARTS_PT = [
         {label:'Sim', next:'r_c2', set:{key:'circleLevel', value: 2}},
         {label:'Não, considero estranhos com o mesmo peso moral em princípio', next:'c3'},
       ]},
-      r_c2:{type:'result', level:2, tag:'Círculo moral', title:'Intimismo Moral', body:['Seu círculo se estende ao grupo de convivência e afeto próximo, priorizando familiares e amigos.'], oppose:'Universalismo Imparcial'},
+      r_c2:{type:'result', level:2, tag:'Círculo moral', title:'Tribalismo Intimista', body:['Seu círculo é um tipo de tribalismo baseado na intimidade, se estendendo ao grupo de convivência e afeto próximo, priorizando familiares e amigos.'], oppose:'Universalismo Imparcial'},
 
       c3:{
         type:'multi_bias',
@@ -605,7 +605,7 @@ const PARTS_PT = [
           const biases = a.selectedBiases || [];
           let comboStr = biases.join(', ');
           if(biases.length > 1) comboStr = biases.slice(0, -1).join(', ') + ' e ' + biases[biases.length - 1];
-          const title = 'Grupo(s) social(is) (' + comboStr.charAt(0).toUpperCase() + comboStr.slice(1) + ')';
+          const title = 'Tribalismo Estendido (' + comboStr.charAt(0).toUpperCase() + comboStr.slice(1) + ')';
           return {
             title: title,
             level: 3,
@@ -614,7 +614,7 @@ const PARTS_PT = [
             ],
             oppose: 'Imparcialismo Moral / Universalismo / Sencientismo Pleno.',
             accordion: [
-              { title: 'Entenda a sua estrutura de Parcialismo Moral', text: 'Ao adotar essa postura, sua ética opera por círculos restritivos de grupo social, argumentando que é legítimo priorizar quem compartilha de nossa identidade.' },
+              { title: 'Entenda a sua estrutura de Parcialismo Moral', text: 'Ao adotar essa postura de Tribalismo Estendido, sua ética opera por círculos restritivos de grupo social, argumentando que é legítimo priorizar quem compartilha de nossa identidade.' },
               { title: 'Por que filósofos defendem que o círculo moral DEVE ser expandido?', text: 'A filosofia ética imparcialista argumenta que o círculo moral deve ser expandido por razões de coerência lógica e imparcialidade.' }
             ]
           };
