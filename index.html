@@ -563,13 +563,13 @@ const PARTS_PT = [
         {label:'Sim', next:'r_c1', set:{key:'circleLevel', value: 1}},
         {label:'Não, considero o bem-estar dos outros tanto quanto o meu', next:'c2'},
       ]},
-      r_c1:{type:'result', level:1, tag:'Círculo moral', title:'Eu (Egoísmo Moral / Egocentrismo)', body:['Seu círculo moral concentra-se estritamente no próprio indivíduo.'], oppose:'Altruísmo / Imparcialidade'},
+      r_c1:{type:'result', level:1, tag:'Círculo moral', title:'Egoísmo Moral', body:['Seu círculo moral concentra-se estritamente em você.'], oppose:'Altruísmo / Imparcialidade'},
       
       c2:{type:'question', text:'Você concede consideração moral plena ao seu grupo íntimo (família, amigos), mas não da mesma forma a estranhos?', options:[
         {label:'Sim', next:'r_c2', set:{key:'circleLevel', value: 2}},
         {label:'Não, considero estranhos com o mesmo peso moral em princípio', next:'c3'},
       ]},
-      r_c2:{type:'result', level:2, tag:'Círculo moral', title:'Grupo íntimo', body:['Seu círculo se estende ao grupo de convivência e afeto próximo, priorizando familiares e amigos.'], oppose:'Universalismo Imparcial'},
+      r_c2:{type:'result', level:2, tag:'Círculo moral', title:'Intimismo Moral', body:['Seu círculo se estende ao grupo de convivência e afeto próximo, priorizando familiares e amigos.'], oppose:'Universalismo Imparcial'},
 
       c3:{
         type:'multi_bias',
