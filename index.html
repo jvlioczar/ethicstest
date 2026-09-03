@@ -615,7 +615,7 @@ const PARTS_PT = [
             oppose: 'Imparcialismo Moral / Universalismo / Sencientismo Pleno.',
             accordion: [
               { title: 'Entenda a sua estrutura de Parcialismo Moral', text: 'Ao adotar essa postura de Tribalismo Estendido, sua ética opera por círculos restritivos de grupo social, argumentando que é legítimo priorizar quem compartilha de nossa identidade.' },
-              { title: 'Por que filósofos defendem que o círculo moral DEVE ser expandido?', text: 'A filosofia ética imparcialista argumenta que o círculo moral deve ser expandido por razões de coerência lógica e imparcialidade.' }
+              { title: 'Por que diversos filósofos defendem que o círculo moral deve ser expandido?', text: 'Por razões de coerência lógica e universalidade. Filósofos defendem que o círculo moral deve ser expandido porque a consistência lógica, imparcialidade e universalidade exigem que tratemos casos semelhantes de forma semelhante, impedindo que preconceitos arbitrários limitem nossa empatia e obrigações éticas e melhorem a cooperação e a chance de todos nos darmos bem em sociedade, sendo julgadores e julgados adequadamente.' }
             ]
           };
         }
@@ -884,13 +884,13 @@ const PARTS_EN = [
         {label:'Yes', next:'r_c1', set:{key:'circleLevel', value: 1}},
         {label:'No, I consider others\' well-being as much as my own', next:'c2'},
       ]},
-      r_c1:{type:'result', level:1, tag:'Moral Circle', title:'Self (Ethical Egoism)', body:['Your moral circle focuses strictly on yourself.'], oppose:'Altruism'},
+      r_c1:{type:'result', level:1, tag:'Moral Circle', title:'Ethical Egoism', body:['Your moral circle focuses strictly on yourself.'], oppose:'Altruism'},
       
       c2:{type:'question', text:'Do you grant full moral consideration to your intimate group (family, friends), but not equally to strangers?', options:[
         {label:'Yes', next:'r_c2', set:{key:'circleLevel', value: 2}},
         {label:'No, I consider strangers with the same moral weight in principle', next:'c3'},
       ]},
-      r_c2:{type:'result', level:2, tag:'Moral Circle', title:'Intimate Group', body:['Your circle extends to close family and friends.'], oppose:'Universalism'},
+      r_c2:{type:'result', level:2, tag:'Moral Circle', title:'Intimate Tribalism', body:['Your circle extends to close family and friends.'], oppose:'Universalism'},
 
       c3:{
         type:'multi_bias',
@@ -925,7 +925,7 @@ const PARTS_EN = [
           const biases = a.selectedBiases || [];
           let comboStr = biases.join(', ');
           if(biases.length > 1) comboStr = biases.slice(0, -1).join(', ') + ' and ' + biases[biases.length - 1];
-          const title = 'Social Group(s) (' + comboStr.charAt(0).toUpperCase() + comboStr.slice(1) + ')';
+          const title = 'Extended tribalism (' + comboStr.charAt(0).toUpperCase() + comboStr.slice(1) + ')';
           
           return {
             title: title,
