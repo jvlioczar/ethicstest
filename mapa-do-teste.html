@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mapa do Teste — Dicionário Genealógico da Visão Moral</title>
+<title>Mapa do Teste | Dicionário Genealógico da Visão Moral</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -71,22 +71,26 @@
   }
   header.hero p.kicker {
     font-family: var(--sans);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
     color: var(--ethical-blue);
-    margin: 0 0 10px;
+    margin: 0 0 12px;
   }
   header.hero h1 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
-    font-size: 34px;
-    line-height: 1.25;
-    margin: 0 0 14px;
+    font-size: 30px;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    margin: 0 0 16px;
     color: var(--ink);
   }
   header.hero p.lede {
-    font-size: 16px;
+    font-family: var(--sans);
+    font-size: 15.5px;
+    line-height: 1.65;
     color: var(--ink-dim);
     max-width: 58ch;
     margin: 0 0 6px;
@@ -104,19 +108,24 @@
     padding-left: 20px;
   }
   section.part .part-eyebrow {
-    font-size: 13px;
+    font-family: var(--sans);
+    font-size: 12px;
     font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
     color: var(--part-color, var(--ethical-blue));
-    margin: 0 0 4px;
+    margin: 0 0 8px;
   }
   section.part h2 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
-    font-size: 25px;
+    font-size: 24px;
+    letter-spacing: -0.2px;
     margin: 0 0 8px;
     color: var(--ink);
   }
   section.part .part-question {
+    font-family: var(--sans);
     font-size: 15px;
     font-style: italic;
     color: var(--muted);
@@ -132,9 +141,11 @@
   }
   details.branch > summary {
     cursor: pointer;
-    padding: 14px 18px;
+    padding: 16px 18px;
+    font-family: var(--sans);
     font-weight: 600;
     font-size: 15.5px;
+    line-height: 1.4;
     color: var(--ink);
     list-style: none;
     display: flex;
@@ -152,24 +163,30 @@
   }
   details.branch[open] > summary::after { transform: rotate(45deg); }
   details.branch .branch-body {
-    padding: 0 18px 16px;
+    padding: 20px 18px 22px;
     border-top: 1px solid var(--line);
   }
+  details.branch .branch-body > *:first-child { margin-top: 0 !important; }
+  details.branch .branch-body > *:last-child { margin-bottom: 0 !important; }
   details.branch .branch-note {
+    font-family: var(--sans);
     font-size: 14px;
+    line-height: 1.6;
     color: var(--muted);
-    margin: 12px 0 10px;
+    margin: 0 0 16px;
   }
 
   ul.result-list {
     list-style: none;
-    margin: 0;
+    margin: 0 0 6px;
     padding: 0;
   }
   ul.result-list li {
-    padding: 9px 0;
+    padding: 10px 0;
     border-bottom: 1px dashed var(--line);
+    font-family: var(--sans);
     font-size: 14.5px;
+    line-height: 1.5;
   }
   ul.result-list li:last-child { border-bottom: none; }
   ul.result-list li .r-title {
@@ -180,16 +197,18 @@
     display: block;
     color: var(--muted);
     font-size: 13.5px;
-    margin-top: 2px;
+    margin-top: 3px;
   }
 
   .combo-note {
     background: var(--panel-2);
     border-radius: 8px;
-    padding: 12px 14px;
+    padding: 14px 16px;
+    font-family: var(--sans);
     font-size: 13.5px;
+    line-height: 1.6;
     color: var(--ink-dim);
-    margin: 10px 0 14px;
+    margin: 16px 0;
   }
   .combo-note strong { color: var(--ink); }
 
@@ -197,9 +216,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin: 10px 0 14px;
+    margin: 12px 0 18px;
   }
   .bias-tags span {
+    font-family: var(--sans);
     font-size: 12.5px;
     padding: 4px 10px;
     border-radius: 14px;
@@ -209,10 +229,11 @@
 
   h3.subgroup {
     font-family: var(--sans);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
+    letter-spacing: 0.3px;
     color: var(--ink-dim);
-    margin: 16px 0 8px;
+    margin: 24px 0 12px;
   }
   h3.subgroup:first-child { margin-top: 0; }
 
@@ -261,8 +282,8 @@
     <h2>Teoria Ética Normativa</h2>
     <p class="part-question">Pergunta central: o que torna uma ação certa ou errada?</p>
 
-    <details class="branch" open>
-      <summary>Consequencialismo — o que importa é o resultado</summary>
+    <details class="branch">
+      <summary>Consequencialismo | o que mais deve importar é o resultado</summary>
       <div class="branch-body">
         <p class="branch-note">Divide-se em três decisões independentes que se combinam entre si: método, critério de agregação (pode escolher mais de um) e peso do sofrimento frente ao prazer.</p>
 
@@ -290,7 +311,7 @@
     </details>
 
     <details class="branch">
-      <summary>Deontologia — o que importa são regras e deveres</summary>
+      <summary>Deontologia | o que mais deve importar são regras e deveres</summary>
       <div class="branch-body">
         <h3 class="subgroup">Fundamentada na religião</h3>
         <ul class="result-list">
@@ -309,7 +330,7 @@
     </details>
 
     <details class="branch">
-      <summary>Éticas baseadas no Caráter — o que importa é quem você é</summary>
+      <summary>Éticas baseadas no Caráter | o que mais deve importar é quem você é</summary>
       <div class="branch-body">
         <ul class="result-list">
           <li><span class="r-title">Ética das Virtudes</span><span class="r-desc">cultivar coragem, justiça, compaixão como fins em si</span></li>
@@ -319,7 +340,7 @@
     </details>
 
     <details class="branch">
-      <summary>Egoísmo Ético — o que importa é o meu próprio interesse</summary>
+      <summary>Egoísmo Ético | o que mais deve importar é o meu próprio interesse</summary>
       <div class="branch-body">
         <ul class="result-list">
           <li><span class="r-title">Egoísmo Ético Universal</span><span class="r-desc">todos deveriam agir sempre em interesse próprio</span></li>
@@ -329,7 +350,7 @@
     </details>
 
     <details class="branch">
-      <summary>Relativismo e Ceticismo Ético — não há um padrão único</summary>
+      <summary>Relativismo e Ceticismo Ético | talvez não haja um padrão único</summary>
       <div class="branch-body">
         <ul class="result-list">
           <li><span class="r-title">Relativismo Cultural</span><span class="r-desc">certo/errado depende das normas de cada cultura</span></li>
@@ -347,8 +368,8 @@
     <h2>Critérios e Círculo Moral</h2>
     <p class="part-question">Pergunta central: quem — e o quê — merece consideração moral, e o quanto?</p>
 
-    <details class="branch" open>
-      <summary>Ponto de partida — o peso que você dá a si mesmo</summary>
+    <details class="branch">
+      <summary>Ponto de partida | o peso que você dá a si mesmo</summary>
       <div class="branch-body">
         <ul class="result-list">
           <li><span class="r-title">Eu</span><span class="r-desc">Egoísmo Moral — prioridade absoluta a mim mesmo</span></li>
@@ -359,7 +380,7 @@
     </details>
 
     <details class="branch">
-      <summary>Vieses de grupo — Tribalismo Estendido</summary>
+      <summary>Vieses de grupo | Tribalismo Estendido</summary>
       <div class="branch-body">
         <p class="branch-note">Mesmo buscando imparcialidade, é possível manter prioridades baseadas em pertencimento a um grupo. O teste mapeia 16 eixos possíveis (multi-seleção):</p>
         <div class="bias-tags">
@@ -370,7 +391,7 @@
     </details>
 
     <details class="branch">
-      <summary>Fronteira do círculo moral — quem recebe consideração direta</summary>
+      <summary>Fronteira do círculo moral | quem recebe consideração direta</summary>
       <div class="branch-body">
         <p class="branch-note">Multi-seleção entre 5 categorias (Humanos e Animais Sencientes são mutuamente excludentes, pois a segunda já inclui a primeira):</p>
 
@@ -404,7 +425,7 @@
     <h2>Fundamentos Metaéticos</h2>
     <p class="part-question">Pergunta central: o que <em>é</em>, afinal, um fato moral — e como o conhecemos?</p>
 
-    <details class="branch" open>
+    <details class="branch">
       <summary>Existem fatos morais objetivos?</summary>
       <div class="branch-body">
 
@@ -452,7 +473,7 @@
     <h2>Abertura Moral e Intelectual</h2>
     <p class="part-question">Pergunta central: como você lida com argumentos, evidências, incerteza e mudança de crença?</p>
 
-    <details class="branch" open>
+    <details class="branch">
       <summary>Três perguntas somadas em uma pontuação</summary>
       <div class="branch-body">
         <ul class="result-list">
