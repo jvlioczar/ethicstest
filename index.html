@@ -137,30 +137,37 @@
     list-style: none;
     padding: 0;
     margin: 24px 0 32px;
-    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
   .parts-list li {
-    border-bottom: 1px solid var(--line);
-    padding: 16px 0;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px;
     display: flex;
-    gap: 16px;
+    gap: 10px;
     align-items: flex-start;
   }
   .parts-list .num {
     background: rgba(42, 82, 190, 0.1);
     color: var(--ethical-blue);
     font-weight: 700;
-    font-size: 14px;
-    width: 28px;
-    height: 28px;
+    font-size: 13px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
-  .parts-list .txt strong { display: block; font-size: 15px; color: var(--ink); font-weight: 600; }
-  .parts-list .txt span { font-size: 14px; color: var(--muted); }
+  .parts-list .txt strong { display: block; font-size: 14px; color: var(--ink); font-weight: 600; margin-bottom: 3px; line-height: 1.3; }
+  .parts-list .txt span { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+
+  @media (max-width: 360px) {
+    .parts-list { grid-template-columns: 1fr; }
+  }
 
   button.cta {
     font-family: var(--sans);
@@ -213,6 +220,43 @@
     color: var(--ink);
     margin: 0 0 28px;
   }
+
+  .help-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid var(--ethical-blue);
+    background: var(--panel);
+    color: var(--ethical-blue);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-left: 8px;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .help-btn:hover { background: var(--ethical-blue); color: #fff; }
+  }
+  .help-panel {
+    display: none;
+    margin: -16px 0 24px;
+    padding: 16px 18px;
+    background: var(--panel-2);
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-dim);
+  }
+  .help-panel.open { display: block; }
+  .help-panel p { margin: 0 0 10px; }
+  .help-panel p:last-child { margin-bottom: 0; }
+  .help-panel b { color: var(--ink); }
 
   .options { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
   .opt-btn {
@@ -354,6 +398,19 @@
 
   .result-tag { font-size: 12px; font-weight: 700; color: var(--ethical-blue); text-transform: uppercase; margin: 0 0 8px; }
   .result-title { font-size: 26px; font-weight: 500; color: var(--ink); margin: 0 0 16px; }
+
+  .result-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin: -8px 0 20px;
+    padding: 14px 16px;
+    background: var(--panel-2);
+    border-radius: 10px;
+  }
+  .result-meta-item { font-size: 14px; }
+  .result-meta-item .meta-label { font-weight: 700; color: var(--ethical-blue); }
+  .result-meta-item .meta-value { color: var(--ink); }
   .result-oppose {
     margin: 20px 0;
     padding: 16px;
@@ -375,6 +432,7 @@
   }
   .summary-card .stage { font-size: 12px; font-weight: 700; color: var(--ethical-blue); margin: 0 0 6px; text-transform: uppercase; }
   .summary-card h3 { font-size: 20px; font-weight: 500; margin: 0 0 8px; color: var(--ink); }
+  .summary-card .summary-desc { font-size: 14.5px; line-height: 1.6; color: var(--ink-dim); margin: 0; }
 
   .share-box {
     margin-top: 36px;
@@ -443,9 +501,9 @@ const UI_PT = {
   titleIntro:'Qual é a sua visão moral do mundo?',
   ledeIntro:'Toda decisão que envolve outros seres carrega uma teoria sobre como devemos agir, sobre quem merece consideração e sobre o que significa dizer que algo é "certo" ou "errado". Este quiz ajuda a nomear os fundamentos que você já usa.',
   partsListItems:[
-    ['I','Teoria ética normativa','Como decidir o que é certo — consequências, regras, caráter, contrato ou interesse próprio.'],
-    ['II','Fronteira do círculo moral','Quem entra no seu círculo de consideração moral — do indivíduo ao sencientismo pleno.'],
-    ['III','Fundamentos metaéticos','O que é, afinal, um juízo moral — fato, construção ou expressão de atitude.'],
+    ['I','Teoria ética normativa','Como decidir o que é certo: consequências, regras, caráter ou interesse próprio.'],
+    ['II','Fronteira do círculo moral','Quem entra no seu círculo de consideração moral: do indivíduo a todos os seres sencientes.'],
+    ['III','Fundamentos metaéticos','O que é, afinal, um juízo moral: fato, construção ou expressão de atitude.'],
     ['IV','Abertura moral e intelectual','Como você lida com argumentos, evidências, incerteza e revisão de crenças.'],
   ],
   ctaStart:'Começar o teste',
@@ -458,6 +516,7 @@ const UI_PT = {
   copyLink:'Copiar link do resultado',
   linkCopied:'✓ Link copiado!',
   mapButton:'Ver o mapa completo do teste',
+  helpLabel:'Ver explicação',
   sharedKicker:'RESULTADO COMPARTILHADO',
   sharedTitle:'Alguém compartilhou este mapa ético com você',
   sharedLede:'Esta pessoa respondeu ao teste de visão moral e chegou a este perfil. Faça o teste você também para descobrir o seu.',
@@ -482,9 +541,9 @@ const UI_EN = {
   titleIntro:'What is your moral worldview?',
   ledeIntro:'Every decision involving other beings carries a theory about how we should act, who deserves consideration, and what it means to call something "right" or "wrong". This quiz helps name the foundations you already use.',
   partsListItems:[
-    ['I','Normative Ethical Theory','How to decide what is right — consequences, rules, character, contract, or self-interest.'],
-    ['II','Boundary of the Moral Circle','Who enters your circle of moral consideration — from the individual to full sentientism.'],
-    ['III','Metaethical Foundations','What a moral judgment actually is — fact, construction, or expression of attitude.'],
+    ['I','Normative Ethical Theory','How to decide what is right: consequences, rules, character, or self-interest.'],
+    ['II','Boundary of the Moral Circle','Who enters your circle of moral consideration: from the individual to full sentientism.'],
+    ['III','Metaethical Foundations','What a moral judgment actually is: fact, construction, or expression of attitude.'],
     ['IV','Moral and Intellectual Openness','How you handle arguments, evidence, uncertainty, and revising beliefs.'],
   ],
   ctaStart:'Start Test',
@@ -497,6 +556,7 @@ const UI_EN = {
   copyLink:'Copy result link',
   linkCopied:'✓ Link copied!',
   mapButton:'See the full test map',
+  helpLabel:'See explanation',
   sharedKicker:'SHARED RESULT',
   sharedTitle:'Someone shared this ethical map with you',
   sharedLede:'This person took the moral outlook test and reached this profile. Take the test yourself to discover your own.',
@@ -535,7 +595,9 @@ const PARTS_PT = [
       r_descritivo:{type:'result', tag:'Ética normativa · Relativismo', title:'Relativismo meramente descritivo', body:['Você reconhece a profunda variação sociocultural das normas como um fato empírico inegável da humanidade, mas acredita que essa diversidade de opiniões não exclui necessariamente a existência de uma verdade moral objetiva subjacente que talvez ainda estejamos tentando descobrir.']},
       r_apontar_meta:{type:'result', tag:'Isso é metaética, não teoria normativa', title:'Não-cognitivismo / Expressivismo', body:['Essa é uma posição focada na natureza da própria linguagem moral (metaética), e não uma teoria normativa primária sobre como devemos agir de fato. Ela sugere que nossos juízos morais apenas expressam atitudes. Essa visão será profundamente explorada na Parte 3 deste teste.']},
 
-      t2:{type:'question', text:'Ao decidir se uma ação é certa ou errada, o que você considera fundamental?', options:[
+      t2:{type:'question', text:'Ao decidir se uma ação é certa ou errada, o que você considera fundamental?',
+        help: '<p>Pense em um exemplo: contar uma mentira pequena para poupar os sentimentos de um amigo.</p><p>Focar no <b>resultado</b> significa perguntar: essa mentira deixa as coisas melhores ou piores no total, considerando todos os afetados?</p><p>Focar em <b>regras ou deveres</b> significa perguntar: mentir é errado em si, então não deveria fazer isso — mesmo que pareça produzir um resultado bom.</p><p>Focar no <b>caráter</b> significa perguntar: que tipo de pessoa eu sou ao mentir aqui — estou sendo gentil, ou covarde por evitar uma conversa difícil?</p><p>Focar no <b>próprio interesse</b> significa perguntar: o que é melhor para mim nessa situação, independente do efeito nos outros?</p>',
+        options:[
         {label:'O resultado da escolha: se o mundo que resulta dela é melhor que as alternativas', next:'t3_ato_regra'},
         {label:'Se ela respeita certas regras, deveres ou direitos — independente do resultado', next:'t2b'},
         {label:'O tipo de pessoa que a pratica, e os traços de caráter que ela expressa', next:'t_character'},
@@ -580,7 +642,9 @@ const PARTS_PT = [
       r_ego_a:{type:'result', tag:'Ética normativa', title:'Egoísmo Ético Universal', body:['Todo agente moral tem a estrita obrigação ética de agir constantemente buscando maximizar o seu próprio interesse pessoal a longo prazo. Esta visão postula que essa não é apenas uma preferência tática e prática, mas a lei universal correta que você prescreve normativa e dogmaticamente para todas as outras pessoas.']},
       r_ego_b:{type:'result', tag:'Ética normativa', title:'Egoísmo Ético Individual', body:['Você adota internamente como princípio diretor de vida agir de forma fundamental em prol da maximização do seu próprio interesse e felicidade, mas encara isso essencialmente como uma escolha estratégica e individual. Você é cauteloso ou neutro em prescrever ou exigir universalmente que o resto da sociedade opere com esse mesmo tipo de egoísmo dogmático.']},
 
-      t3_ato_regra:{type:'question', text:'Para você, a análise das consequências deve ser feita avaliando cada ação individualmente, avaliando regras gerais, ou combinando ambos?', options:[
+      t3_ato_regra:{type:'question', text:'Para você, a análise das consequências deve ser feita avaliando cada ação individualmente, avaliando regras gerais, ou combinando ambos?',
+        help: '<p>Pense em um exemplo: decidir se está certo quebrar uma promessa quando, só dessa vez, isso parece trazer um resultado melhor.</p><p>Avaliar <b>caso a caso</b> significa julgar essa situação específica pelo resultado que ela produz agora, sem se prender a um padrão geral.</p><p>Avaliar por <b>regra geral</b> significa perguntar: se todo mundo pudesse quebrar promessas nessas condições, o resultado geral seria bom? Se não, você mantém a promessa mesmo aqui.</p><p>O caminho <b>híbrido</b> significa seguir a regra geral na maioria das vezes, mas abrir uma exceção em situações realmente extremas.</p>',
+        options:[
         {label:'Ato a ato — importa o resultado da ação específica disponível no momento', next:'t_conseq', set:{key:'actRule', value:'Consequencialismo de Atos'}},
         {label:'Regras gerais — importa qual regra, se seguida por todos, geraria o melhor resultado', next:'t_conseq', set:{key:'actRule', value:'Consequencialismo de Regras'}},
         {label:'Dois níveis — regras gerais na prática diária, mas cálculo focado no ato para reflexão e situações críticas', next:'t_conseq', set:{key:'actRule', value:'Consequencialismo de Dois Níveis'}}
@@ -589,6 +653,7 @@ const PARTS_PT = [
       t_conseq:{
         type:'multi_select',
         text:'Como você avalia quais consequências são as "melhores" e devem ser priorizadas? (Selecione todas que aplicar)',
+        help: '<p>Pense em um exemplo: distribuir um recurso limitado (como vacinas, ou um bônus de fim de ano) entre um grupo de pessoas.</p><p><b>Maior soma total:</b> distribuir de forma a gerar o maior benefício total somado, não importa como fica dividido.</p><p><b>Peso extra para quem está pior:</b> dar prioridade a quem está em situação mais vulnerável, mesmo que isso não maximize o total.</p><p><b>Só o pior caso importa:</b> julgar a distribuição unicamente pelo quanto ela melhora a vida de quem está na pior situação.</p><p><b>Igualdade importa:</b> se importar com o quão parecida é a distribuição entre as pessoas, não só com o total.</p><p><b>Mínimo garantido:</b> garantir que todos atinjam um patamar básico suficiente, mesmo que sobre menos para otimizar o restante.</p><p><b>Maior média:</b> maximizar quanto cada pessoa recebe em média, mesmo que o total geral acabe sendo menor.</p>',
         noneOption:'Nenhuma destas opções descreve minha visão',
         options:[
           {label:'A maior soma total de bem-estar acumulado', val:'Utilitarismo Clássico'},
@@ -602,51 +667,69 @@ const PARTS_PT = [
         nextIfNone:'t_conseq_neg'
       },
 
-      t_conseq_neg:{type:'question', text:'E sobre o peso do sofrimento em relação ao prazer ou bem-estar positivo?', options:[
+      t_conseq_neg:{type:'question', text:'E sobre o peso do sofrimento em relação ao prazer ou bem-estar positivo?',
+        help: '<p>Pense em um exemplo para diferenciar as duas últimas opções: escolher entre (1) evitar uma dor pequena em alguém, ou (2) gerar uma quantidade enorme de prazer puro para muitas pessoas, sem nenhum sofrimento envolvido.</p><p>Na opção <b>C</b>, o prazer ainda conta normalmente nesse caso — como não há sofrimento extremo em jogo, você compararia as duas opções normalmente, e a quantidade enorme de prazer provavelmente venceria. A prioridade absoluta ao sofrimento só entra quando o sofrimento em questão é extremo.</p><p>Na opção <b>D</b>, o prazer não pesa nada na balança, nunca — nem nesse caso comum. Evitar mesmo uma dor pequena viria antes de qualquer quantidade de prazer, por maior que fosse, porque o prazer simplesmente não conta como razão moral.</p>',
+        options:[
         {label:'Sofrimento e prazer devem ser considerados de forma simétrica no cálculo', next:'t_conseq_result', set:{key:'negChoice', value:'Visão Simétrica'}},
         {label:'O sofrimento tem um peso maior que o prazer, mas pode ser compensado por grandes quantidades de bem-estar', next:'t_conseq_result', set:{key:'negChoice', value:'Prioridade ao Sofrimento'}},
-        {label:'O sofrimento tem prioridade absoluta: nenhuma quantidade de prazer compensa sofrimento extremo', next:'t_conseq_result', set:{key:'negChoice', value:'Prioridade Absoluta'}},
-        {label:'Devemos focar apenas em reduzir sofrimento; o prazer por si só não possui valor moral positivo', next:'t_conseq_result', set:{key:'negChoice', value:'Foco Exclusivo no Sofrimento'}},
+        {label:'O sofrimento tem prioridade absoluta apenas em casos extremos: nenhuma quantidade de prazer compensa sofrimento extremo, mas fora desses casos o prazer ainda conta normalmente', next:'t_conseq_result', set:{key:'negChoice', value:'Prioridade Absoluta'}},
+        {label:'O prazer nunca tem valor moral positivo, nem mesmo fora de casos extremos: só a redução do sofrimento conta como razão moral, sempre', next:'t_conseq_result', set:{key:'negChoice', value:'Foco Exclusivo no Sofrimento'}},
       ]},
 
       t_conseq_result:{type:'dynamicResult', tag:'Ética normativa · Consequencialismo', render: function(a){
         const aggs = a.t_conseq_selections || [];
         const negChoice = a.negChoice || 'Visão Simétrica';
+        const actRule = a.actRule || 'Consequencialismo de Atos';
 
-        let actRule = a.actRule || 'Consequencialismo';
-
-        let isms = [];
-        if(aggs.includes('Utilitarismo Clássico')) isms.push('Utilitarista Clássico');
-        if(aggs.includes('Prioritarismo')) isms.push('Prioritarista');
-        if(aggs.includes('Maximin')) isms.push('Maximin');
-        if(aggs.includes('Igualitarismo')) isms.push('Igualitarista');
-        if(aggs.includes('Suficientismo')) isms.push('Suficientista');
-        if(aggs.includes('Utilitarismo Médio')) isms.push('Utilitarista Médio');
-
-        if(isms.length === 0) isms.push('Consequencialista');
-
-        let titleBase = isms.join(' ');
-
-        const negSuffixMap = {
-          'Foco Exclusivo no Sofrimento': ' com Foco Exclusivo no Sofrimento',
-          'Prioridade Absoluta': ' com Prioridade Absoluta ao Sofrimento (Negativista)',
-          'Prioridade ao Sofrimento': ' com Prioridade ao Sofrimento',
-          'Visão Simétrica': ' com Visão Simétrica entre Sofrimento e Prazer'
+        const ismDescs = {
+          'Utilitarismo Clássico': 'busca a maior soma total de bem-estar, somando os interesses de todos',
+          'Prioritarismo': 'dá peso extra ao bem-estar de quem está em pior situação',
+          'Maximin': 'avalia uma escolha apenas pelo nível de quem estará na pior situação possível',
+          'Igualitarismo': 'valoriza a igualdade na distribuição do bem-estar, não só o total acumulado',
+          'Suficientismo': 'garante que todos atinjam um patamar mínimo suficiente de bem-estar',
+          'Utilitarismo Médio': 'busca a maior média de bem-estar por pessoa, não a soma total'
         };
-        const negDescMap = {
-          'Foco Exclusivo no Sofrimento': 'um foco exclusivo na redução do sofrimento — para você, o prazer por si só não possui valor moral positivo próprio',
-          'Prioridade Absoluta': 'uma prioridade absoluta e lexical ao sofrimento, que nenhuma quantidade de prazer é capaz de compensar',
-          'Prioridade ao Sofrimento': 'uma prioridade ao sofrimento, que pesa mais que o prazer mas ainda pode ser compensado por grandes quantidades de bem-estar',
-          'Visão Simétrica': 'uma visão simétrica, na qual sofrimento e prazer entram no cálculo moral com o mesmo peso'
+        const selectedIsms = aggs.filter(x => ismDescs[x]);
+        const subcorrentes = selectedIsms.length > 0
+          ? selectedIsms.join(', ')
+          : 'Nenhuma específica (soma simples de bem-estar)';
+        const subcorrentesExplain = selectedIsms.length > 0
+          ? selectedIsms.map(s => s + ' (' + ismDescs[s] + ')').join('; ')
+          : 'você não indicou um critério específico de agregação — na prática, isso equivale a somar o bem-estar de todos sem regras adicionais';
+
+        const focusMap = {
+          'Foco Exclusivo no Sofrimento': 'Exclusivamente negativo',
+          'Prioridade Absoluta': 'Negativo (prioridade absoluta ao sofrimento)',
+          'Prioridade ao Sofrimento': 'Prioridade ao sofrimento',
+          'Visão Simétrica': 'Simétrico'
+        };
+        const focusDescMap = {
+          'Foco Exclusivo no Sofrimento': 'o prazer nunca tem valor moral positivo, nem mesmo fora de casos extremos — só a redução do sofrimento conta como razão moral, sempre',
+          'Prioridade Absoluta': 'nenhuma quantidade de prazer pode compensar sofrimento extremo — mas fora desses casos extremos, o prazer ainda conta normalmente',
+          'Prioridade ao Sofrimento': 'o sofrimento pesa mais do que o prazer equivalente, mas ainda pode ser compensado por bastante bem-estar',
+          'Visão Simétrica': 'sofrimento e prazer entram no cálculo moral com o mesmo peso'
         };
 
-        let finalTitle = titleBase + (negSuffixMap[negChoice] || '');
+        const methodMap = {
+          'Consequencialismo de Atos': 'Por Atos',
+          'Consequencialismo de Regras': 'Por Regras',
+          'Consequencialismo de Dois Níveis': 'Híbrido (Dois Níveis)'
+        };
+        const methodDescMap = {
+          'Consequencialismo de Atos': 'avaliando cada ação individualmente pelo resultado que ela produz',
+          'Consequencialismo de Regras': 'seguindo a regra geral que, se adotada por todos, produziria o melhor resultado',
+          'Consequencialismo de Dois Níveis': 'seguindo regras gerais no dia a dia, mas recorrendo ao cálculo direto do ato em situações extremas ou de reflexão'
+        };
 
-        let bodyText = `Sua visão de mundo estrutural ancora-se no ${actRule}, determinando que o valor moral último de uma escolha ou regra é julgado puramente pelos resultados líquidos que ela instaura na realidade. Na sua matriz matemática de agregação, seus critérios ressaltam um foco direto no(a): ${aggs.join(', ')}. No que tange à calibragem filosófica do peso do sofrimento frente à geração de bem-estar extra, a sua posição reflete ${negDescMap[negChoice] || negDescMap['Visão Simétrica']}.`;
-
+        const bodyText = `Você julga o valor moral de uma escolha pelo resultado que ela produz, ${methodDescMap[actRule] || methodDescMap['Consequencialismo de Atos']}. Dentro disso: ${subcorrentesExplain}. Quanto ao peso do sofrimento frente ao prazer, sua posição é que ${focusDescMap[negChoice] || focusDescMap['Visão Simétrica']}.`;
 
         return {
-          title: finalTitle,
+          title: 'Consequencialismo',
+          meta: [
+            { label: 'Método', value: methodMap[actRule] || actRule },
+            { label: 'Subcorrentes', value: subcorrentes },
+            { label: 'Enfoque', value: focusMap[negChoice] || focusMap['Visão Simétrica'] }
+          ],
           body: [ bodyText ]
         };
       }}
@@ -661,7 +744,7 @@ const PARTS_PT = [
         {label:'Deveríamos buscar a imparcialidade ideal e considerar o bem-estar de todos sem favorecimentos pessoais', next:'c3'},
       ]},
       r_c1_ego:{type:'result', level:1, tag:'Círculo moral', title:'Egoísmo Moral', body:['Sua bússola moral foca as energias exclusivamente no nível mais interno, legitimando a priorização estrita de si mesmo e rejeitando obrigações diretas de imparcialidade com os outros.'], oppose:'Altruísmo Imparcial / Universalismo'},
-      r_c1_tribal:{type:'result', level:2, tag:'Círculo moral', title:'Parcialismo Intimista / Tribalismo Familiar', body:['Sua bússola moral rejeita a imparcialidade radical, argumentando que as conexões interpessoais têm profundo peso ético e legitimando inteiramente a priorização daqueles que fazem parte do seu círculo afetivo direto e familiar.'], oppose:'Altruísmo Imparcial / Universalismo'},
+      r_c1_tribal:{type:'result', level:2, tag:'Círculo moral', title:'Tribalismo Familiar', body:['Essa é uma postura parcial que dá ênfase àquilo que é familiar — família de sangue e amigos, por exemplo. Sua bússola moral rejeita a imparcialidade radical, argumentando que as conexões interpessoais têm profundo peso ético e legitimando a priorização daqueles que fazem parte do seu círculo afetivo direto e familiar.'], oppose:'Altruísmo Imparcial / Universalismo'},
 
       c3:{
         type:'multi_select',
@@ -716,6 +799,7 @@ const PARTS_PT = [
       c4:{
         type:'multi_select',
         text:'Quais destes seres, grupos ou entidades recebem consideração moral direta da sua parte? (Selecione todos que se aplicam)',
+        help: '<p><b>Humanos</b> e <b>Animais sencientes</b> não podem ser marcados juntos, porque a segunda opção já inclui todos os humanos — marque só uma delas, e combine com as demais se quiser.</p><p>Marcar <b>Animais sencientes</b> abre duas perguntas extras sobre se a inteligência muda o peso do sofrimento, e se o futuro importa tanto quanto o presente.</p><p><b>Toda vida orgânica</b> inclui plantas e outros seres vivos sem sistema nervoso. <b>Ecossistemas</b> trata a natureza como um sistema, e não como indivíduos.</p><p>Por exemplo: um mosquito sente dor? Se você acha que sim, ele entra em "animais sencientes". Já uma floresta antiga, mesmo sem "sentir" nada, pode ainda importar moralmente como um todo — é isso que a opção "ecossistemas" tenta capturar.</p>',
         noneOption:'Nenhum destes',
         options:[
           {label:'Todos os seres humanos', val:'Humanos'},
@@ -814,6 +898,10 @@ const PARTS_PT = [
              title = 'Antropocentrismo Exclusivo';
              level = 3;
              desc = 'Sua consideração ética central se restringe à espécie humana. Os demais animais e o meio ambiente são vistos primariamente sob um enfoque instrumental, recebendo no máximo consideração indireta, derivada do interesse que representam para as sociedades humanas.';
+          } else if (sels.length === 0) {
+             title = 'Nenhuma Consideração Moral Direta Atribuída';
+             level = 2;
+             desc = 'Você não atribuiu consideração moral direta a nenhuma das categorias listadas. Isso pode refletir ceticismo sobre a própria ideia de "consideração moral", ou apenas que nenhuma opção capturou bem sua visão — vale revisitar essa pergunta com calma.';
           } else {
              title = 'Pluralismo Moral Atípico';
              level = 4;
@@ -842,18 +930,24 @@ const PARTS_PT = [
   {
     key:'meta', label:'Parte 3 · Fundamentos metaéticos', root:'m1',
     nodes:{
-      m1:{type:'question', text:'Existem fatos morais objetivos que seriam verdadeiros independentemente do que qualquer pessoa ou cultura acredite?', options:[
+      m1:{type:'question', text:'Existem fatos morais objetivos que seriam verdadeiros independentemente do que qualquer pessoa ou cultura acredite?',
+        help: '<p>Pense na afirmação "torturar uma criança por diversão é errado" e nas três formas de encarar isso:</p><p><b>Sim:</b> essa afirmação é verdadeira não importa o que ninguém pense — como "a Terra gira em torno do Sol". Mesmo se todo mundo discordasse, continuaria sendo verdade.</p><p><b>Não, mas relativa a um referencial:</b> a afirmação pode ser verdadeira ou falsa, mas só dentro de um padrão específico — como dizer que uma piada é engraçada. Não existe um padrão universal, mas ainda faz sentido falar em "certo" e "errado" dentro de cada referencial.</p><p><b>Não, nem chega a ser verdadeira ou falsa:</b> a afirmação não descreve fato nenhum — dizer isso seria parecido com fazer uma careta de nojo ou vaiar algo. Expressa uma reação, não uma alegação que possa ser verdadeira ou falsa.</p>',
+        options:[
         {label:'Sim', next:'m2'},
         {label:'Não, mas as afirmações morais ainda podem ser verdadeiras ou falsas dentro de algum referencial', next:'m3'},
         {label:'Não, afirmações morais nem chegam a ser verdadeiras ou falsas — são apenas expressões de atitude', next:'m_noncog'}
       ]},
 
-      m2:{type:'question', text:'Esses fatos morais objetivos podem ser reduzidos a fatos naturais (físicos, biológicos, como o bem-estar empírico) ou eles são de uma dimensão própria, irreduzível (sui generis)?', options:[
+      m2:{type:'question', text:'Esses fatos morais objetivos podem ser reduzidos a fatos naturais (físicos, biológicos, como o bem-estar empírico) ou eles são de uma dimensão própria, irreduzível (sui generis)?',
+        help: '<p>Pense em um exemplo fora da moral: a cor vermelha. Ela é só um conjunto de propriedades físicas (um certo comprimento de onda de luz), ou é algo a mais que a física sozinha não capta?</p><p>Uma resposta possível: os fatos morais são, no fundo, fatos naturais — como bem-estar, dor ou florescimento — que a ciência poderia, em princípio, investigar, do mesmo jeito que investiga qualquer outro fenômeno.</p><p>A outra resposta possível: os fatos morais existem, mas são de um tipo de fato totalmente diferente — não são físicos nem biológicos, mesmo que estejam de alguma forma ligados a eles.</p>',
+        options:[
         {label:'Eles podem ser reduzidos a fatos naturais perfeitamente investigáveis', next:'m2_epi', set:{key:'m_ontologia', value:'Naturalista'}},
         {label:'Eles não são físicos/naturais, mas são fatos de uma dimensão própria (sui generis)', next:'m2_epi', set:{key:'m_ontologia', value:'Não-Naturalista'}},
       ]},
       
-      m2_epi:{type:'question', text:'Sendo objetivos, como podemos descobrir quais são os fatos morais corretos ou o critério fundamental para a moralidade?', options:[
+      m2_epi:{type:'question', text:'Sendo objetivos, como podemos descobrir quais são os fatos morais corretos ou o critério fundamental para a moralidade?',
+        help: '<p>Pense na diferença entre <b>descobrir</b> e <b>construir</b> algo. Descobrir uma verdade moral seria como um cientista descobrindo uma lei da natureza, observando o mundo. Construir uma verdade moral seria mais como um grupo de pessoas desenhando as regras justas de um jogo, perguntando o que todos aceitariam como razoável.</p><p>Uma resposta possível: descobrimos os fatos morais investigando o mundo empiricamente ou usando a intuição, do mesmo jeito que a ciência descobre outros fatos.</p><p>A outra resposta possível: chegamos às regras corretas avaliando o que pessoas racionais e imparciais decidiriam de comum acordo, sob certas condições.</p>',
+        options:[
         {label:'Investigando as verdades do mundo empírica ou intuitivamente', next:'r_realismo_m2'},
         {label:'Avaliando o que agentes perfeitamente racionais decidiriam em condições ideais', next:'t_contract'}
       ]},
@@ -873,6 +967,7 @@ const PARTS_PT = [
       t_contract:{
         type:'multi_select',
         text:'Você está usando a racionalidade como um critério para descobrir as regras morais corretas — imaginando o que pessoas racionais decidiriam sob certas condições. Quais dessas ideias fazem sentido para você? Pode escolher mais de uma.',
+        help: '<p>Pense em um exemplo: um grupo de estranhos precisa concordar com regras para conviver, sem que ninguém saiba de antemão qual papel vai ocupar no grupo.</p><p>Uma ideia: as regras corretas são as que pessoas tentando escapar do conflito e viver em segurança aceitariam seguir.</p><p>Outra ideia: as regras corretas são as que você escolheria sem saber, de antemão, qual posição vai ocupar na sociedade — rico ou pobre, maioria ou minoria (imagine desenhar as regras sem saber onde você mesmo vai "cair" nelas).</p><p>Outra ideia: uma regra só vale se ninguém, agindo de boa-fé, pudesse recusá-la com uma razão de peso.</p><p>Outra ideia: esse mesmo exercício deveria esconder até a espécie a que você pertence — você poderia acordar sendo um animal não-humano afetado por essas regras.</p>',
         options:[
           {label:'Regras justas são as que pessoas em busca de paz e segurança mútua topariam seguir', val:'Hobbesiano'},
           {label:'Regras justas são as que escolheríamos por trás de um "véu da ignorância" — ou seja, imagine decidir as regras da sociedade sem saber, de antemão, qual posição você vai ocupar nela (rico ou pobre, maioria ou minoria)', val:'Rawlsiano'},
@@ -905,7 +1000,9 @@ const PARTS_PT = [
         }
       },
 
-      m3:{type:'question', text:'Sendo a moralidade relativa a um referencial, qual é a natureza desse referencial?', options:[
+      m3:{type:'question', text:'Sendo a moralidade relativa a um referencial, qual é a natureza desse referencial?',
+        help: '<p>Pense na diferença entre duas situações: dizer que "comida picante é boa" (o que pode ser verdade para uma pessoa e falso para outra, sem que nenhuma esteja "errada") e dizer que "existe um círculo quadrado" (o que é simplesmente falso, sempre, para todo mundo).</p><p>Uma resposta possível: afirmações morais podem ser verdadeiras, mas só em relação a uma cultura ou pessoa específica — como o gosto por comida picante.</p><p>A outra resposta possível: afirmações morais tentam descrever algo universal, mas todas elas são simplesmente falsas, porque esse "algo" não existe — como o círculo quadrado.</p>',
+        options:[
         {label:'A verdade de uma afirmação moral depende das normas da cultura que a enuncia', next:'r_mrelat'},
         {label:'Toda afirmação moral tenta ser objetiva, mas todas são falsas, pois esses fatos não existem no mundo', next:'r_error'}
       ]},
@@ -993,7 +1090,9 @@ const PARTS_EN = [
       r_descritivo:{type:'result', tag:'Normative Ethics · Relativism', title:'Descriptive Relativism', body:['Norms vary across cultures, but this does not rule out underlying objective truths.']},
       r_apontar_meta:{type:'result', tag:'Metaethics', title:'Non-Cognitivism', body:['This is a stance about the nature of moral judgments (metaethics), not a normative theory on how to act. We will explore this in Part 3.']},
 
-      t2:{type:'question', text:'When deciding if an action is right or wrong, what do you consider fundamental?', options:[
+      t2:{type:'question', text:'When deciding if an action is right or wrong, what do you consider fundamental?',
+        help: '<p>Think of an example: telling a small lie to spare a friend\'s feelings.</p><p>Focusing on the <b>outcome</b> means asking: does this lie make things better or worse overall, considering everyone affected?</p><p>Focusing on <b>rules or duties</b> means asking: lying is wrong in itself, so you should not do it — even if it seems to produce a good result.</p><p>Focusing on <b>character</b> means asking: what kind of person am I by lying here — am I being kind, or cowardly for avoiding a hard conversation?</p><p>Focusing on <b>self-interest</b> means asking: what is best for me in this situation, regardless of the effect on others?</p>',
+        options:[
         {label:'The outcome of the choice: whether the resulting world is better than alternatives', next:'t3_ato_regra'},
         {label:'Whether it respects certain rules, duties, or rights — regardless of the outcome', next:'t2b'},
         {label:'The kind of person performing it and the character traits it expresses', next:'t_character'},
@@ -1038,7 +1137,9 @@ const PARTS_EN = [
       r_ego_a:{type:'result', tag:'Normative Ethics', title:'Universal Ethical Egoism', body:['Every agent has a moral obligation to advance their own interest.']},
       r_ego_b:{type:'result', tag:'Normative Ethics', title:'Individual Ethical Egoism', body:['You act in your own interest but do not universally prescribe it to others.']},
 
-      t3_ato_regra:{type:'question', text:'Should consequences be evaluated for each act individually, evaluated on general rules, or combining both?', options:[
+      t3_ato_regra:{type:'question', text:'Should consequences be evaluated for each act individually, evaluated on general rules, or combining both?',
+        help: '<p>Think of an example: deciding whether it is right to break a promise when, just this once, doing so seems to produce a better outcome.</p><p>Judging <b>case by case</b> means evaluating this specific situation by the outcome it produces right now, without sticking to a general pattern.</p><p>Judging by <b>general rule</b> means asking: if everyone could break promises under these conditions, would the overall result be good? If not, you keep the promise even here.</p><p>The <b>hybrid</b> path means following the general rule most of the time, but allowing an exception in truly extreme situations.</p>',
+        options:[
         {label:'Act by act — what matters is the outcome of the specific available action', next:'t_conseq', set:{key:'actRule', value:'Act Consequentialism'}},
         {label:'General rules — what matters is which rule, if followed, generates the best outcome', next:'t_conseq', set:{key:'actRule', value:'Rule Consequentialism'}},
         {label:'Two-level — general rules for daily practice, but act calculation for critical reflection', next:'t_conseq', set:{key:'actRule', value:'Two-Level Consequentialism'}},
@@ -1047,6 +1148,7 @@ const PARTS_EN = [
       t_conseq:{
         type:'multi_select',
         text:'How do you evaluate which outcome is "best" when a decision affects many? (Select all that apply)',
+        help: '<p>Think of an example: distributing a limited resource (such as vaccines, or a year-end bonus) among a group of people.</p><p><b>Greatest total sum:</b> distribute it to generate the greatest total combined benefit, regardless of how it ends up divided.</p><p><b>Extra weight to those worse off:</b> prioritize whoever is more vulnerable, even if that does not maximize the total.</p><p><b>Only the worst case matters:</b> judge the distribution solely by how much it improves the life of whoever is worst off.</p><p><b>Equality matters:</b> care about how evenly it is spread among people, not just the total.</p><p><b>Guaranteed minimum:</b> ensure everyone reaches a basic sufficient level, even if less is left over to optimize the rest.</p><p><b>Highest average:</b> maximize how much each person receives on average, even if the overall total ends up smaller.</p>',
         noneOption:'None of the above',
         options:[
           {label:'The greatest total sum of well-being across everyone affected', val:'Classical Utilitarianism'},
@@ -1060,51 +1162,69 @@ const PARTS_EN = [
         nextIfNone:'t_conseq_neg'
       },
 
-      t_conseq_neg:{type:'question', text:'What about the weight of suffering compared to positive well-being?', options:[
+      t_conseq_neg:{type:'question', text:'What about the weight of suffering compared to positive well-being?',
+        help: '<p>Think of an example to tell the last two options apart: choosing between (1) preventing a small amount of pain in someone, or (2) generating a huge amount of pure pleasure for many people, with no suffering involved at all.</p><p>Under option <b>C</b>, pleasure still counts normally in this case — since no extreme suffering is at stake, you would weigh the two options normally, and the huge amount of pleasure would likely win. Absolute priority to suffering only kicks in when the suffering at stake is extreme.</p><p>Under option <b>D</b>, pleasure never counts at all, even in this ordinary case. Preventing even a small amount of pain would come before any amount of pleasure, however large, because pleasure simply does not count as a moral reason.</p>',
+        options:[
         {label:'Suffering and pleasure should be weighed symmetrically', next:'t_conseq_result', set:{key:'negChoice', value:'Symmetric'}},
         {label:'Suffering holds more weight, but can be outweighed by massive well-being', next:'t_conseq_result', set:{key:'negChoice', value:'Weak Priority to Suffering'}},
-        {label:'Suffering has absolute priority: immense pleasure cannot compensate for extreme suffering', next:'t_conseq_result', set:{key:'negChoice', value:'Absolute Priority'}},
-        {label:'We should focus only on reducing suffering; pleasure has no standalone positive moral value', next:'t_conseq_result', set:{key:'negChoice', value:'Exclusive Focus on Suffering'}},
+        {label:'Suffering has absolute priority only in extreme cases: immense pleasure cannot compensate for extreme suffering, but outside those cases pleasure still counts normally', next:'t_conseq_result', set:{key:'negChoice', value:'Absolute Priority'}},
+        {label:'Pleasure never has positive moral value, even outside extreme cases: only reducing suffering counts as a moral reason, always', next:'t_conseq_result', set:{key:'negChoice', value:'Exclusive Focus on Suffering'}},
       ]},
 
       t_conseq_result:{type:'dynamicResult', tag:'Normative Ethics · Consequentialism', render: function(a){
         const aggs = a.t_conseq_selections || [];
         const negChoice = a.negChoice || 'Symmetric';
+        const actRule = a.actRule || 'Act Consequentialism';
 
-        let actRule = a.actRule || 'Consequentialism';
-
-        let isms = [];
-        if(aggs.includes('Classical Utilitarianism')) isms.push('Classical Utilitarian');
-        if(aggs.includes('Prioritarianism')) isms.push('Prioritarian');
-        if(aggs.includes('Maximin')) isms.push('Maximin');
-        if(aggs.includes('Egalitarianism')) isms.push('Egalitarian');
-        if(aggs.includes('Sufficientarianism')) isms.push('Sufficientarian');
-        if(aggs.includes('Average Utilitarianism')) isms.push('Average Utilitarian');
-
-        if(isms.length === 0) isms.push('Consequentialist');
-
-        let titleBase = isms.join(' ');
-
-        const negSuffixMap = {
-          'Exclusive Focus on Suffering': ' with Exclusive Focus on Suffering',
-          'Absolute Priority': ' with Absolute Priority to Suffering (Negative)',
-          'Weak Priority to Suffering': ' with Priority to Suffering',
-          'Symmetric': ' with a Symmetric View of Suffering and Pleasure'
+        const ismDescs = {
+          'Classical Utilitarianism': 'seeks the greatest total sum of well-being, adding up everyone\'s interests',
+          'Prioritarianism': 'gives extra weight to the well-being of those worse off',
+          'Maximin': 'evaluates a choice only by the level of whoever will be worst off',
+          'Egalitarianism': 'values equality in the distribution of well-being, not just the total',
+          'Sufficientarianism': 'ensures everyone reaches a sufficient minimum level of well-being',
+          'Average Utilitarianism': 'seeks the highest average well-being per person, not the total sum'
         };
-        const negDescMap = {
-          'Exclusive Focus on Suffering': 'an exclusive focus on reducing suffering — for you, pleasure holds no standalone positive moral value',
-          'Absolute Priority': 'an absolute, lexical priority to suffering that no amount of pleasure can offset',
-          'Weak Priority to Suffering': 'a priority to suffering that outweighs pleasure but can still be compensated by large amounts of well-being',
-          'Symmetric': 'a symmetric view, in which suffering and pleasure enter the moral calculation with equal weight'
+        const selectedIsms = aggs.filter(x => ismDescs[x]);
+        const subcurrents = selectedIsms.length > 0
+          ? selectedIsms.join(', ')
+          : 'None specific (a simple sum of well-being)';
+        const subcurrentsExplain = selectedIsms.length > 0
+          ? selectedIsms.map(s => s + ' (' + ismDescs[s] + ')').join('; ')
+          : 'you did not indicate a specific aggregation criterion — in practice, this amounts to simply summing everyone\'s well-being with no further rule';
+
+        const focusMap = {
+          'Exclusive Focus on Suffering': 'Exclusively negative',
+          'Absolute Priority': 'Negative (absolute priority to suffering)',
+          'Weak Priority to Suffering': 'Priority to suffering',
+          'Symmetric': 'Symmetric'
+        };
+        const focusDescMap = {
+          'Exclusive Focus on Suffering': 'pleasure never has positive moral value, even outside extreme cases — only reducing suffering counts as a moral reason, always',
+          'Absolute Priority': 'no amount of pleasure can compensate for extreme suffering — but outside those extreme cases, pleasure still counts normally',
+          'Weak Priority to Suffering': 'suffering outweighs equivalent pleasure, but can still be compensated by enough well-being',
+          'Symmetric': 'suffering and pleasure enter the moral calculation with equal weight'
         };
 
-        let finalTitle = titleBase + (negSuffixMap[negChoice] || '');
+        const methodMap = {
+          'Act Consequentialism': 'By Act',
+          'Rule Consequentialism': 'By Rule',
+          'Two-Level Consequentialism': 'Hybrid (Two-Level)'
+        };
+        const methodDescMap = {
+          'Act Consequentialism': 'evaluating each action individually by the outcome it produces',
+          'Rule Consequentialism': 'following the general rule that, if adopted by everyone, would produce the best outcome',
+          'Two-Level Consequentialism': 'following general rules day-to-day, but falling back on direct act calculation in extreme situations or critical reflection'
+        };
 
-        let bodyText = `Your central view is ${actRule}. When evaluating consequences, your criteria indicate a focus on: ${aggs.join(', ')}. Regarding the philosophical weighting of suffering against generated well-being, your stance reflects ${negDescMap[negChoice] || negDescMap['Symmetric']}.`;
-
+        const bodyText = `You judge the moral worth of a choice by the outcome it produces, ${methodDescMap[actRule] || methodDescMap['Act Consequentialism']}. Within that: ${subcurrentsExplain}. As for the weight of suffering against pleasure, your position is that ${focusDescMap[negChoice] || focusDescMap['Symmetric']}.`;
 
         return {
-          title: finalTitle,
+          title: 'Consequentialism',
+          meta: [
+            { label: 'Method', value: methodMap[actRule] || actRule },
+            { label: 'Subcurrents', value: subcurrents },
+            { label: 'Focus', value: focusMap[negChoice] || focusMap['Symmetric'] }
+          ],
           body: [ bodyText ]
         };
       }}
@@ -1119,7 +1239,7 @@ const PARTS_EN = [
         {label:'We should strive for ideal impartiality without personal favoritism', next:'c3'},
       ]},
       r_c1_ego:{type:'result', level:1, tag:'Moral Circle', title:'Ethical Egoism', body:['Your moral circle focuses strictly on yourself and your own interests.'], oppose:'Impartial Altruism'},
-      r_c1_tribal:{type:'result', level:2, tag:'Moral Circle', title:'Intimate Partialism / Familial Tribalism', body:['Your moral circle legitimizes prioritizing yourself and your inner circle.'], oppose:'Impartial Altruism'},
+      r_c1_tribal:{type:'result', level:2, tag:'Moral Circle', title:'Familial Tribalism', body:['This is a partial stance that emphasizes what is familiar — blood family and friends, for example. Your moral compass rejects radical impartiality, arguing that interpersonal connections carry deep ethical weight and legitimizing prioritizing those in your direct, familial circle.'], oppose:'Impartial Altruism'},
 
       c3:{
         type:'multi_select',
@@ -1174,6 +1294,7 @@ const PARTS_EN = [
       c4:{
         type:'multi_select',
         text:'Which of these beings, groups or entities receive direct moral consideration from you? (Select all that apply)',
+        help: '<p><b>Humans</b> and <b>Sentient Animals</b> cannot be checked together, since the second option already includes all humans — check just one, and combine it with the others if you like.</p><p>Checking <b>Sentient Animals</b> opens two extra questions about whether intelligence changes the weight of suffering, and whether the future matters as much as the present.</p><p><b>All Organic Life</b> includes plants and other living things without a nervous system. <b>Ecosystems</b> treats nature as a system, not as individuals.</p><p>For example: does a mosquito feel pain? If you think so, it falls under "sentient animals". An ancient forest, even without "feeling" anything, might still matter morally as a whole — that is what the "ecosystems" option tries to capture.</p>',
         noneOption:'None of these',
         options:[
           {label:'All human beings', val:'Humans'},
@@ -1272,6 +1393,10 @@ const PARTS_EN = [
              title = 'Exclusive Anthropocentrism';
              level = 3;
              desc = 'Your core ethical consideration is restricted to the human species. Other animals and the environment are viewed primarily through an instrumental lens, receiving at most indirect consideration derived from the interest they hold for human societies.';
+          } else if (sels.length === 0) {
+             title = 'No Direct Moral Consideration Assigned';
+             level = 2;
+             desc = 'You did not assign direct moral consideration to any of the listed categories. This might reflect skepticism about the very idea of "moral consideration", or simply that no option captured your view well — it may be worth revisiting this question.';
           } else {
              title = 'Atypical Moral Pluralism';
              level = 4;
@@ -1300,16 +1425,22 @@ const PARTS_EN = [
   {
     key:'meta', label:'Part 3 · Metaethical Foundations', root:'m1',
     nodes:{
-      m1:{type:'question', text:'Are there objective moral facts that are true regardless of what anyone believes?', options:[
+      m1:{type:'question', text:'Are there objective moral facts that are true regardless of what anyone believes?',
+        help: '<p>Think about the statement "torturing a child for fun is wrong", and three ways of viewing it:</p><p><b>Yes:</b> this statement is true no matter what anyone thinks — like "the Earth orbits the Sun". Even if everyone disagreed, it would still be true.</p><p><b>No, but relative to a framework:</b> the statement can be true or false, but only within a specific standard — like saying a joke is funny. There is no universal standard, but it still makes sense to talk about "right" and "wrong" within each framework.</p><p><b>No, it is not even true or false:</b> the statement does not describe any fact at all — saying it would be more like making a disgusted face or booing at something. It expresses a reaction, not a claim that could be true or false.</p>',
+        options:[
         {label:'Yes', next:'m2'},
         {label:'No, but moral claims can be true/false within a framework', next:'m3'},
         {label:'No, moral claims aren\'t even true or false — they just express attitudes', next:'m_noncog'}
       ]},
-      m2:{type:'question', text:'Can these objective moral facts be reduced to natural facts (physics, biology) or are they of their own irreducible dimension (sui generis)?', options:[
+      m2:{type:'question', text:'Can these objective moral facts be reduced to natural facts (physics, biology) or are they of their own irreducible dimension (sui generis)?',
+        help: '<p>Think of an example outside of morality: the color red. Is it just a set of physical properties (a certain wavelength of light), or is it something more that physics alone does not capture?</p><p>One possible answer: moral facts are, at bottom, natural facts — such as well-being, pain, or flourishing — that science could, in principle, investigate, the same way it investigates any other phenomenon.</p><p>The other possible answer: moral facts exist, but are a completely different kind of fact — not physical or biological, even though they may somehow depend on them.</p>',
+        options:[
         {label:'They can be reduced to natural, empirical facts', next:'m2_epi', set:{key:'m_ontologia', value:'Naturalist'}},
         {label:'They are irreducible facts of their own dimension (sui generis)', next:'m2_epi', set:{key:'m_ontologia', value:'Non-Naturalist'}}
       ]},
-      m2_epi:{type:'question', text:'Being objective, how can we discover these moral facts or determine the right criteria?', options:[
+      m2_epi:{type:'question', text:'Being objective, how can we discover these moral facts or determine the right criteria?',
+        help: '<p>Think about the difference between <b>discovering</b> and <b>constructing</b> something. Discovering a moral truth would be like a scientist discovering a law of nature by observing the world. Constructing a moral truth would be more like a group of people designing the fair rules of a game, asking what everyone would accept as reasonable.</p><p>One possible answer: we discover moral facts by investigating the world empirically or through intuition, the same way science discovers other facts.</p><p>The other possible answer: we arrive at the correct rules by evaluating what rational, impartial people would agree on under certain conditions.</p>',
+        options:[
         {label:'By investigating the world empirically or intuitively', next:'r_realismo_m2'},
         {label:'By evaluating what perfectly rational agents would decide under ideal conditions', next:'t_contract'}
       ]},
@@ -1329,6 +1460,7 @@ const PARTS_EN = [
       t_contract:{
         type:'multi_select',
         text:'You are using rationality as a criterion for discovering the correct moral rules — imagining what rational people would decide under certain conditions. Which of these ideas make sense to you? You can pick more than one.',
+        help: '<p>Think of an example: a group of strangers needs to agree on rules to live together, without anyone knowing in advance which role they will occupy in the group.</p><p>One idea: the correct rules are the ones people trying to escape conflict and live safely would agree to follow.</p><p>Another idea: the correct rules are the ones you would choose without knowing, in advance, what position you yourself will occupy in society — rich or poor, majority or minority (imagine designing the rules without knowing where you yourself will "land" in them).</p><p>Another idea: a rule is only valid if no one, acting in good faith, could reasonably reject it.</p><p>Another idea: that same exercise should also hide which species you belong to — you could wake up as a non-human animal affected by these rules.</p>',
         options:[
           {label:'Fair rules are the ones self-interested people seeking mutual peace and security would agree to follow', val:'Hobbesian'},
           {label:'Fair rules are the ones we would choose behind a "veil of ignorance" — imagine deciding society\'s rules without knowing beforehand what position you\'ll occupy in it (rich or poor, majority or minority)', val:'Rawlsian'},
@@ -1361,7 +1493,9 @@ const PARTS_EN = [
         }
       },
 
-      m3:{type:'question', text:'If morality is relative to a framework, what is the nature of that framework?', options:[
+      m3:{type:'question', text:'If morality is relative to a framework, what is the nature of that framework?',
+        help: '<p>Think about the difference between two situations: saying "spicy food is good" (which can be true for one person and false for another, without either being "wrong") and saying "a square circle exists" (which is simply false, always, for everyone).</p><p>One possible answer: moral statements can be true, but only relative to a specific culture or person — like the taste for spicy food.</p><p>The other possible answer: moral statements try to describe something universal, but all of them are simply false, because that "something" does not exist — like the square circle.</p>',
+        options:[
         {label:'Truth depends on the norms of the culture stating it', next:'r_mrelat'},
         {label:'Every moral claim aims at objectivity but all are false (facts don\'t exist)', next:'r_error'}
       ]},
@@ -1474,7 +1608,7 @@ const RESULT_CODE_LIST = [
   ['eeu','Egoísmo Ético Universal','Universal Ethical Egoism'],
   ['eei','Egoísmo Ético Individual','Individual Ethical Egoism'],
   ['em','Egoísmo Moral','Ethical Egoism'],
-  ['pit','Parcialismo Intimista / Tribalismo Familiar','Intimate Partialism / Familial Tribalism'],
+  ['pit','Tribalismo Familiar','Familial Tribalism'],
   ['cch','Construtivismo Contratualista (Hobbesiano)','Contractualist Constructivism (Hobbesian)'],
   ['ccr','Construtivismo Contratualista (Rawlsiano)','Contractualist Constructivism (Rawlsian)'],
   ['cce','Construtivismo Contratualista (Escanloniano)','Contractualist Constructivism (Scanlonian)'],
@@ -1501,11 +1635,13 @@ const RESULT_CODE_LIST = [
   ['eco','Ecocentrismo / Holismo Ambiental','Ecocentrism / Environmental Holism'],
   ['ae','Antropocentrismo Exclusivo','Exclusive Anthropocentrism'],
   ['pma','Pluralismo Moral Atípico','Atypical Moral Pluralism'],
+  ['ncm','Nenhuma Consideração Moral Direta Atribuída','No Direct Moral Consideration Assigned'],
   ['rmn','Realismo Moral Naturalista','Naturalist Moral Realism'],
   ['rmnn','Realismo Moral Não-Naturalista','Non-Naturalist Moral Realism'],
   ['aaf','Alta Abertura e Flexibilidade Ética','High Openness and Ethical Flexibility'],
   ['amo','Abertura Moderada','Moderate Openness'],
   ['pcb','Postura Conservadora / Baixa Abertura','Conservative Stance / Low Openness'],
+  ['ce','Consequencialismo','Consequentialism'],
 ];
 
 const RESULT_CODE_MAP = {};
@@ -1528,8 +1664,13 @@ function shortCode(title){
 }
 
 function buildShareUrl(){
-  const codes = partResults.map(r => RESULT_CODE_MAP[r.title] || shortCode(r.title));
-  return location.origin + location.pathname + '#' + currentLang + ':' + codes.join(',');
+  const parts = partResults.map(r => {
+    const code = RESULT_CODE_MAP[r.title] || shortCode(r.title);
+    const desc = encodeURIComponent(r.desc || '');
+    const meta = r.meta && r.meta.length > 0 ? encodeURIComponent(JSON.stringify(r.meta)) : '';
+    return code + '|' + desc + '|' + meta;
+  });
+  return location.origin + location.pathname + '#' + currentLang + ':' + parts.join(',');
 }
 
 window.copyShareLink = function(){
@@ -1602,11 +1743,11 @@ function updateTopbar(){
   const app = document.getElementById('app');
   const ui = getUI();
 
-  const isIntro = (state === 'intro');
-  if(main) main.classList.toggle('intro-view', isIntro);
-  if(app) app.classList.toggle('intro-app', isIntro);
+  const noChrome = (state === 'intro' || state === 'final' || state === 'shared');
+  if(main) main.classList.toggle('intro-view', noChrome);
+  if(app) app.classList.toggle('intro-app', noChrome);
 
-  if(topbar) topbar.style.display = isIntro ? 'none' : '';
+  if(topbar) topbar.style.display = noChrome ? 'none' : '';
 
   if(state === 'intro' || state === 'final' || state === 'shared'){
     backBtn.style.visibility = 'hidden';
@@ -1630,17 +1771,27 @@ function render(){
 
 function renderShared(container){
   const ui = getUI();
-  const raw = decodeURIComponent((location.hash || '').replace(/^#/, '')).replace(/^(pt|en):/, '');
-  const slugs = raw.split(',').map(s => s.trim()).filter(Boolean);
+  const raw = (location.hash || '').replace(/^#/, '').replace(/^(pt|en):/, '');
+  const parts = raw.split(',').map(s => s.trim()).filter(Boolean);
 
-  const items = slugs.map((s, i) => {
-    const info = RESULT_LABEL_MAP[s];
-    const label = info ? (currentLang === 'en' ? info.en : info.pt) : deslugify(s);
+  const items = parts.map((p, i) => {
+    const segs = p.split('|');
+    const code = segs[0] || '';
+    const encDesc = segs[1] || '';
+    const encMeta = segs[2] || '';
+    const info = RESULT_LABEL_MAP[code];
+    const label = info ? (currentLang === 'en' ? info.en : info.pt) : deslugify(code);
+    let desc = '';
+    try { desc = encDesc ? decodeURIComponent(encDesc) : ''; } catch(e){ desc = ''; }
+    let meta = null;
+    try { meta = encMeta ? JSON.parse(decodeURIComponent(encMeta)) : null; } catch(e){ meta = null; }
     const stage = ui.stages[i] || '';
     return `
       <div class="summary-card">
         <p class="stage">${esc(stage)}</p>
         <h3>${esc(label)}</h3>
+        ${meta && meta.length > 0 ? `<div class="result-meta" style="margin:0 0 12px;">${meta.map(m => `<div class="result-meta-item"><span class="meta-label">${esc(m.label)}:</span> <span class="meta-value">${esc(m.value)}</span></div>`).join('')}</div>` : ''}
+        ${desc ? `<p class="summary-desc">${esc(desc)}</p>` : ''}
       </div>
     `;
   }).join('');
@@ -1750,7 +1901,8 @@ function renderQuestion(container){
     
     <div class="card-container">
       <p class="part-label">${p.label}</p>
-      <h2 class="qtext">${esc(n.text)}</h2>
+      <h2 class="qtext">${esc(n.text)}${n.help ? ` <button class="help-btn" onclick="document.getElementById('help-panel').classList.toggle('open')" aria-label="${esc(ui.helpLabel)}">?</button>` : ''}</h2>
+      ${n.help ? `<div class="help-panel" id="help-panel">${n.help}</div>` : ''}
   `;
 
   if(n.type === 'multi_select' || n.type === 'multi_bias'){
@@ -1843,7 +1995,7 @@ window.submitMultiSelect = function(){
   const thisNodeId = nodeId;
 
   if(noneSel){
-    answers[nodeId + '_selections'] = [n.noneOptionValue || 'Nenhuma opção'];
+    answers[nodeId + '_selections'] = [];
     nodeId = n.nextIfNone;
   } else {
     answers[nodeId + '_selections'] = selected;
@@ -1882,6 +2034,7 @@ function renderPartResult(container){
     <div class="card-container">
       <p class="result-tag">${esc(r.tag || p.label)}</p>
       <h2 class="result-title">${esc(r.title)}</h2>
+      ${r.meta && r.meta.length > 0 ? `<div class="result-meta">${r.meta.map(m => `<div class="result-meta-item"><span class="meta-label">${esc(m.label)}:</span> <span class="meta-value">${esc(m.value)}</span></div>`).join('')}</div>` : ''}
       ${r.body.map(para => `<p class="lede">${esc(para)}</p>`).join('')}
   `;
 
@@ -1923,7 +2076,8 @@ window.continuePart = function(){
     title: r.title, 
     tag: r.tag, 
     level: level, 
-    desc: (r.body && r.body.length > 0) ? r.body[0] : ''
+    desc: (r.body && r.body.length > 0) ? r.body[0] : '',
+    meta: r.meta || null
   };
   
   navHistory.push({partIndex, nodeId, answers:{...answers}, state});
@@ -1988,7 +2142,6 @@ function renderFinal(container){
     if (i === 1) { 
       graphHtml = `
         <div class="moral-map-inline">
-          <h4>${ui.stages[1]}</h4>
           ${renderMoralMapSvg(circleLevel)}
         </div>
       `;
@@ -1999,6 +2152,7 @@ function renderFinal(container){
         <p class="stage">${esc(ui.stages[i] || ('Part ' + (i+1)))}</p>
         <h3>${esc(r.title || '')}</h3>
         ${r.tag ? `<p class="lede" style="font-size:13px; margin:0 0 8px 0; color:var(--ethical-blue);">${esc(r.tag)}</p>` : ''}
+        ${r.meta && r.meta.length > 0 ? `<div class="result-meta" style="margin:0 0 12px;">${r.meta.map(m => `<div class="result-meta-item"><span class="meta-label">${esc(m.label)}:</span> <span class="meta-value">${esc(m.value)}</span></div>`).join('')}</div>` : ''}
         ${r.desc ? `<p class="lede" style="font-size:14px; margin:0;">${esc(r.desc)}</p>` : ''}
         ${graphHtml}
       </div>
