@@ -87,6 +87,7 @@
 
   main { flex: 1; display: flex; flex-direction: column; justify-content: center; }
   main.intro-view { justify-content: flex-start; padding-top: 0; }
+  main.test-view { justify-content: flex-start; }
 
   .rings { display: block; width: 110px; height: 110px; margin: 0 auto 24px; }
   .rings circle {
@@ -445,6 +446,10 @@
   }
   .share-row { display: flex; gap: 10px; margin-top: 12px; }
   .share-row input { flex: 1; border: 1px solid var(--line); padding: 10px 14px; border-radius: 20px; font: inherit; color: var(--ink); }
+  @media (max-width: 640px) {
+    .share-row { flex-direction: column; }
+    .share-row button { width: 100%; }
+  }
 
   .restart-btn-wrap { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); text-align: center; }
 
@@ -1969,7 +1974,11 @@ function updateTopbar(){
   const ui = getUI();
 
   const noChrome = (state === 'intro' || state === 'final' || state === 'shared');
-  if(main) main.classList.toggle('intro-view', noChrome);
+  const testView = (state === 'question' || state === 'part_result');
+  if(main) {
+    main.classList.toggle('intro-view', noChrome);
+    main.classList.toggle('test-view', testView);
+  }
   if(app) app.classList.toggle('intro-app', noChrome);
 
   if(topbar) topbar.style.display = noChrome ? 'none' : '';
@@ -2158,6 +2167,7 @@ function goBack(){
 function currentPart(){ return getData()[partIndex]; }
 
 function renderQuestion(container){
+  window.scrollTo(0, 0);
   const ui = getUI();
   const p = currentPart();
   const n = p.nodes[nodeId];
@@ -2290,6 +2300,7 @@ window.submitMultiSelect = function(){
 };
 
 function renderPartResult(container){
+  window.scrollTo(0, 0);
   const ui = getUI();
   const p = currentPart();
   const n = p.nodes[nodeId];
