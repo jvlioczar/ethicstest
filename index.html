@@ -139,14 +139,14 @@
     margin: 24px 0 32px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 8px;
   }
   .parts-list li {
     border: 1px solid var(--line);
     border-radius: 10px;
-    padding: 14px;
+    padding: 10px 12px;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: flex-start;
   }
   .parts-list .num {
@@ -154,18 +154,19 @@
     color: var(--ethical-blue);
     font-weight: 700;
     font-size: 13px;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
-  .parts-list .txt strong { display: block; font-size: 14px; color: var(--ink); font-weight: 600; margin-bottom: 3px; line-height: 1.3; }
-  .parts-list .txt span { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+  .parts-list .txt { line-height: 1; }
+  .parts-list .txt strong { display: block; font-size: 13.5px; color: var(--ink); font-weight: 600; margin: 0 0 2px; line-height: 1.15; }
+  .parts-list .txt span { display: block; font-size: 12px; color: var(--muted); line-height: 1.2; }
 
-  @media (max-width: 360px) {
+  @media (max-width: 640px) {
     .parts-list { grid-template-columns: 1fr; }
   }
 
@@ -501,9 +502,9 @@ const UI_PT = {
   titleIntro:'Qual é a sua visão moral do mundo?',
   ledeIntro:'Toda decisão que envolve outros seres carrega uma teoria sobre como devemos agir, sobre quem merece consideração e sobre o que significa dizer que algo é "certo" ou "errado". Este quiz ajuda a nomear os fundamentos que você já usa.',
   partsListItems:[
-    ['I','Teoria ética normativa','Como decidir o que é certo: consequências, regras, caráter ou interesse próprio.'],
-    ['II','Fronteira do círculo moral','Quem entra no seu círculo de consideração moral: do indivíduo a todos os seres sencientes.'],
-    ['III','Fundamentos metaéticos','O que é, afinal, um juízo moral: fato, construção ou expressão de atitude.'],
+    ['I','Teoria ética normativa','Como decidir o que é certo — consequências, regras, caráter, contrato ou interesse próprio.'],
+    ['II','Fronteira do círculo moral','Quem entra no seu círculo de consideração moral — do indivíduo ao sencientismo pleno.'],
+    ['III','Fundamentos metaéticos','O que é, afinal, um juízo moral — fato, construção ou expressão de atitude.'],
     ['IV','Abertura moral e intelectual','Como você lida com argumentos, evidências, incerteza e revisão de crenças.'],
   ],
   ctaStart:'Começar o teste',
@@ -541,9 +542,9 @@ const UI_EN = {
   titleIntro:'What is your moral worldview?',
   ledeIntro:'Every decision involving other beings carries a theory about how we should act, who deserves consideration, and what it means to call something "right" or "wrong". This quiz helps name the foundations you already use.',
   partsListItems:[
-    ['I','Normative Ethical Theory','How to decide what is right: consequences, rules, character, or self-interest.'],
-    ['II','Boundary of the Moral Circle','Who enters your circle of moral consideration: from the individual to full sentientism.'],
-    ['III','Metaethical Foundations','What a moral judgment actually is: fact, construction, or expression of attitude.'],
+    ['I','Normative Ethical Theory','How to decide what is right — consequences, rules, character, contract, or self-interest.'],
+    ['II','Boundary of the Moral Circle','Who enters your circle of moral consideration — from the individual to full sentientism.'],
+    ['III','Metaethical Foundations','What a moral judgment actually is — fact, construction, or expression of attitude.'],
     ['IV','Moral and Intellectual Openness','How you handle arguments, evidence, uncertainty, and revising beliefs.'],
   ],
   ctaStart:'Start Test',
@@ -672,8 +673,8 @@ const PARTS_PT = [
         options:[
         {label:'Sofrimento e prazer devem ser considerados de forma simétrica no cálculo', next:'t_conseq_result', set:{key:'negChoice', value:'Visão Simétrica'}},
         {label:'O sofrimento tem um peso maior que o prazer, mas pode ser compensado por grandes quantidades de bem-estar', next:'t_conseq_result', set:{key:'negChoice', value:'Prioridade ao Sofrimento'}},
-        {label:'O sofrimento tem prioridade absoluta apenas em casos extremos: nenhuma quantidade de prazer compensa sofrimento extremo, mas fora desses casos o prazer ainda conta normalmente', next:'t_conseq_result', set:{key:'negChoice', value:'Prioridade Absoluta'}},
-        {label:'O prazer nunca tem valor moral positivo, nem mesmo fora de casos extremos: só a redução do sofrimento conta como razão moral, sempre', next:'t_conseq_result', set:{key:'negChoice', value:'Foco Exclusivo no Sofrimento'}},
+        {label:'O sofrimento tem prioridade absoluta: nenhuma quantidade de prazer compensa sofrimento extremo, mas fora desses casos o prazer ainda conta normalmente', next:'t_conseq_result', set:{key:'negChoice', value:'Prioridade Absoluta'}},
+        {label:'Devemos focar apenas em reduzir sofrimento; o prazer por si só não possui valor moral positivo, só a redução do sofrimento deve contar como razão moral, sempre', next:'t_conseq_result', set:{key:'negChoice', value:'Foco Exclusivo no Sofrimento'}},
       ]},
 
       t_conseq_result:{type:'dynamicResult', tag:'Ética normativa · Consequencialismo', render: function(a){
@@ -799,7 +800,7 @@ const PARTS_PT = [
       c4:{
         type:'multi_select',
         text:'Quais destes seres, grupos ou entidades recebem consideração moral direta da sua parte? (Selecione todos que se aplicam)',
-        help: '<p><b>Humanos</b> e <b>Animais sencientes</b> não podem ser marcados juntos, porque a segunda opção já inclui todos os humanos — marque só uma delas, e combine com as demais se quiser.</p><p>Marcar <b>Animais sencientes</b> abre duas perguntas extras sobre se a inteligência muda o peso do sofrimento, e se o futuro importa tanto quanto o presente.</p><p><b>Toda vida orgânica</b> inclui plantas e outros seres vivos sem sistema nervoso. <b>Ecossistemas</b> trata a natureza como um sistema, e não como indivíduos.</p><p>Por exemplo: um mosquito sente dor? Se você acha que sim, ele entra em "animais sencientes". Já uma floresta antiga, mesmo sem "sentir" nada, pode ainda importar moralmente como um todo — é isso que a opção "ecossistemas" tenta capturar.</p>',
+        help: '<p>Marque a primeira opção se você acha que deveríamos valorizar e não prejudicar todos os indivíduos da espécie humana. Marque a segunda se acha que devemos valorizar todos os animais que possuem senciência — as duas não podem ser marcadas juntas, porque a segunda opção já inclui todos os humanos, que também são animais sencientes. Marcar essa segunda opção abre duas perguntas extras sobre se a inteligência muda o peso do sofrimento, e se o futuro importa tanto quanto o presente.</p><p>Marque a terceira opção se você considera toda vida orgânica, incluindo plantas e outros seres vivos, mesmo aqueles que não possuem sistema nervoso ou senciência.</p><p>Marque a quarta opção se pensa que devemos conservar ecossistemas, espécies e biodiversidade porque há algo especial em mantê-los da forma como são — essa opção trata a natureza como um sistema, e não como indivíduos.</p><p>Por exemplo: um mosquito sente dor? Se você acha que sim, ele entra em "animais sencientes". Já uma floresta antiga, mesmo sem "sentir" nada, pode ainda importar moralmente como um todo — é isso que a opção "ecossistemas" tenta capturar.</p>',
         noneOption:'Nenhum destes',
         options:[
           {label:'Todos os seres humanos', val:'Humanos'},
@@ -931,15 +932,16 @@ const PARTS_PT = [
     key:'meta', label:'Parte 3 · Fundamentos metaéticos', root:'m1',
     nodes:{
       m1:{type:'question', text:'Existem fatos morais objetivos que seriam verdadeiros independentemente do que qualquer pessoa ou cultura acredite?',
-        help: '<p>Pense na afirmação "torturar uma criança por diversão é errado" e nas três formas de encarar isso:</p><p><b>Sim:</b> essa afirmação é verdadeira não importa o que ninguém pense — como "a Terra gira em torno do Sol". Mesmo se todo mundo discordasse, continuaria sendo verdade.</p><p><b>Não, mas relativa a um referencial:</b> a afirmação pode ser verdadeira ou falsa, mas só dentro de um padrão específico — como dizer que uma piada é engraçada. Não existe um padrão universal, mas ainda faz sentido falar em "certo" e "errado" dentro de cada referencial.</p><p><b>Não, nem chega a ser verdadeira ou falsa:</b> a afirmação não descreve fato nenhum — dizer isso seria parecido com fazer uma careta de nojo ou vaiar algo. Expressa uma reação, não uma alegação que possa ser verdadeira ou falsa.</p>',
+        help: '<p>Pense na afirmação "torturar um inocente por diversão é errado" e nas quatro formas de encarar isso:</p><p><b>Sim:</b> essa afirmação é verdadeira não importa o que ninguém pense — como "a Terra gira em torno do Sol". Mesmo se todo mundo discordasse, continuaria sendo verdade.</p><p><b>Não, mas relativa a um referencial:</b> a afirmação pode ser verdadeira ou falsa, mas só dentro de um padrão específico — como dizer que uma piada é engraçada. Não existe um padrão universal, mas ainda faz sentido falar em "certo" e "errado" dentro de cada referencial.</p><p><b>Não, nem chega a ser verdadeira ou falsa:</b> a afirmação não descreve fato nenhum — dizer isso seria parecido com fazer uma careta de nojo ou vaiar algo. Expressa uma reação, não uma alegação que possa ser verdadeira ou falsa.</p><p><b>Recusar a pergunta:</b> talvez a própria pergunta já esteja mal colocada — como perguntar se o xadrez é "verdadeiro". Você pode aceitar a prática moral tal como ela funciona, sem precisar decidir entre essas alternativas.</p>',
         options:[
         {label:'Sim', next:'m2'},
         {label:'Não, mas as afirmações morais ainda podem ser verdadeiras ou falsas dentro de algum referencial', next:'m3'},
-        {label:'Não, afirmações morais nem chegam a ser verdadeiras ou falsas — são apenas expressões de atitude', next:'m_noncog'}
+        {label:'Não, afirmações morais nem chegam a ser verdadeiras ou falsas — são apenas expressões de atitude', next:'m_noncog'},
+        {label:'Prefiro recusar essa pergunta — ela parte de pressupostos que não preciso aceitar', next:'r_quietismo'}
       ]},
 
       m2:{type:'question', text:'Esses fatos morais objetivos podem ser reduzidos a fatos naturais (físicos, biológicos, como o bem-estar empírico) ou eles são de uma dimensão própria, irreduzível (sui generis)?',
-        help: '<p>Pense em um exemplo fora da moral: a cor vermelha. Ela é só um conjunto de propriedades físicas (um certo comprimento de onda de luz), ou é algo a mais que a física sozinha não capta?</p><p>Uma resposta possível: os fatos morais são, no fundo, fatos naturais — como bem-estar, dor ou florescimento — que a ciência poderia, em princípio, investigar, do mesmo jeito que investiga qualquer outro fenômeno.</p><p>A outra resposta possível: os fatos morais existem, mas são de um tipo de fato totalmente diferente — não são físicos nem biológicos, mesmo que estejam de alguma forma ligados a eles.</p>',
+        help: '<p>Pense em um exemplo fora da moral: a cor vermelha. Ela é só um conjunto de propriedades físicas (um certo comprimento de onda de luz), ou é algo a mais que a física sozinha não capta?</p><p>Uma resposta possível: os fatos morais são, no fundo, fatos naturais — como bem-estar, dor ou florescimento — que a ciência poderia, em princípio, investigar, do mesmo jeito que investiga qualquer outro fenômeno.</p><p>A outra resposta possível: os fatos morais existem, mas são de um tipo de fato totalmente diferente — não são físicos nem biológicos, mesmo que estejam de alguma forma ligados a eles, algo similar à matemática.</p><p>Pense assim: enquanto a física é uma ciência empírica (baseada em experimentos e observações), a matemática é uma ciência formal (baseada em axiomas e deduções lógicas). Da mesma forma, um fato moral poderia ser conhecido não por observação empírica, mas por reflexão racional e dedução lógica — mais parecido com uma verdade matemática do que com uma lei física.</p>',
         options:[
         {label:'Eles podem ser reduzidos a fatos naturais perfeitamente investigáveis', next:'m2_epi', set:{key:'m_ontologia', value:'Naturalista'}},
         {label:'Eles não são físicos/naturais, mas são fatos de uma dimensão própria (sui generis)', next:'m2_epi', set:{key:'m_ontologia', value:'Não-Naturalista'}},
@@ -959,7 +961,8 @@ const PARTS_PT = [
           ? 'A verdade moral é um fato objetivo, mas reduzível a fatos naturais — como estados de bem-estar, dor, ou florescimento biológico e psicológico. Descobrimos essas verdades investigando o mundo empiricamente, da mesma forma como a ciência descobre outros fatos naturais complexos.'
           : 'A verdade moral é um fato objetivo, mas de uma natureza própria e irredutível (sui generis) — ela não pode ser reduzida a propriedades físicas ou naturais, mesmo podendo depender delas. Descobrimos essas verdades por meio de uma faculdade especial de intuição racional, e não por observação empírica direta como nas ciências naturais.';
         return {
-            title: 'Realismo Moral ' + tipo,
+            title: 'Realismo Moral',
+            meta: [{ label: 'Subcorrente', value: tipo }],
             body: [body]
         };
       }},
@@ -984,11 +987,11 @@ const PARTS_PT = [
           const sels = a.t_contract_selections || [];
           if(sels.length === 0){
             return {
-              title:'Construtivismo Contratualista',
+              title:'Realismo Moral',
+              meta: [{ label: 'Subcorrente', value: 'Construtivismo Contratualista' }],
               body:['Você usa a racionalidade como critério para descobrir as regras morais corretas, mesmo sem se identificar com nenhuma formulação específica do contrato social listada.']
             };
           }
-          const title = 'Construtivismo Contratualista (' + sels.join(' + ') + ')';
           const descMap = {
             'Hobbesiano': 'as regras corretas são os acordos pragmáticos que pessoas racionais, buscando escapar do conflito, aceitariam seguir para viver em paz',
             'Rawlsiano': 'as regras corretas são as que escolheríamos por trás de um véu da ignorância sobre nossa própria posição social',
@@ -996,7 +999,11 @@ const PARTS_PT = [
             'Estendido': 'esse véu da ignorância também deveria esconder a espécie a que pertencemos — por isso, o especismo não passaria no teste da imparcialidade, já que na prática só é defendido porque sabemos de antemão que somos humanos, que não seremos as vítimas desse arranjo e que colheremos seus benefícios'
           };
           const body = 'Você usa a racionalidade como critério para descobrir as regras morais corretas. Na sua visão: ' + sels.map(s => descMap[s]).join('; e ') + '.';
-          return { title: title, body: [body] };
+          return {
+            title: 'Realismo Moral',
+            meta: [{ label: 'Subcorrente', value: 'Construtivismo Contratualista (' + sels.join(' + ') + ')' }],
+            body: [body]
+          };
         }
       },
 
@@ -1006,17 +1013,18 @@ const PARTS_PT = [
         {label:'A verdade de uma afirmação moral depende das normas da cultura que a enuncia', next:'r_mrelat'},
         {label:'Toda afirmação moral tenta ser objetiva, mas todas são falsas, pois esses fatos não existem no mundo', next:'r_error'}
       ]},
-      r_mrelat:{type:'result', tag:'Metaética', title:'Relativismo / Subjetivismo Metaético', body:['Não há uma verdade moral superior e universal. Os juízos morais só são verdadeiros ou falsos em relação a uma matriz cultural ou pessoal específica — não existe um ponto de vista externo a essas matrizes a partir do qual comparar ou julgar qual delas está certa.']},
-      r_error:{type:'result', tag:'Metaética', title:'Teoria do Erro (Ceticismo Moral)', body:['Sua visão reflete um ceticismo moral profundo. Toda afirmação moral (como "isso é errado") pressupõe a existência de fatos morais objetivos no universo — mas esses fatos simplesmente não existem. Por isso, todo julgamento moral já feito é, estritamente falando, falso, não porque nossa razão falhe em encontrá-los, mas porque não há nada desse tipo para ser encontrado.']},
+      r_mrelat:{type:'result', tag:'Metaética', title:'Anti-Realismo Moral', meta:[{label:'Subcorrente', value:'Relativismo / Subjetivismo Metaético'}], body:['Não há uma verdade moral superior e universal. Os juízos morais só são verdadeiros ou falsos em relação a uma matriz cultural ou pessoal específica — não existe um ponto de vista externo a essas matrizes a partir do qual comparar ou julgar qual delas está certa.']},
+      r_error:{type:'result', tag:'Metaética', title:'Anti-Realismo Moral', meta:[{label:'Subcorrente', value:'Teoria do Erro (Ceticismo Moral)'}], body:['Sua visão reflete um ceticismo moral profundo. Toda afirmação moral (como "isso é errado") pressupõe a existência de fatos morais objetivos no universo — mas esses fatos simplesmente não existem. Por isso, todo julgamento moral já feito é, estritamente falando, falso, não porque nossa razão falhe em encontrá-los, mas porque não há nada desse tipo para ser encontrado.']},
 
       m_noncog:{type:'question', text:'Se a moralidade não lida com verdades e falsidades, o que fazemos quando julgamos algo como moralmente errado?', options:[
         {label:'Estamos expressando emoções (como um "Buuu!" afetivo)', next:'r_emotivismo'},
         {label:'Estamos dando comandos universalizáveis (como um "Não faça isso!")', next:'r_prescritivismo'},
         {label:'Expressamos atitudes, mas agimos e falamos como se houvesse objetividade e rigor lógico nisso', next:'r_quaserealismo'}
       ]},
-      r_emotivismo:{type:'result', tag:'Metaética', title:'Emotivismo (Não-Cognitivismo)', body:['Afirmações morais não descrevem fatos: elas expressam emoções e reações afetivas. Dizer "matar é errado" equivale, em essência, a exclamar "matar, buuu!" — uma expressão de desaprovação, e não uma sentença que possa ser verdadeira ou falsa.']},
-      r_prescritivismo:{type:'result', tag:'Metaética', title:'Prescritivismo', body:['Ao fazer um juízo moral, você não está descrevendo um fato do mundo, mas prescrevendo uma regra universalizável — um comando disfarçado. Dizer "matar é errado" equivale, na prática, a ordenar "não mate, e ninguém deve matar, nessas mesmas circunstâncias".']},
-      r_quaserealismo:{type:'result', tag:'Metaética', title:'Quase-Realismo', body:['A moralidade nasce de atitudes e reações afetivas humanas, não de fatos externos ao mundo. Mas, ao longo da história, o debate moral estruturou essas atitudes com tanto rigor lógico, coerência e universalidade que a nossa prática ética passou a operar "como se" fatos morais objetivos realmente existissem — mesmo sem precisarmos postular entidades metafísicas para isso.']}
+      r_emotivismo:{type:'result', tag:'Metaética', title:'Anti-Realismo Moral', meta:[{label:'Subcorrente', value:'Emotivismo (Não-Cognitivismo)'}], body:['Afirmações morais não descrevem fatos: elas expressam emoções e reações afetivas. Dizer "matar é errado" equivale, em essência, a exclamar "matar, buuu!" — uma expressão de desaprovação, e não uma sentença que possa ser verdadeira ou falsa.']},
+      r_prescritivismo:{type:'result', tag:'Metaética', title:'Anti-Realismo Moral', meta:[{label:'Subcorrente', value:'Prescritivismo'}], body:['Ao fazer um juízo moral, você não está descrevendo um fato do mundo, mas prescrevendo uma regra universalizável — um comando disfarçado. Dizer "matar é errado" equivale, na prática, a ordenar "não mate, e ninguém deve matar, nessas mesmas circunstâncias".']},
+      r_quaserealismo:{type:'result', tag:'Metaética', title:'Anti-Realismo Moral', meta:[{label:'Subcorrente', value:'Quase-Realismo'}], body:['A moralidade nasce de atitudes e reações afetivas humanas, não de fatos externos ao mundo. Mas, ao longo da história, o debate moral estruturou essas atitudes com tanto rigor lógico, coerência e universalidade que a nossa prática ética passou a operar "como se" fatos morais objetivos realmente existissem — mesmo sem precisarmos postular entidades metafísicas para isso.']},
+      r_quietismo:{type:'result', tag:'Metaética', title:'Quietismo Metaético', body:['O filósofo Ludwig Wittgenstein é frequentemente apontado como uma referência para essa postura — um "quietista", ou um realista "relaxado", em oposição às correntes mais "heterodoxas" da metaética. A ideia central é que a metaética tradicional, ao perguntar se os fatos morais são "independentes da mente" (realismo) ou "meros sentimentos e invenções" (antirrealismo), está fazendo uma pergunta mal formulada — um problema filosófico que não precisa, e talvez não possa, ser resolvido dessa forma. Como quietista, você aceita a prática moral tal como ela já funciona dentro da linguagem e da vida humana comum, sem buscar por trás dela fundamentos metafísicos profundos que a justifiquem ou a invalidem "de fora".']},
     }
   },
   {
@@ -1167,8 +1175,8 @@ const PARTS_EN = [
         options:[
         {label:'Suffering and pleasure should be weighed symmetrically', next:'t_conseq_result', set:{key:'negChoice', value:'Symmetric'}},
         {label:'Suffering holds more weight, but can be outweighed by massive well-being', next:'t_conseq_result', set:{key:'negChoice', value:'Weak Priority to Suffering'}},
-        {label:'Suffering has absolute priority only in extreme cases: immense pleasure cannot compensate for extreme suffering, but outside those cases pleasure still counts normally', next:'t_conseq_result', set:{key:'negChoice', value:'Absolute Priority'}},
-        {label:'Pleasure never has positive moral value, even outside extreme cases: only reducing suffering counts as a moral reason, always', next:'t_conseq_result', set:{key:'negChoice', value:'Exclusive Focus on Suffering'}},
+        {label:'Suffering has absolute priority: immense pleasure cannot compensate for extreme suffering, but outside those cases pleasure still counts normally', next:'t_conseq_result', set:{key:'negChoice', value:'Absolute Priority'}},
+        {label:'We should focus only on reducing suffering; pleasure on its own has no positive moral value — only reducing suffering should count as a moral reason, always', next:'t_conseq_result', set:{key:'negChoice', value:'Exclusive Focus on Suffering'}},
       ]},
 
       t_conseq_result:{type:'dynamicResult', tag:'Normative Ethics · Consequentialism', render: function(a){
@@ -1294,7 +1302,7 @@ const PARTS_EN = [
       c4:{
         type:'multi_select',
         text:'Which of these beings, groups or entities receive direct moral consideration from you? (Select all that apply)',
-        help: '<p><b>Humans</b> and <b>Sentient Animals</b> cannot be checked together, since the second option already includes all humans — check just one, and combine it with the others if you like.</p><p>Checking <b>Sentient Animals</b> opens two extra questions about whether intelligence changes the weight of suffering, and whether the future matters as much as the present.</p><p><b>All Organic Life</b> includes plants and other living things without a nervous system. <b>Ecosystems</b> treats nature as a system, not as individuals.</p><p>For example: does a mosquito feel pain? If you think so, it falls under "sentient animals". An ancient forest, even without "feeling" anything, might still matter morally as a whole — that is what the "ecosystems" option tries to capture.</p>',
+        help: '<p>Check the first option if you think we should value and not harm every individual of the human species. Check the second if you think we should value all animals capable of sentience — the two cannot be checked together, since the second option already includes all humans, who are also sentient animals. Checking this second option opens two extra questions about whether intelligence changes the weight of suffering, and whether the future matters as much as the present.</p><p>Check the third option if you consider all organic life, including plants and other living things, even those without a nervous system or sentience.</p><p>Check the fourth option if you think we should conserve ecosystems, species and biodiversity because there is something special in keeping them the way they are — this option treats nature as a system, not as individuals.</p><p>For example: does a mosquito feel pain? If you think so, it falls under "sentient animals". An ancient forest, even without "feeling" anything, might still matter morally as a whole — that is what the "ecosystems" option tries to capture.</p>',
         noneOption:'None of these',
         options:[
           {label:'All human beings', val:'Humans'},
@@ -1426,14 +1434,15 @@ const PARTS_EN = [
     key:'meta', label:'Part 3 · Metaethical Foundations', root:'m1',
     nodes:{
       m1:{type:'question', text:'Are there objective moral facts that are true regardless of what anyone believes?',
-        help: '<p>Think about the statement "torturing a child for fun is wrong", and three ways of viewing it:</p><p><b>Yes:</b> this statement is true no matter what anyone thinks — like "the Earth orbits the Sun". Even if everyone disagreed, it would still be true.</p><p><b>No, but relative to a framework:</b> the statement can be true or false, but only within a specific standard — like saying a joke is funny. There is no universal standard, but it still makes sense to talk about "right" and "wrong" within each framework.</p><p><b>No, it is not even true or false:</b> the statement does not describe any fact at all — saying it would be more like making a disgusted face or booing at something. It expresses a reaction, not a claim that could be true or false.</p>',
+        help: '<p>Think about the statement "torturing an innocent person for fun is wrong", and four ways of viewing it:</p><p><b>Yes:</b> this statement is true no matter what anyone thinks — like "the Earth orbits the Sun". Even if everyone disagreed, it would still be true.</p><p><b>No, but relative to a framework:</b> the statement can be true or false, but only within a specific standard — like saying a joke is funny. There is no universal standard, but it still makes sense to talk about "right" and "wrong" within each framework.</p><p><b>No, it is not even true or false:</b> the statement does not describe any fact at all — saying it would be more like making a disgusted face or booing at something. It expresses a reaction, not a claim that could be true or false.</p><p><b>Refusing the question:</b> maybe the question itself is poorly framed — like asking whether chess is "true". You can accept moral practice as it already works, without needing to choose between these alternatives.</p>',
         options:[
         {label:'Yes', next:'m2'},
         {label:'No, but moral claims can be true/false within a framework', next:'m3'},
-        {label:'No, moral claims aren\'t even true or false — they just express attitudes', next:'m_noncog'}
+        {label:'No, moral claims aren\'t even true or false — they just express attitudes', next:'m_noncog'},
+        {label:'I would rather refuse this question — it rests on assumptions I do not need to accept', next:'r_quietismo'}
       ]},
       m2:{type:'question', text:'Can these objective moral facts be reduced to natural facts (physics, biology) or are they of their own irreducible dimension (sui generis)?',
-        help: '<p>Think of an example outside of morality: the color red. Is it just a set of physical properties (a certain wavelength of light), or is it something more that physics alone does not capture?</p><p>One possible answer: moral facts are, at bottom, natural facts — such as well-being, pain, or flourishing — that science could, in principle, investigate, the same way it investigates any other phenomenon.</p><p>The other possible answer: moral facts exist, but are a completely different kind of fact — not physical or biological, even though they may somehow depend on them.</p>',
+        help: '<p>Think of an example outside of morality: the color red. Is it just a set of physical properties (a certain wavelength of light), or is it something more that physics alone does not capture?</p><p>One possible answer: moral facts are, at bottom, natural facts — such as well-being, pain, or flourishing — that science could, in principle, investigate, the same way it investigates any other phenomenon.</p><p>The other possible answer: moral facts exist, but are a completely different kind of fact — not physical or biological, even though they may somehow depend on them, something similar to mathematics.</p><p>Think of it this way: physics is an empirical science (based on experiments and observations), while mathematics is a formal science (based on axioms and logical deductions). In the same way, a moral fact might be known not through empirical observation, but through rational reflection and logical deduction — more like a mathematical truth than a physical law.</p>',
         options:[
         {label:'They can be reduced to natural, empirical facts', next:'m2_epi', set:{key:'m_ontologia', value:'Naturalist'}},
         {label:'They are irreducible facts of their own dimension (sui generis)', next:'m2_epi', set:{key:'m_ontologia', value:'Non-Naturalist'}}
@@ -1452,7 +1461,8 @@ const PARTS_EN = [
           ? 'Moral truth is an objective fact, but one reducible to natural facts — such as states of well-being, pain, or biological and psychological flourishing. We discover these truths by investigating the world empirically, the same way science discovers other complex natural facts.'
           : 'Moral truth is an objective fact, but of its own irreducible nature (sui generis) — it cannot be reduced to physical or natural properties, even though it may depend on them. We discover these truths through a special faculty of rational intuition, not through direct empirical observation as in the natural sciences.';
         return {
-            title: tipo + ' Moral Realism',
+            title: 'Moral Realism',
+            meta: [{ label: 'Subcurrent', value: tipo }],
             body: [body]
         };
       }},
@@ -1477,11 +1487,11 @@ const PARTS_EN = [
           const sels = a.t_contract_selections || [];
           if(sels.length === 0){
             return {
-              title:'Contractualist Constructivism',
+              title:'Moral Realism',
+              meta: [{ label: 'Subcurrent', value: 'Contractualist Constructivism' }],
               body:['You use rationality as a criterion for discovering the correct moral rules, even without identifying with any specific social-contract formulation listed.']
             };
           }
-          const title = 'Contractualist Constructivism (' + sels.join(' + ') + ')';
           const descMap = {
             'Hobbesian': 'the correct rules are the pragmatic agreements that rational people, seeking to escape conflict, would accept in order to live in peace',
             'Rawlsian': 'the correct rules are the ones we would choose behind a veil of ignorance about our own social position',
@@ -1489,7 +1499,11 @@ const PARTS_EN = [
             'Extended': 'that veil of ignorance should also hide the species we belong to — so speciesism would fail the impartiality test, since in practice it is only defended because we already know we are human, that we will not be its victims, and that we will reap its benefits'
           };
           const body = 'You use rationality as a criterion for discovering the correct moral rules. In your view: ' + sels.map(s => descMap[s]).join('; and ') + '.';
-          return { title: title, body: [body] };
+          return {
+            title: 'Moral Realism',
+            meta: [{ label: 'Subcurrent', value: 'Contractualist Constructivism (' + sels.join(' + ') + ')' }],
+            body: [body]
+          };
         }
       },
 
@@ -1499,17 +1513,18 @@ const PARTS_EN = [
         {label:'Truth depends on the norms of the culture stating it', next:'r_mrelat'},
         {label:'Every moral claim aims at objectivity but all are false (facts don\'t exist)', next:'r_error'}
       ]},
-      r_mrelat:{type:'result', tag:'Metaethics', title:'Metaethical Relativism / Subjectivism', body:['Moral judgments are true or false only relative to specific cultural or personal matrices.']},
-      r_error:{type:'result', tag:'Metaethics', title:'Error Theory (Moral Skepticism)', body:['Moral language presumes objective facts that simply do not exist in the universe.']},
+      r_mrelat:{type:'result', tag:'Metaethics', title:'Moral Anti-Realism', meta:[{label:'Subcurrent', value:'Metaethical Relativism / Subjectivism'}], body:['Moral judgments are true or false only relative to specific cultural or personal matrices.']},
+      r_error:{type:'result', tag:'Metaethics', title:'Moral Anti-Realism', meta:[{label:'Subcurrent', value:'Error Theory (Moral Skepticism)'}], body:['Moral language presumes objective facts that simply do not exist in the universe.']},
 
       m_noncog:{type:'question', text:'If morality doesn\'t deal with truth/falsity, what are we doing?', options:[
         {label:'Expressing emotions (like an affective "Boo!")', next:'r_emotivismo'},
         {label:'Giving universalizable commands ("Don\'t do this!")', next:'r_prescritivismo'},
         {label:'Expressing attitudes, but acting "as if" there are facts', next:'r_quaserealismo'}
       ]},
-      r_emotivismo:{type:'result', tag:'Metaethics', title:'Emotivism (Non-Cognitivism)', body:['Moral claims express pure emotions and affective reactions.']},
-      r_prescritivismo:{type:'result', tag:'Metaethics', title:'Prescriptivism', body:['When making a moral judgment, you are prescribing rules as a universal command.']},
-      r_quaserealismo:{type:'result', tag:'Metaethics', title:'Quasi-Realism', body:['Morality expresses attitudes but operates with rigor "as if" objective facts exist.']}
+      r_emotivismo:{type:'result', tag:'Metaethics', title:'Moral Anti-Realism', meta:[{label:'Subcurrent', value:'Emotivism (Non-Cognitivism)'}], body:['Moral claims express pure emotions and affective reactions.']},
+      r_prescritivismo:{type:'result', tag:'Metaethics', title:'Moral Anti-Realism', meta:[{label:'Subcurrent', value:'Prescriptivism'}], body:['When making a moral judgment, you are prescribing rules as a universal command.']},
+      r_quaserealismo:{type:'result', tag:'Metaethics', title:'Moral Anti-Realism', meta:[{label:'Subcurrent', value:'Quasi-Realism'}], body:['Morality expresses attitudes but operates with rigor "as if" objective facts exist.']},
+      r_quietismo:{type:'result', tag:'Metaethics', title:'Metaethical Quietism', body:['The philosopher Ludwig Wittgenstein is often pointed to as a reference for this stance — a "quietist", or a "relaxed" realist, standing apart from the more "heterodox" camps in metaethics. The central idea is that traditional metaethics, by asking whether moral facts are "mind-independent" (realism) or "mere feelings and inventions" (anti-realism), is asking a poorly framed question — a philosophical problem that does not need to, and perhaps cannot, be resolved that way. As a quietist, you accept moral practice as it already functions within ordinary human language and life, without searching behind it for deep metaphysical foundations that would justify or invalidate it "from the outside".']}
     }
   },
   {
@@ -1609,15 +1624,6 @@ const RESULT_CODE_LIST = [
   ['eei','Egoísmo Ético Individual','Individual Ethical Egoism'],
   ['em','Egoísmo Moral','Ethical Egoism'],
   ['pit','Tribalismo Familiar','Familial Tribalism'],
-  ['cch','Construtivismo Contratualista (Hobbesiano)','Contractualist Constructivism (Hobbesian)'],
-  ['ccr','Construtivismo Contratualista (Rawlsiano)','Contractualist Constructivism (Rawlsian)'],
-  ['cce','Construtivismo Contratualista (Escanloniano)','Contractualist Constructivism (Scanlonian)'],
-  ['ccx','Construtivismo Contratualista (Estendido)','Contractualist Constructivism (Extended)'],
-  ['rsm','Relativismo / Subjetivismo Metaético','Metaethical Relativism / Subjectivism'],
-  ['tec','Teoria do Erro (Ceticismo Moral)','Error Theory (Moral Skepticism)'],
-  ['emo','Emotivismo (Não-Cognitivismo)','Emotivism (Non-Cognitivism)'],
-  ['pre','Prescritivismo','Prescriptivism'],
-  ['qr','Quase-Realismo','Quasi-Realism'],
   ['sgt','Sencientismo Parcial (Gradualista Temporalista)','Partial Sentientism (Gradualist Temporalist)'],
   ['sga','Sencientismo Parcial (Gradualista Atemporal)','Partial Sentientism (Gradualist Atemporal)'],
   ['spt','Sencientismo Parcial (Pleno Temporalista)','Partial Sentientism (Full Temporalist)'],
@@ -1636,8 +1642,9 @@ const RESULT_CODE_LIST = [
   ['ae','Antropocentrismo Exclusivo','Exclusive Anthropocentrism'],
   ['pma','Pluralismo Moral Atípico','Atypical Moral Pluralism'],
   ['ncm','Nenhuma Consideração Moral Direta Atribuída','No Direct Moral Consideration Assigned'],
-  ['rmn','Realismo Moral Naturalista','Naturalist Moral Realism'],
-  ['rmnn','Realismo Moral Não-Naturalista','Non-Naturalist Moral Realism'],
+  ['rm','Realismo Moral','Moral Realism'],
+  ['arm','Anti-Realismo Moral','Moral Anti-Realism'],
+  ['qm','Quietismo Metaético','Metaethical Quietism'],
   ['aaf','Alta Abertura e Flexibilidade Ética','High Openness and Ethical Flexibility'],
   ['amo','Abertura Moderada','Moderate Openness'],
   ['pcb','Postura Conservadora / Baixa Abertura','Conservative Stance / Low Openness'],
@@ -2160,7 +2167,7 @@ function renderFinal(container){
   }).join('');
 
   let html = `
-    <div class="card-container" style="padding:40px 32px;">
+    <div class="card-container" style="padding:40px 32px; margin-top:16px;">
       <p class="kicker" style="text-align:center;">${ui.finalKicker}</p>
       <h1 style="text-align:center;">${ui.finalTitle}</h1>
 
@@ -2180,7 +2187,7 @@ function renderFinal(container){
       </div>
 
       <div style="text-align:center; margin-top:16px;">
-        <a class="lang-btn" style="text-decoration:none; display:inline-block;" href="map.html" target="_blank" rel="noopener">${ui.mapButton}</a>
+        <a class="lang-btn" style="text-decoration:none; display:inline-block;" href="mapa-do-teste.html" target="_blank" rel="noopener">${ui.mapButton}</a>
       </div>
 
       <div class="restart-btn-wrap">
