@@ -1,15 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR" id="html-root">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Teste de Visão Moral — Compreenda como você pensa a ética</title>
-<meta property="og:title" content="Teste de Visão Moral | Moral Outlook Test">
-<meta property="og:description" content="Descubra como você pensa a ética, moralidade e o círculo moral. / Discover how you think about ethics, morality, and the moral circle.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Teste de Visão Moral | Moral Outlook Test">
-<meta name="twitter:description" content="Descubra como você pensa a ética, moralidade e o círculo moral. / Discover how you think about ethics, morality, and the moral circle.">
+<title>Mapa do Teste | Dicionário Genealógico da Visão Moral</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -19,7 +13,7 @@
     --ethical-yellow: #D97706;
     --ethical-red: #DC2626;
     --ethical-teal: #0D9488;
-    
+
     --bg: #f8f9fa;
     --panel: #ffffff;
     --panel-2: #f1f3f4;
@@ -27,12 +21,10 @@
     --ink: #202124;
     --ink-dim: #3c4043;
     --muted: #5f6368;
-    
-    --accent: var(--ethical-blue);
-    --accent-hover: #1e3a8a;
+
     --serif: 'Newsreader', Georgia, serif;
     --sans: 'Google Sans', 'Inter', system-ui, -apple-system, sans-serif;
-    --maxw: 680px;
+    --maxw: 760px;
   }
 
   * { box-sizing: border-box; }
@@ -41,148 +33,44 @@
     background: var(--bg);
     color: var(--ink);
     font-family: var(--sans);
-    min-height: 100vh;
     line-height: 1.6;
   }
 
   .ethical-bar {
     height: 4px;
     width: 100%;
-    background: linear-gradient(90deg, var(--ethical-blue) 0%, var(--ethical-yellow) 50%, var(--ethical-red) 100%);
+    background: linear-gradient(90deg, var(--ethical-blue) 0%, var(--ethical-yellow) 33%, var(--ethical-red) 66%, var(--ethical-teal) 100%);
   }
-
-  #app {
-    max-width: var(--maxw);
-    margin: 0 auto;
-    padding: 32px 24px 80px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  #app.intro-app { padding-top: 12px; }
 
   .topbar {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 20px 24px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 36px;
-    margin-bottom: 24px;
-    font-size: 14px;
-    color: var(--muted);
   }
-
-  .topbar button {
-    background: none;
-    border: none;
-    color: var(--muted);
+  .back-link {
     font-family: var(--sans);
     font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    padding: 6px 12px;
-    border-radius: 20px;
-    transition: background 0.2s, color 0.2s;
-  }
-  .topbar button:hover { background: var(--panel-2); color: var(--ink); }
-
-  main { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-  main.intro-view { justify-content: flex-start; padding-top: 0; }
-
-  .rings { display: block; width: 110px; height: 110px; margin: 0 auto 24px; }
-  .rings circle {
-    fill: none;
-    stroke-width: 1.8;
-    opacity: 0;
-    transform-origin: center;
-  }
-  .rings circle:nth-child(1) { stroke: var(--ethical-blue); animation: ringIn 1s ease forwards 0.1s; }
-  .rings circle:nth-child(2) { stroke: var(--ethical-yellow); animation: ringIn 1s ease forwards 0.3s; }
-  .rings circle:nth-child(3) { stroke: var(--ethical-red); animation: ringIn 1s ease forwards 0.5s; }
-  .rings circle:nth-child(4) { stroke: var(--ethical-teal); animation: ringIn 1s ease forwards 0.7s; }
-
-  @keyframes ringIn {
-    from { opacity: 0; transform: scale(0.7); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  .card-container {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 1px 3px rgba(60,64,67,0.08), 0 4px 8px rgba(60,64,67,0.04);
-  }
-
-  .kicker {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--ethical-blue);
-    margin: 0 0 12px;
-  }
-
-  h1 {
-    font-size: 30px;
-    font-weight: 500;
-    line-height: 1.3;
-    margin: 0 0 16px;
-    color: var(--ink);
-    letter-spacing: -0.3px;
-  }
-
-  .lede { font-size: 15.5px; color: var(--ink-dim); margin: 0 0 16px; line-height: 1.65; }
-
-  .parts-list {
-    list-style: none;
-    padding: 0;
-    margin: 24px 0 32px;
-    border-top: 1px solid var(--line);
-  }
-  .parts-list li {
-    border-bottom: 1px solid var(--line);
-    padding: 16px 0;
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-  .parts-list .num {
-    background: rgba(42, 82, 190, 0.1);
-    color: var(--ethical-blue);
-    font-weight: 700;
-    font-size: 14px;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .parts-list .txt strong { display: block; font-size: 15px; color: var(--ink); font-weight: 600; }
-  .parts-list .txt span { font-size: 14px; color: var(--muted); }
-
-  button.cta {
-    font-family: var(--sans);
     font-weight: 600;
-    font-size: 15px;
-    background: linear-gradient(105deg, var(--ethical-blue), #3b82f6 50%, var(--ethical-red));
-    color: #ffffff;
-    border: none;
-    padding: 12px 28px;
-    border-radius: 24px;
-    cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
-    box-shadow: 0 1px 3px rgba(42,82,190,0.3);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    transition: border-color 0.2s ease, color 0.2s ease;
   }
-  button.cta:hover { filter: brightness(1.1); box-shadow: 0 3px 8px rgba(42,82,190,0.25); }
-  button.cta:active { transform: translateY(1px); }
+  .back-link:hover { border-color: var(--ethical-blue); color: var(--ethical-blue); }
 
+  .lang-card-wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
   .lang-card {
-    margin: 16px 0 24px;
+    margin: 16px 0 0;
     padding: 16px;
     background: var(--panel-2);
     border-radius: 12px;
@@ -205,220 +93,687 @@
   }
   .lang-btn:hover { border-color: var(--ethical-blue); color: var(--ethical-blue); }
 
-  .part-label { font-size: 13px; font-weight: 600; color: var(--ethical-blue); margin: 0 0 12px; }
-  .qtext {
-    font-size: 22px;
+  header.hero {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 28px 24px 8px;
+  }
+  header.hero p.kicker {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--ethical-blue);
+    margin: 0 0 12px;
+  }
+  header.hero h1 {
+    font-family: var(--sans);
     font-weight: 500;
+    font-size: 30px;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    margin: 0 0 16px;
+    color: var(--ink);
+  }
+  header.hero p.lede {
+    font-family: var(--sans);
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--ink-dim);
+    max-width: 58ch;
+    margin: 0 0 6px;
+  }
+
+  main {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 12px 24px 80px;
+  }
+
+  section.part {
+    margin-top: 40px;
+    border-left: 3px solid var(--part-color, var(--ethical-blue));
+    padding-left: 20px;
+  }
+  section.part .part-eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--part-color, var(--ethical-blue));
+    margin: 0 0 8px;
+  }
+  section.part h2 {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 24px;
+    letter-spacing: -0.2px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  section.part .part-question {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--muted);
+    margin: 0 0 12px;
+  }
+  section.part .part-intro {
+    font-family: var(--sans);
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-dim);
+    margin: 0 0 20px;
+  }
+
+  details.branch {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  details.branch > summary {
+    cursor: pointer;
+    padding: 16px 18px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15.5px;
     line-height: 1.4;
     color: var(--ink);
-    margin: 0 0 28px;
-  }
-
-  .options { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-  .opt-btn {
-    width: 100%;
-    text-align: left;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.5;
-    padding: 16px 20px 16px 48px;
-    position: relative;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-  }
-  .opt-btn .letter {
-    position: absolute;
-    left: 16px;
-    top: 16px;
-    font-weight: 700;
-    color: var(--ethical-yellow);
-    font-size: 14px;
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .opt-btn:hover {
-      border-color: var(--ethical-blue);
-      background: rgba(42, 82, 190, 0.04);
-      box-shadow: 0 1px 4px rgba(42, 82, 190, 0.12);
-    }
-    .opt-btn:hover .check-icon {
-      border-color: var(--ethical-blue);
-      color: var(--ethical-blue);
-    }
-  }
-
-  .opt-btn.selected {
-    border-color: var(--ethical-yellow);
-    background: rgba(217, 119, 6, 0.08);
-  }
-
-  .opt-btn .check-icon {
-    position: absolute;
-    left: 14px;
-    top: 14px;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    border: 1.5px solid var(--line);
+    list-style: none;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    line-height: 1;
-    font-weight: 700;
-    color: var(--muted);
-    background: var(--panel);
-    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-  }
-  .opt-btn .check-icon::before {
-    content: '+';
-    display: block;
-  }
-  .opt-btn.selected .check-icon {
-    border-color: var(--ethical-yellow);
-    background: var(--ethical-yellow);
-    color: #fff;
-    animation: checkPop 0.28s cubic-bezier(.34,1.56,.64,1);
-  }
-  .opt-btn.selected .check-icon::before {
-    content: '✓';
-  }
-  @keyframes checkPop {
-    0% { transform: scale(0.5) rotate(-20deg); opacity: 0.4; }
-    60% { transform: scale(1.2) rotate(6deg); opacity: 1; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
-  }
-
-  .error-msg {
-    color: var(--ethical-red);
-    font-size: 14px;
-    font-weight: 600;
-    margin-top: 12px;
-    display: none;
-  }
-
-  .test-progress {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    padding: 12px 0;
-    margin-bottom: 20px;
-    background: var(--bg);
-  }
-  .test-progress-row { display: flex; justify-content: space-between; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 6px; }
-  .test-progress-track { height: 6px; width: 100%; border-radius: 3px; background: var(--line); overflow: hidden; }
-  .test-progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--ethical-blue), var(--ethical-yellow), var(--ethical-red)); transition: width 0.35s ease; border-radius: 3px; }
-
-  .accordion-container { margin: 24px 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
-  .accordion-item { border-bottom: 1px solid var(--line); }
-  .accordion-item:last-child { border-bottom: none; }
-  .accordion-header {
-    width: 100%;
-    padding: 16px 20px;
-    background: none;
-    border: none;
-    text-align: left;
-    font-family: var(--sans);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ink);
-    cursor: pointer;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    transition: background 0.2s;
+    gap: 12px;
   }
-  .accordion-header:hover { background: var(--panel-2); }
-  .accordion-header::after { content: '+'; font-size: 18px; font-weight: 500; color: var(--ethical-yellow); }
-  .accordion-item.active .accordion-header::after { content: '−'; }
-  .accordion-body { padding: 0 20px 16px; display: none; font-size: 14.5px; color: var(--ink-dim); line-height: 1.65; }
-  .accordion-item.active .accordion-body { display: block; }
-
-  .moral-map-inline { 
-    margin-top: 20px; 
-    margin-bottom: 8px; 
-    padding: 20px 16px; 
-    border: 1px solid var(--line); 
-    background: var(--panel-2); 
-    border-radius: 12px; 
-    text-align: center;
+  details.branch > summary::-webkit-details-marker { display: none; }
+  details.branch > summary::after {
+    content: '+';
+    font-size: 18px;
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
   }
-  .moral-map-inline h4 { font-size: 16px; font-weight: 600; margin: 0 0 12px; color: var(--ink); }
-  .moral-map-svg { display: block; width: 100%; max-width: 440px; margin: 0 auto; overflow: visible; }
-  .map-label { font-size: 11px; fill: var(--muted); font-weight: 500; letter-spacing: 0.3px; }
-  .map-you { font-size: 11.5px; fill: var(--ethical-yellow); font-weight: 700; letter-spacing: 0.5px; }
-
-  .result-tag { font-size: 12px; font-weight: 700; color: var(--ethical-blue); text-transform: uppercase; margin: 0 0 8px; }
-  .result-title { font-size: 26px; font-weight: 500; color: var(--ink); margin: 0 0 16px; }
-  .result-oppose {
-    margin: 20px 0;
-    padding: 16px;
-    background: rgba(220, 38, 38, 0.06);
-    border-radius: 8px;
-    border-left: 4px solid var(--ethical-red);
-    font-size: 14px;
-    color: #991b1b;
-  }
-  .result-oppose b { color: var(--ink); }
-
-  .summary-card {
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    background: var(--panel);
-    box-shadow: 0 1px 2px rgba(60,64,67,0.05);
-  }
-  .summary-card .stage { font-size: 12px; font-weight: 700; color: var(--ethical-blue); margin: 0 0 6px; text-transform: uppercase; }
-  .summary-card h3 { font-size: 20px; font-weight: 500; margin: 0 0 8px; color: var(--ink); }
-
-  .share-box {
-    margin-top: 36px;
-    padding: 24px;
-    border: 1px solid var(--line);
-    background: var(--panel);
-    border-radius: 12px;
-  }
-  .share-row { display: flex; gap: 10px; margin-top: 12px; }
-  .share-row input { flex: 1; border: 1px solid var(--line); padding: 10px 14px; border-radius: 20px; font: inherit; color: var(--ink); }
-
-  .restart-btn-wrap { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); text-align: center; }
-
-  .credits-footer {
-    margin-top: 36px;
-    padding-top: 24px;
+  details.branch[open] > summary::after { transform: rotate(45deg); }
+  details.branch .branch-body {
+    padding: 20px 18px 22px;
     border-top: 1px solid var(--line);
-    text-align: center;
-    font-size: 13.5px;
+  }
+  details.branch .branch-body > *:first-child { margin-top: 0 !important; }
+  details.branch .branch-body > *:last-child { margin-bottom: 0 !important; }
+  details.branch .branch-note {
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.6;
     color: var(--muted);
+    margin: 0 0 16px;
   }
-  .credits-footer a {
-    color: var(--ethical-blue);
-    text-decoration: none;
-    font-weight: 600;
-  }
-  .credits-footer a:hover { text-decoration: underline; }
 
-  .privacy-note {
-    margin: 20px 0;
-    padding: 12px 16px;
-    border-radius: 8px;
-    background: var(--panel-2);
-    font-size: 13px;
+  ul.result-list {
+    list-style: none;
+    margin: 0 0 6px;
+    padding: 0;
+  }
+  ul.result-list li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--line);
+    font-family: var(--sans);
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+  ul.result-list li:last-child { border-bottom: none; }
+  ul.result-list li .r-title {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  ul.result-list li .r-desc {
+    display: block;
     color: var(--muted);
+    font-size: 13.5px;
+    margin-top: 3px;
+  }
+
+  .combo-note {
+    background: var(--panel-2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--ink-dim);
+    margin: 16px 0;
+  }
+  .combo-note strong { color: var(--ink); }
+
+  .bias-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 12px 0 18px;
+  }
+  .bias-tags span {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    padding: 4px 10px;
+    border-radius: 14px;
+    background: var(--panel-2);
+    color: var(--ink-dim);
+  }
+
+  h3.subgroup {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: var(--ink-dim);
+    margin: 24px 0 12px;
+  }
+  h3.subgroup:first-child { margin-top: 0; }
+
+  footer.page-footer {
+    max-width: var(--maxw);
+    margin: 40px auto 0;
+    padding: 24px;
+    text-align: center;
+  }
+  footer.page-footer a.cta {
+    display: inline-block;
+    background: var(--ethical-blue);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  @media (max-width: 600px) {
+    header.hero h1 { font-size: 27px; }
+    section.part { padding-left: 14px; }
   }
 </style>
 </head>
 <body>
+
 <div class="ethical-bar"></div>
-<div id="app"></div>
+
+<div class="topbar">
+  <a class="back-link" id="back-link" href="teste-visao-moral-corrigido.html">← Voltar ao teste</a>
+</div>
+
+<div class="lang-card-wrap">
+  <div class="lang-card">
+    <p id="lang-prompt">Idioma / Language:</p>
+    <button class="lang-btn" id="lang-toggle-btn" onclick="toggleMapLang()">Switch to English</button>
+  </div>
+</div>
+
+<div id="content-pt">
+<header class="hero">
+  <p class="kicker">MAPA DO TESTE</p>
+  <h1>O dicionário genealógico de cada parte do teste</h1>
+  <p class="lede">Toda pergunta do teste leva a uma família de posições filosóficas. Esta página mostra a árvore completa: de onde cada resultado vem, e o que ele significa — sem precisar responder o teste de novo.</p>
+</header>
+
+<main>
+
+  <section class="part" style="--part-color: var(--ethical-blue);">
+    <p class="part-eyebrow">PARTE 1</p>
+    <h2>Teoria Ética Normativa</h2>
+    <p class="part-question">Pergunta central: o que torna uma ação certa ou errada?</p>
+    <p class="part-intro">As categorias de teorias da ética normativa investigam como devemos agir e por quê: quais metas buscar; quais regras seguir; quais traços de caráter cultivar; se há ou não ações opcionais; se há ou não ações louváveis mas não obrigatórias; etc. Isto é, essas teorias não descrevem como as pessoas agem. Em vez disso, prescrevem como elas deveriam agir. Existem três categorias principais de teorias da ética normativa: consequencialismo, deontologia e éticas centradas no caráter. Dentro de cada uma dessas categorias, existem muitas variantes de teorias normativas.</p>
+
+    <details class="branch">
+      <summary>Consequencialismo | o que mais deve importar é o resultado</summary>
+      <div class="branch-body">
+        <p class="branch-note">Divide-se em três decisões independentes que se combinam entre si: método, critério de agregação (pode escolher mais de um) e peso do sofrimento frente ao prazer. O resultado mostra essas três decisões separadamente — Método, Subcorrentes e Enfoque — antes da explicação em texto.</p>
+
+        <h3 class="subgroup">Método</h3>
+        <div class="combo-note">Avaliação <strong>por Ato</strong>, <strong>por Regra</strong>, ou um <strong>híbrido de dois níveis</strong> (regras no dia a dia, atos em situações extremas).</div>
+
+        <h3 class="subgroup">Critério de agregação — "Subcorrentes" (multi-seleção)</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Utilitarismo Clássico</span><span class="r-desc">a maior soma total de bem-estar acumulado</span></li>
+          <li><span class="r-title">Prioritarismo</span><span class="r-desc">soma total, com peso extra para quem está em pior situação</span></li>
+          <li><span class="r-title">Maximin</span><span class="r-desc">avalia apenas pelo nível de quem está pior</span></li>
+          <li><span class="r-title">Igualitarismo</span><span class="r-desc">o que importa é o grau de igualdade na distribuição</span></li>
+          <li><span class="r-title">Suficientismo</span><span class="r-desc">garantir um nível mínimo e suficiente para todos</span></li>
+          <li><span class="r-title">Utilitarismo Médio</span><span class="r-desc">a maior média de bem-estar por indivíduo</span></li>
+        </ul>
+
+        <h3 class="subgroup">Peso do sofrimento vs. prazer — "Enfoque" (escolha única)</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Simétrico</span><span class="r-desc">sofrimento e prazer entram no cálculo com o mesmo peso</span></li>
+          <li><span class="r-title">Prioridade ao sofrimento</span><span class="r-desc">pesa mais, mas pode ser compensado por muito bem-estar</span></li>
+          <li><span class="r-title">Negativo (prioridade absoluta)</span><span class="r-desc">nenhuma quantidade de prazer compensa sofrimento extremo — mas fora de casos extremos, o prazer ainda conta normalmente</span></li>
+          <li><span class="r-title">Exclusivamente negativo</span><span class="r-desc">o prazer nunca tem valor moral positivo, nem mesmo fora de casos extremos — só reduzir sofrimento conta</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="branch">
+      <summary>Deontologia | o que mais deve importar são regras e deveres</summary>
+      <div class="branch-body">
+        <h3 class="subgroup">Fundamentada na religião</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Teoria do Mandamento Divino (Tradicional)</span><span class="r-desc">algo é bom só porque Deus ordena</span></li>
+          <li><span class="r-title">Teoria do Mandamento Divino (Modificada)</span><span class="r-desc">Deus ordena o bom porque sua natureza já é boa</span></li>
+        </ul>
+        <h3 class="subgroup">Fundamentada na razão / direitos</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Deontologia Absolutista</span><span class="r-desc">certas restrições nunca podem ser violadas</span></li>
+          <li><span class="r-title">Deontologia Moderada (de Limiar)</span><span class="r-desc">valem quase sempre, cedem em catástrofes</span></li>
+          <li><span class="r-title">Deontologia de Direitos</span><span class="r-desc">direitos básicos funcionam como "trunfos"</span></li>
+          <li><span class="r-title">Doutrina do Duplo Efeito</span><span class="r-desc">importa se o dano foi pretendido ou só previsto</span></li>
+          <li><span class="r-title">Deontologia Pluralista (Deveres Prima Facie)</span><span class="r-desc">vários deveres, sem hierarquia fixa entre eles</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="branch">
+      <summary>Éticas baseadas no Caráter | o que mais deve importar é quem você é</summary>
+      <div class="branch-body">
+        <ul class="result-list">
+          <li><span class="r-title">Ética das Virtudes</span><span class="r-desc">cultivar coragem, justiça, compaixão como fins em si</span></li>
+          <li><span class="r-title">Ética do Cuidado</span><span class="r-desc">cultivar a disposição de cuidar dos mais vulneráveis</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="branch">
+      <summary>Egoísmo Ético | o que mais deve importar é o meu próprio interesse</summary>
+      <div class="branch-body">
+        <ul class="result-list">
+          <li><span class="r-title">Egoísmo Ético Universal</span><span class="r-desc">todos deveriam agir sempre em interesse próprio</span></li>
+          <li><span class="r-title">Egoísmo Ético Individual</span><span class="r-desc">é minha escolha pessoal, não uma regra para todos</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="branch">
+      <summary>Relativismo e Ceticismo Ético | talvez não haja um padrão único</summary>
+      <div class="branch-body">
+        <ul class="result-list">
+          <li><span class="r-title">Relativismo Cultural</span><span class="r-desc">certo/errado depende das normas de cada cultura</span></li>
+          <li><span class="r-title">Relativismo Individual (Subjetivismo)</span><span class="r-desc">depende do julgamento de cada pessoa</span></li>
+          <li><span class="r-title">Relativismo meramente Descritivo</span><span class="r-desc">as normas variam, mas pode haver verdade objetiva por trás</span></li>
+        </ul>
+        <div class="combo-note">Se a posição for "juízos morais só expressam atitudes, não são verdadeiros nem falsos", o teste pergunta se, mesmo cética, a pessoa quer descobrir sua tendência prática. Se ela disser <strong>que não</strong>, o resultado é <strong>Ceticismo Normativo</strong>. Se disser <strong>que sim</strong>, ela responde à pergunta principal de teoria ética normalmente (consequências, regras, caráter ou interesse próprio) — mas o resultado final vira <strong>Ceticismo Normativo (de tendência X)</strong>, por exemplo "Ceticismo Normativo (de tendência Consequencialista)", combinando a postura cética com a subcorrente prática específica escolhida.</div>
+      </div>
+    </details>
+  </section>
+
+  <section class="part" style="--part-color: var(--ethical-yellow);">
+    <p class="part-eyebrow">PARTE 2</p>
+    <h2>Critérios e Círculo Moral</h2>
+    <p class="part-question">Pergunta central: quem — e o quê — merece consideração moral, e o quanto?</p>
+    <p class="part-intro">Perguntas sobre o círculo moral investigam a extensão da nossa preocupação ética: quem conta moralmente, e por quê — só eu, meu grupo mais próximo, toda a humanidade, todos os seres sencientes, toda a vida, ou até ecossistemas inteiros? As respostas tendem a variar conforme o critério usado para incluir alguém nesse círculo: capacidade de sentir dor e prazer, racionalidade, laços afetivos, ou pertencimento a uma espécie. Quanto mais amplo o critério adotado, maior tende a ser o círculo de consideração moral resultante.</p>
+
+    <details class="branch">
+      <summary>Ponto de partida | o peso que você dá a si mesmo</summary>
+      <div class="branch-body">
+        <ul class="result-list">
+          <li><span class="r-title">Eu</span><span class="r-desc">Egoísmo Moral — prioridade absoluta a mim mesmo</span></li>
+          <li><span class="r-title">Grupo íntimo / Família</span><span class="r-desc">Tribalismo Familiar</span></li>
+          <li><span class="r-title">Imparcialidade ideal</span><span class="r-desc">segue para os vieses de grupo, abaixo</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="branch">
+      <summary>Vieses de grupo | Tribalismo Estendido</summary>
+      <div class="branch-body">
+        <p class="branch-note">Mesmo buscando imparcialidade, é possível manter prioridades baseadas em pertencimento a um grupo. O teste mapeia 16 eixos possíveis (multi-seleção):</p>
+        <div class="bias-tags">
+          <span>Nação</span><span>Raça</span><span>Etnia</span><span>Sexo</span><span>Identidade de gênero</span><span>Orientação sexual</span><span>Religião</span><span>Visão político-econômica</span><span>Classe social</span><span>Capacidade</span><span>Padrão estético</span><span>Faixa etária</span><span>Peso corporal</span><span>Língua/sotaque</span><span>Substrato (orgânico vs. outros)</span><span>Espécie</span>
+        </div>
+        <div class="combo-note">O resultado é sempre <strong>"Tribalismo Estendido"</strong>, com os eixos marcados listados entre parênteses no título.</div>
+      </div>
+    </details>
+
+    <details class="branch">
+      <summary>Fronteira do círculo moral | quem recebe consideração direta</summary>
+      <div class="branch-body">
+        <p class="branch-note">Multi-seleção entre 5 categorias (Humanos e Animais Sencientes são mutuamente excludentes, pois a segunda já inclui a primeira). A opção de IAs/robôs sencientes traz a ressalva "caso existam".</p>
+
+        <h3 class="subgroup">Combinações sem incluir animais sencientes</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Humanos, sozinho</span><span class="r-desc">Antropocentrismo Exclusivo</span></li>
+          <li><span class="r-title">Humanos + Vida orgânica</span><span class="r-desc">Antropocentrismo Biocêntrico</span></li>
+          <li><span class="r-title">Vida orgânica, sozinha</span><span class="r-desc">Biocentrismo</span></li>
+          <li><span class="r-title">Humanos + Ecossistemas</span><span class="r-desc">Antropocentrismo com Preocupação Ecológica</span></li>
+          <li><span class="r-title">Ecossistemas, sozinho</span><span class="r-desc">Ecocentrismo / Holismo Ambiental</span></li>
+          <li><span class="r-title">Combinações incomuns</span><span class="r-desc">Pluralismo Moral Atípico</span></li>
+          <li><span class="r-title">Nenhuma opção marcada</span><span class="r-desc">Nenhuma Consideração Moral Direta Atribuída</span></li>
+        </ul>
+
+        <h3 class="subgroup">Ao marcar Animais sencientes → 2 perguntas extras</h3>
+        <p class="branch-note">Isso vale mesmo que IAs/Robôs sencientes não sejam marcados. Gradualismo (a inteligência altera o peso do sofrimento?) cruzado com Temporalismo (o futuro pesa igual ao presente?) — o resultado muda conforme IAs/Robôs também tenham sido marcados:</p>
+        <ul class="result-list">
+          <li><span class="r-title">Não-gradualista + Atemporal</span><span class="r-desc">só animais: Sencientismo Pleno (Carbonismo) · com IAs: Sencientismo Pleno</span></li>
+          <li><span class="r-title">Gradualista + Temporalista</span><span class="r-desc">só animais: Sencientismo Parcial (Carbonismo Gradualista Temporalista) · com IAs: Sencientismo Parcial (Gradualista Temporalista)</span></li>
+          <li><span class="r-title">Gradualista + Atemporal</span><span class="r-desc">só animais: Sencientismo Parcial (Carbonismo Gradualista Atemporal) · com IAs: Sencientismo Parcial (Gradualista Atemporal)</span></li>
+          <li><span class="r-title">Não-gradualista + Temporalista</span><span class="r-desc">só animais: Sencientismo Parcial (Carbonismo Pleno Temporalista) · com IAs: Sencientismo Parcial (Pleno Temporalista)</span></li>
+        </ul>
+        <div class="combo-note">Se Ecossistemas também for marcado junto de um resultado "Pleno" (com ou sem IAs), o título ganha o sufixo <strong>"e Holismo Ecológico"</strong>. E marcar Ecossistemas sem marcar nenhuma forma de senciência gera um aviso de tensão filosófica na sua posição.</div>
+      </div>
+    </details>
+  </section>
+
+  <section class="part" style="--part-color: var(--ethical-red);">
+    <p class="part-eyebrow">PARTE 3</p>
+    <h2>Fundamentos Metaéticos</h2>
+    <p class="part-question">Pergunta central: fatos morais existem? O que <em>é</em>, afinal, um fato moral — e como o conhecemos?</p>
+    <p class="part-intro">Perguntas de metaética não tratam do que é certo ou errado em cada situação, mas do estatuto da própria moralidade: será que juízos morais descrevem fatos reais e independentes da mente humana? São verdadeiros apenas dentro de um referencial cultural ou pessoal? São apenas expressões de atitudes e emoções, sem pretensão de verdade? Ou será que a própria pergunta sobre a natureza dos fatos morais está mal colocada, e não precisa de uma resposta definitiva?</p>
+
+    <details class="branch">
+      <summary>Existem fatos morais objetivos?</summary>
+      <div class="branch-body">
+        <p class="branch-note">O título do resultado é sempre a corrente principal — <strong>Realismo Moral</strong>, <strong>Anti-Realismo Moral</strong> ou <strong>Quietismo Metaético</strong> — com a posição específica aparecendo como "Subcorrente" logo abaixo.</p>
+
+        <h3 class="subgroup">Sim → Realismo Moral | questão ontológica: qual a natureza desses fatos?</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Naturalista</span><span class="r-desc">reduzíveis a fatos naturais (físicos, biológicos)</span></li>
+          <li><span class="r-title">Não-Naturalista</span><span class="r-desc">fatos de uma dimensão própria, irredutível (sui generis) — algo similar à matemática, que também não é um fato empírico</span></li>
+        </ul>
+
+        <h3 class="subgroup">Sim → Realismo Moral | questão epistemológica: como descobrimos esses fatos?</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Investigação empírica</span><span class="r-desc">Subcorrente: Naturalista — descoberto como qualquer outro fato natural</span></li>
+          <li><span class="r-title">Intuição racional especial</span><span class="r-desc">Subcorrente: Não-Naturalista — não descoberto por observação empírica direta</span></li>
+        </ul>
+        <div class="combo-note">Ou: <strong>avaliando o que agentes racionais decidiriam em condições ideais</strong> — este é o critério metaético que fundamenta o Contratualismo, explorado a seguir. É possível marcar mais de uma formulação ao mesmo tempo, e a Subcorrente reflete a combinação.</div>
+        <ul class="result-list">
+          <li><span class="r-title">Hobbesiano</span><span class="r-desc">regras que pessoas em busca de paz e segurança mútua topariam seguir</span></li>
+          <li><span class="r-title">Rawlsiano</span><span class="r-desc">regras escolhidas por trás de um "véu da ignorância" — imagine decidir as regras da sociedade sem saber, de antemão, qual posição você vai ocupar nela</span></li>
+          <li><span class="r-title">Escanloniano</span><span class="r-desc">regras que ninguém, agindo de boa-fé, poderia razoavelmente rejeitar</span></li>
+          <li><span class="r-title">Estendido</span><span class="r-desc">esse véu de ignorância também esconde a espécie a que pertencemos (Mark Rowlands)</span></li>
+        </ul>
+
+        <h3 class="subgroup">Não, mas relativo a um referencial → Anti-Realismo Moral</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Relativismo / Subjetivismo Metaético</span><span class="r-desc">Subcorrente — juízos só são verdadeiros/falsos dentro de uma matriz cultural ou pessoal</span></li>
+        </ul>
+
+        <h3 class="subgroup">Não, e nenhuma afirmação moral é verdadeira → Anti-Realismo Moral</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Teoria do Erro (Ceticismo Moral)</span><span class="r-desc">Subcorrente — toda afirmação moral pressupõe fatos que não existem</span></li>
+        </ul>
+
+        <h3 class="subgroup">A moralidade não lida com verdade/falsidade (não-cognitivismo) → Anti-Realismo Moral</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Emotivismo</span><span class="r-desc">Subcorrente — juízos morais expressam emoções ("matar é errado" = "matar, buuu!")</span></li>
+          <li><span class="r-title">Prescritivismo</span><span class="r-desc">Subcorrente — juízos morais são comandos disfarçados e universalizáveis</span></li>
+          <li><span class="r-title">Quase-Realismo</span><span class="r-desc">Subcorrente — expressamos atitudes, mas agimos "como se" houvesse objetividade</span></li>
+        </ul>
+
+        <h3 class="subgroup">Recusar a pergunta → Quietismo Metaético</h3>
+        <div class="combo-note">Ludwig Wittgenstein é apontado como referência para essa postura — um "quietista", ou um realista "relaxado". A ideia central: perguntar se os fatos morais são "independentes da mente" (realismo) ou "meros sentimentos" (antirrealismo) já é uma pergunta mal formulada. Aceita-se a prática moral tal como ela funciona na linguagem humana, sem buscar fundamentos metafísicos que a justifiquem ou invalidem "de fora".</div>
+
+      </div>
+    </details>
+  </section>
+
+  <section class="part" style="--part-color: var(--ethical-teal);">
+    <p class="part-eyebrow">PARTE 4</p>
+    <h2>Abertura Moral e Intelectual</h2>
+    <p class="part-question">Pergunta central: como você lida com argumentos, evidências, incerteza e mudança de crenças?</p>
+    <p class="part-intro">Esta parte não pergunta quais crenças morais você tem, mas como você as sustenta e revisa ao longo do tempo. Diante de um argumento forte ou de uma evidência nova que contraria uma posição sua, você reavalia genuinamente essa posição, ou tende a mantê-la mesmo sob pressão racional? Essa disposição — entre a flexibilidade intelectual e a confiança em convicções já estabelecidas — molda como cada pessoa evolui (ou não) em suas próprias visões éticas.</p>
+
+    <details class="branch">
+      <summary>Três perguntas somadas em uma pontuação</summary>
+      <div class="branch-body">
+        <ul class="result-list">
+          <li><span class="r-title">Alta Abertura e Flexibilidade Ética</span><span class="r-desc">questiona crenças arraigadas diante de bons contra-argumentos</span></li>
+          <li><span class="r-title">Abertura Moderada</span><span class="r-desc">flexível, mas exige evidências excepcionalmente fortes</span></li>
+          <li><span class="r-title">Postura Conservadora / Baixa Abertura</span><span class="r-desc">forte confiança em intuições e convenções já estabelecidas</span></li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <a class="cta" href="teste-visao-moral-corrigido.html">Fazer o teste</a>
+</footer>
+</div>
+
+<div id="content-en" style="display:none">
+<header class="hero">
+  <p class="kicker">TEST MAP</p>
+  <h1>The genealogical dictionary of every part of the test</h1>
+  <p class="lede">Every question in the test leads to a family of philosophical positions. This page shows the full tree — where each result comes from, and what it means — without having to take the test again.</p>
+</header>
+
+<main>
+
+  <section class="part" style="--part-color: var(--ethical-blue);">
+    <p class="part-eyebrow">PART 1</p>
+    <h2>Normative Ethical Theory</h2>
+    <p class="part-question">Central question: what makes an action right or wrong?</p>
+    <p class="part-intro">Normative ethical theories investigate how we should act and why: which goals to pursue; which rules to follow; which character traits to cultivate; whether some actions are optional; whether some actions are praiseworthy but not obligatory; and so on. That is, these theories do not describe how people actually act. Instead, they prescribe how people ought to act. There are three main categories of normative ethical theory: consequentialism, deontology, and character-centered ethics. Within each of these categories, there are many variants of normative theories.</p>
+
+    <details class="branch">
+      <summary>Consequentialism | what should matter most is the outcome</summary>
+      <div class="branch-body">
+        <p class="branch-note">This splits into three independent decisions that combine with each other: method, aggregation criterion (you can pick more than one), and the weight of suffering versus pleasure. The result shows these three decisions separately — Method, Subcurrents and Focus — before the written explanation.</p>
+
+        <h3 class="subgroup">Method</h3>
+        <div class="combo-note">Evaluation <strong>by Act</strong>, <strong>by Rule</strong>, or a <strong>two-level hybrid</strong> (rules for everyday life, acts in extreme situations).</div>
+
+        <h3 class="subgroup">Aggregation criterion — "Subcurrents" (multi-select)</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Classical Utilitarianism</span><span class="r-desc">the greatest total sum of accumulated well-being</span></li>
+          <li><span class="r-title">Prioritarianism</span><span class="r-desc">total sum, with extra weight for those worse off</span></li>
+          <li><span class="r-title">Maximin</span><span class="r-desc">evaluates only by the level of whoever is worst off</span></li>
+          <li><span class="r-title">Egalitarianism</span><span class="r-desc">what matters is the degree of equality in the distribution</span></li>
+          <li><span class="r-title">Sufficientarianism</span><span class="r-desc">ensuring a sufficient minimum level for everyone</span></li>
+          <li><span class="r-title">Average Utilitarianism</span><span class="r-desc">the highest average well-being per individual</span></li>
+        </ul>
+
+        <h3 class="subgroup">Weight of suffering vs. pleasure — "Focus" (single choice)</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Symmetric</span><span class="r-desc">suffering and pleasure enter the calculation with equal weight</span></li>
+          <li><span class="r-title">Priority to suffering</span><span class="r-desc">weighs more, but can still be outweighed by enough well-being</span></li>
+          <li><span class="r-title">Negative (absolute priority)</span><span class="r-desc">no amount of pleasure compensates for extreme suffering — but outside extreme cases, pleasure still counts normally</span></li>
+          <li><span class="r-title">Exclusively negative</span><span class="r-desc">pleasure never has positive moral value, even outside extreme cases — only reducing suffering counts</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="branch">
+      <summary>Deontology | what should matter most are rules and duties</summary>
+      <div class="branch-body">
+        <h3 class="subgroup">Grounded in religion</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Divine Command Theory (Traditional)</span><span class="r-desc">something is good only because God commands it</span></li>
+          <li><span class="r-title">Divine Command Theory (Modified)</span><span class="r-desc">God commands the good because His nature is already good</span></li>
+        </ul>
+        <h3 class="subgroup">Grounded in reason / rights</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Absolutist Deontology</span><span class="r-desc">certain constraints can never be violated</span></li>
+          <li><span class="r-title">Threshold Deontology</span><span class="r-desc">hold almost always, yield in catastrophic situations</span></li>
+          <li><span class="r-title">Rights-based Deontology</span><span class="r-desc">basic rights function as "trumps"</span></li>
+          <li><span class="r-title">Doctrine of Double Effect</span><span class="r-desc">it matters whether harm was intended or merely foreseen</span></li>
+          <li><span class="r-title">Pluralist Deontology</span><span class="r-desc">several duties, with no fixed hierarchy among them</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="branch">
+      <summary>Character-based Ethics | what should matter most is who you are</summary>
+      <div class="branch-body">
+        <ul class="result-list">
+          <li><span class="r-title">Virtue Ethics</span><span class="r-desc">cultivating courage, justice, and compassion as ends in themselves</span></li>
+          <li><span class="r-title">Ethics of Care</span><span class="r-desc">cultivating the disposition to care for the most vulnerable</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="branch">
+      <summary>Ethical Egoism | what should matter most is my own self-interest</summary>
+      <div class="branch-body">
+        <ul class="result-list">
+          <li><span class="r-title">Universal Ethical Egoism</span><span class="r-desc">everyone should always act in their own self-interest</span></li>
+          <li><span class="r-title">Individual Ethical Egoism</span><span class="r-desc">it's my personal choice, not a rule for everyone</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="branch">
+      <summary>Relativism and Ethical Skepticism | there may be no single standard</summary>
+      <div class="branch-body">
+        <ul class="result-list">
+          <li><span class="r-title">Cultural Relativism</span><span class="r-desc">right/wrong depends on the norms of each culture</span></li>
+          <li><span class="r-title">Individual Relativism (Subjectivism)</span><span class="r-desc">depends on each person's own judgment</span></li>
+          <li><span class="r-title">Descriptive Relativism</span><span class="r-desc">norms vary, but there may still be objective truth behind them</span></li>
+        </ul>
+        <div class="combo-note">If the position is "moral judgments merely express attitudes, and are neither true nor false", the test asks whether, even while being skeptical, the person still wants to find out their practical leaning. If they say <strong>no</strong>, the result is <strong>Normative Skepticism</strong>. If they say <strong>yes</strong>, they answer the main normative theory question as usual (consequences, rules, character, or self-interest) — but the final result becomes <strong>Normative Skepticism (X-leaning)</strong>, for example "Normative Skepticism (Consequentialist-leaning)", combining the skeptical stance with the specific practical subcurrent chosen.</div>
+      </div>
+    </details>
+  </section>
+
+  <section class="part" style="--part-color: var(--ethical-yellow);">
+    <p class="part-eyebrow">PART 2</p>
+    <h2>Criteria and the Moral Circle</h2>
+    <p class="part-question">Central question: who — and what — deserves moral consideration, and how much?</p>
+    <p class="part-intro">Questions about the moral circle investigate the reach of our ethical concern: who counts morally, and why — only me, my closest group, all of humanity, all sentient beings, all life, or even entire ecosystems? Answers tend to vary depending on the criterion used to include someone in that circle: the capacity to feel pain and pleasure, rationality, emotional bonds, or belonging to a particular species. The broader the criterion adopted, the wider the resulting circle of moral consideration tends to be.</p>
+
+    <details class="branch">
+      <summary>Starting point | the weight you give to yourself</summary>
+      <div class="branch-body">
+        <ul class="result-list">
+          <li><span class="r-title">Myself</span><span class="r-desc">Moral Egoism — absolute priority to myself</span></li>
+          <li><span class="r-title">Inner circle / Family</span><span class="r-desc">Familial Tribalism</span></li>
+          <li><span class="r-title">Ideal impartiality</span><span class="r-desc">moves on to group biases, below</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="branch">
+      <summary>Group biases | Extended Tribalism</summary>
+      <div class="branch-body">
+        <p class="branch-note">Even when aiming for impartiality, it's possible to retain priorities based on group membership. The test maps 16 possible axes (multi-select):</p>
+        <div class="bias-tags">
+          <span>Nation</span><span>Race</span><span>Ethnicity</span><span>Sex</span><span>Gender identity</span><span>Sexual orientation</span><span>Religion</span><span>Political-economic view</span><span>Social class</span><span>Ability</span><span>Beauty standard</span><span>Age group</span><span>Body weight</span><span>Language/accent</span><span>Substrate (organic vs. other)</span><span>Species</span>
+        </div>
+        <div class="combo-note">The result is always <strong>"Extended Tribalism"</strong>, with the marked axes listed in parentheses in the title.</div>
+      </div>
+    </details>
+
+    <details class="branch">
+      <summary>Boundary of the moral circle | who receives direct consideration</summary>
+      <div class="branch-body">
+        <p class="branch-note">Multi-select among 5 categories (Humans and Sentient Animals are mutually exclusive, since the second already includes the first). The sentient AIs/robots option carries the caveat "if any exist".</p>
+
+        <h3 class="subgroup">Combinations without sentient animals</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Humans, alone</span><span class="r-desc">Exclusive Anthropocentrism</span></li>
+          <li><span class="r-title">Humans + Organic life</span><span class="r-desc">Biocentric Anthropocentrism</span></li>
+          <li><span class="r-title">Organic life, alone</span><span class="r-desc">Biocentrism</span></li>
+          <li><span class="r-title">Humans + Ecosystems</span><span class="r-desc">Anthropocentrism with Ecological Concern</span></li>
+          <li><span class="r-title">Ecosystems, alone</span><span class="r-desc">Ecocentrism / Environmental Holism</span></li>
+          <li><span class="r-title">Unusual combinations</span><span class="r-desc">Atypical Moral Pluralism</span></li>
+          <li><span class="r-title">No option checked</span><span class="r-desc">No Direct Moral Consideration Assigned</span></li>
+        </ul>
+
+        <h3 class="subgroup">Checking Sentient animals → 2 extra questions</h3>
+        <p class="branch-note">This applies even if sentient AIs/robots are not checked. Gradualism (does intelligence change the weight of suffering?) crossed with Temporalism (does the future weigh the same as the present?) — the result changes depending on whether sentient AIs/robots were also checked:</p>
+        <ul class="result-list">
+          <li><span class="r-title">Non-gradualist + Atemporal</span><span class="r-desc">animals only: Full Sentientism (Carbon-Based) · with AIs: Full Sentientism</span></li>
+          <li><span class="r-title">Gradualist + Temporalist</span><span class="r-desc">animals only: Partial Sentientism (Carbon-Based Gradualist Temporalist) · with AIs: Partial Sentientism (Gradualist Temporalist)</span></li>
+          <li><span class="r-title">Gradualist + Atemporal</span><span class="r-desc">animals only: Partial Sentientism (Carbon-Based Gradualist Atemporal) · with AIs: Partial Sentientism (Gradualist Atemporal)</span></li>
+          <li><span class="r-title">Non-gradualist + Temporalist</span><span class="r-desc">animals only: Partial Sentientism (Carbon-Based Full Temporalist) · with AIs: Partial Sentientism (Full Temporalist)</span></li>
+        </ul>
+        <div class="combo-note">If Ecosystems is also checked alongside a "Full" result (with or without AIs), the title gains the suffix <strong>"& Ecological Holism"</strong>. And checking Ecosystems without checking any form of sentience triggers a warning about a philosophical tension in your position.</div>
+      </div>
+    </details>
+  </section>
+
+  <section class="part" style="--part-color: var(--ethical-red);">
+    <p class="part-eyebrow">PART 3</p>
+    <h2>Metaethical Foundations</h2>
+    <p class="part-question">Central question: do moral facts exist? What <em>is</em>, ultimately, a moral fact — and how do we come to know it?</p>
+    <p class="part-intro">Metaethical questions are not about what is right or wrong in any given situation, but about the status of morality itself: do moral judgments describe real facts, independent of the human mind? Are they only true within a cultural or personal framework? Are they merely expressions of attitudes and emotions, with no claim to truth at all? Or is the very question about the nature of moral facts poorly framed, needing no definitive answer?</p>
+
+    <details class="branch">
+      <summary>Are there objective moral facts?</summary>
+      <div class="branch-body">
+        <p class="branch-note">The result's title is always the main current — <strong>Moral Realism</strong>, <strong>Moral Anti-Realism</strong> or <strong>Metaethical Quietism</strong> — with the specific position shown as a "Subcurrent" right below it.</p>
+
+        <h3 class="subgroup">Yes → Moral Realism | ontological question: what is the nature of these facts?</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Naturalist</span><span class="r-desc">reducible to natural facts (physical, biological)</span></li>
+          <li><span class="r-title">Non-Naturalist</span><span class="r-desc">facts of their own irreducible dimension (sui generis) — something similar to mathematics, which also isn't an empirical fact</span></li>
+        </ul>
+
+        <h3 class="subgroup">Yes → Moral Realism | epistemological question: how do we discover these facts?</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Empirical investigation</span><span class="r-desc">Subcurrent: Naturalist — discovered like any other natural fact</span></li>
+          <li><span class="r-title">Special rational intuition</span><span class="r-desc">Subcurrent: Non-Naturalist — not discovered through direct empirical observation</span></li>
+        </ul>
+        <div class="combo-note">Or: <strong>evaluating what rational agents would decide under ideal conditions</strong> — this is the metaethical criterion underlying Contractualism, explored below. More than one formulation can be checked at once, and the Subcurrent reflects the combination.</div>
+        <ul class="result-list">
+          <li><span class="r-title">Hobbesian</span><span class="r-desc">rules that people seeking mutual peace and security would agree to follow</span></li>
+          <li><span class="r-title">Rawlsian</span><span class="r-desc">rules chosen behind a "veil of ignorance" — imagine deciding society's rules without knowing beforehand what position you'll occupy in it</span></li>
+          <li><span class="r-title">Scanlonian</span><span class="r-desc">rules that no one, acting in good faith, could reasonably reject</span></li>
+          <li><span class="r-title">Extended</span><span class="r-desc">that veil of ignorance also hides which species we belong to (Mark Rowlands)</span></li>
+        </ul>
+
+        <h3 class="subgroup">No, but relative to a framework → Moral Anti-Realism</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Metaethical Relativism / Subjectivism</span><span class="r-desc">Subcurrent — judgments are only true/false within a cultural or personal framework</span></li>
+        </ul>
+
+        <h3 class="subgroup">No, and no moral statement is true → Moral Anti-Realism</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Error Theory (Moral Skepticism)</span><span class="r-desc">Subcurrent — every moral statement presupposes facts that don't exist</span></li>
+        </ul>
+
+        <h3 class="subgroup">Morality doesn't deal in truth/falsity (non-cognitivism) → Moral Anti-Realism</h3>
+        <ul class="result-list">
+          <li><span class="r-title">Emotivism</span><span class="r-desc">Subcurrent — moral judgments express emotions ("killing is wrong" = "killing, boo!")</span></li>
+          <li><span class="r-title">Prescriptivism</span><span class="r-desc">Subcurrent — moral judgments are disguised, universalizable commands</span></li>
+          <li><span class="r-title">Quasi-Realism</span><span class="r-desc">Subcurrent — we express attitudes, but act "as if" objectivity existed</span></li>
+        </ul>
+
+        <h3 class="subgroup">Refusing the question → Metaethical Quietism</h3>
+        <div class="combo-note">Ludwig Wittgenstein is often pointed to as a reference for this stance — a "quietist", or a "relaxed" realist. The central idea: asking whether moral facts are "mind-independent" (realism) or "mere feelings" (anti-realism) is already a poorly framed question. You accept moral practice as it already functions within human language, without searching for metaphysical foundations that would justify or invalidate it "from the outside".</div>
+      </div>
+    </details>
+  </section>
+
+  <section class="part" style="--part-color: var(--ethical-teal);">
+    <p class="part-eyebrow">PART 4</p>
+    <h2>Moral and Intellectual Openness</h2>
+    <p class="part-question">Central question: how do you handle arguments, evidence, uncertainty, and changing your mind?</p>
+    <p class="part-intro">This part does not ask which moral beliefs you hold, but how you hold and revise them over time. Faced with a strong argument or new evidence that contradicts one of your positions, do you genuinely reconsider that position, or do you tend to hold onto it even under rational pressure? This disposition — between intellectual flexibility and confidence in established convictions — shapes how each person's ethical views evolve, or fail to, over time.</p>
+
+    <details class="branch">
+      <summary>Three questions combined into a single score</summary>
+      <div class="branch-body">
+        <ul class="result-list">
+          <li><span class="r-title">High Openness and Ethical Flexibility</span><span class="r-desc">questions deeply held beliefs when faced with good counterarguments</span></li>
+          <li><span class="r-title">Moderate Openness</span><span class="r-desc">flexible, but demands exceptionally strong evidence</span></li>
+          <li><span class="r-title">Conservative Stance / Low Openness</span><span class="r-desc">strong confidence in established intuitions and conventions</span></li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <a class="cta" href="teste-visao-moral-corrigido.html">Take the test</a>
+</footer>
+</div>
 
 <script>
-function detectLang(){
+function detectMapLang(){
   try {
     const langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
     for(const l of langs){ if(l && /^pt/i.test(l)) return 'pt'; }
@@ -426,1628 +781,28 @@ function detectLang(){
   return 'en';
 }
 
-let currentLang = detectLang();
-
-// If the URL carries a shared-result hash with an explicit language prefix
-// (e.g. "#pt:rc,em,cch,aaf"), honor the sharer's language over the browser's.
-(function applySharedLangOverride(){
-  try {
-    const raw = (typeof location !== 'undefined' && location.hash) ? location.hash.slice(1) : '';
-    const m = raw.match(/^(pt|en):/);
-    if(m) currentLang = m[1];
-  } catch(e){}
-})();
-
-const UI_PT = {
-  kickerIntro:'TESTE ÉTICO',
-  titleIntro:'Qual é a sua visão moral do mundo?',
-  ledeIntro:'Toda decisão que envolve outros seres carrega uma teoria sobre como devemos agir, sobre quem merece consideração e sobre o que significa dizer que algo é "certo" ou "errado". Este quiz ajuda a nomear os fundamentos que você já usa.',
-  partsListItems:[
-    ['I','Teoria ética normativa','Como decidir o que é certo — consequências, regras, caráter, contrato ou interesse próprio.'],
-    ['II','Fronteira do círculo moral','Quem entra no seu círculo de consideração moral — do indivíduo ao sencientismo pleno.'],
-    ['III','Fundamentos metaéticos','O que é, afinal, um juízo moral — fato, construção ou expressão de atitude.'],
-    ['IV','Abertura moral e intelectual','Como você lida com argumentos, evidências, incerteza e revisão de crenças.'],
-  ],
-  ctaStart:'Começar o teste',
-  privacyNote:'Nenhum dado é coletado neste teste. Fique tranquilo: suas respostas são processadas apenas no seu próprio navegador.',
-  backBtn:'← Voltar',
-  progressLabel:'Progresso',
-  restartBtn:'↻ Refazer o teste',
-  shareTitle:'Compartilhe seu mapa ético',
-  shareText:'Seu resultado neste teste ético:',
-  copyLink:'Copiar link do resultado',
-  linkCopied:'✓ Link copiado!',
-  mapButton:'Ver o mapa completo do teste',
-  sharedKicker:'RESULTADO COMPARTILHADO',
-  sharedTitle:'Alguém compartilhou este mapa ético com você',
-  sharedLede:'Esta pessoa respondeu ao teste de visão moral e chegou a este perfil. Faça o teste você também para descobrir o seu.',
-  finalKicker:'SEU MAPA ÉTICO',
-  finalTitle:'Assim você enxerga o certo e o errado:',
-  stages:['Teoria ética normativa','Fronteira do círculo moral','Fundamentos metaéticos','Abertura moral e intelectual'],
-  closing:[
-    'Essas quatro dimensões são distintas, mas interligadas. As categorias não são caixas rígidas: é comum ter elementos de mais de uma posição e refiná-las ao longo da vida.'
-  ],
-  continuePartPrefix:'Continuar para a Parte ',
-  continueFinal:'Ver meu mapa ético completo',
-  opposeLabel:'Visão Contrária / Sistema de Oposição: ',
-  langSwitchText:'Switch to English',
-  langPrompt:'Idioma / Language:',
-  errorSelectRequired:'Por favor, selecione ao menos uma opção antes de continuar.',
-  offeringLabel:'Oferecimento:',
-  idealizedBy:'Teste idealizado por <a href="https://jvlio.biblioverse.org" target="_blank" rel="noopener">Julio Cesar Prava</a>'
-};
-
-const UI_EN = {
-  kickerIntro:'ETHICAL TEST',
-  titleIntro:'What is your moral worldview?',
-  ledeIntro:'Every decision involving other beings carries a theory about how we should act, who deserves consideration, and what it means to call something "right" or "wrong". This quiz helps name the foundations you already use.',
-  partsListItems:[
-    ['I','Normative Ethical Theory','How to decide what is right — consequences, rules, character, contract, or self-interest.'],
-    ['II','Boundary of the Moral Circle','Who enters your circle of moral consideration — from the individual to full sentientism.'],
-    ['III','Metaethical Foundations','What a moral judgment actually is — fact, construction, or expression of attitude.'],
-    ['IV','Moral and Intellectual Openness','How you handle arguments, evidence, uncertainty, and revising beliefs.'],
-  ],
-  ctaStart:'Start Test',
-  privacyNote:'No data is collected in this test. Rest assured: your answers are processed only within your browser.',
-  backBtn:'← Back',
-  progressLabel:'Progress',
-  restartBtn:'↻ Retake test',
-  shareTitle:'Share your ethical map',
-  shareText:'Your result in this ethical test:',
-  copyLink:'Copy result link',
-  linkCopied:'✓ Link copied!',
-  mapButton:'See the full test map',
-  sharedKicker:'SHARED RESULT',
-  sharedTitle:'Someone shared this ethical map with you',
-  sharedLede:'This person took the moral outlook test and reached this profile. Take the test yourself to discover your own.',
-  finalKicker:'YOUR ETHICAL MAP',
-  finalTitle:'This is how you view right and wrong:',
-  stages:['Normative ethical theory','Moral circle boundary','Metaethical foundations','Moral and intellectual openness'],
-  closing:[
-    'These four dimensions are distinct yet interconnected. The categories are not rigid boxes: it is common to hold elements of multiple positions over time.'
-  ],
-  continuePartPrefix:'Continue to Part ',
-  continueFinal:'See my full ethical map',
-  opposeLabel:'Opposing View / System of Opposition: ',
-  langSwitchText:'Mudar para Português',
-  langPrompt:'Language / Idioma:',
-  errorSelectRequired:'Please select at least one option before continuing.',
-  offeringLabel:'Presented by:',
-  idealizedBy:'Test conceptualized by <a href="https://jvlio.biblioverse.org" target="_blank" rel="noopener">Julio Cesar Prava</a>'
-};
-
-const PARTS_PT = [
-  {
-    key:'theory', label:'Parte 1 · Teoria ética normativa', root:'t1',
-    nodes:{
-      t1:{type:'question', text:'Você acredita que existe algum tipo de verdade moral que vale para todos — independentemente de cultura, época ou opinião de cada pessoa — mesmo que seja difícil descobri-la?', options:[
-        {label:'Não — o que é certo ou errado depende inteiramente de quem julga', next:'t_relativismo'},
-        {label:'Sim, ou pelo menos vale a pena investigar essa possibilidade a sério', next:'t2'},
-      ]},
-      t_relativismo:{type:'question', text:'Qual dessas descrições de relativismo ou ceticismo melhor descreve sua posição?', options:[
-        {label:'O certo depende das normas de cada cultura ou sociedade', next:'r_cultural'},
-        {label:'Depende do julgamento ou sentimento de cada pessoa', next:'r_individual'},
-        {label:'Reconheço que as normas variam, sem descartar uma verdade moral objetiva por trás disso', next:'r_descritivo'},
-        {label:'Na verdade, acho que juízos morais nem chegam a ser verdadeiros ou falsos — só expressam atitudes', next:'r_apontar_meta'},
-      ]},
-      r_cultural:{type:'result', tag:'Ética normativa · Relativismo', title:'Relativismo cultural', body:['O que é moralmente certo ou errado depende estritamente das normas, crenças e práticas vigentes em cada cultura ou sociedade. Sob essa ótica, não existe um padrão moral universal ou externo válido para julgar culturas a partir de fora. A moralidade é vista puramente como uma construção coletiva e histórica.']},
-      r_individual:{type:'result', tag:'Ética normativa · Relativismo', title:'Relativismo individual (Subjetivismo)', body:['O que é certo ou errado depende exclusivamente do julgamento, sentimento ou preferência pessoal de cada indivíduo. A moralidade é, em última instância, uma escolha inteiramente subjetiva. O que é "verdade" moral para uma pessoa pode não ser para outra, não havendo base para imposição.']},
-      r_descritivo:{type:'result', tag:'Ética normativa · Relativismo', title:'Relativismo meramente descritivo', body:['Você reconhece a profunda variação sociocultural das normas como um fato empírico inegável da humanidade, mas acredita que essa diversidade de opiniões não exclui necessariamente a existência de uma verdade moral objetiva subjacente que talvez ainda estejamos tentando descobrir.']},
-      r_apontar_meta:{type:'result', tag:'Isso é metaética, não teoria normativa', title:'Não-cognitivismo / Expressivismo', body:['Essa é uma posição focada na natureza da própria linguagem moral (metaética), e não uma teoria normativa primária sobre como devemos agir de fato. Ela sugere que nossos juízos morais apenas expressam atitudes. Essa visão será profundamente explorada na Parte 3 deste teste.']},
-
-      t2:{type:'question', text:'Ao decidir se uma ação é certa ou errada, o que você considera fundamental?', options:[
-        {label:'O resultado da escolha: se o mundo que resulta dela é melhor que as alternativas', next:'t3_ato_regra'},
-        {label:'Se ela respeita certas regras, deveres ou direitos — independente do resultado', next:'t2b'},
-        {label:'O tipo de pessoa que a pratica, e os traços de caráter que ela expressa', next:'t_character'},
-        {label:'Se promove meu próprio interesse — porque isso é a própria definição do certo', next:'t_egoism'},
-      ]},
-      t2b:{type:'question', text:'Essas regras ou deveres se fundamentam em quê?', options:[
-        {label:'Na vontade ou nos mandamentos de uma autoridade divina', next:'t_divine'},
-        {label:'Na razão, em direitos universais, ou em princípios morais independentes de religião', next:'t_deontology'},
-      ]},
-      
-      t_divine:{type:'question', text:'Qual dessas visões sobre a relação entre o certo e Deus descreve melhor sua posição?', options:[
-        {label:'Algo é bom simplesmente porque Deus o ordena; não há padrão de bondade independente da vontade divina', next:'r_divine_a'},
-        {label:'Deus ordena o que é bom porque é, por natureza, perfeitamente amoroso; a vontade divina expressa a bondade, não a cria arbitrariamente', next:'r_divine_b'},
-      ]},
-      r_divine_a:{type:'result', tag:'Ética normativa', title:'Teoria do Mandamento Divino (Tradicional)', body:['Uma ação é certa simplesmente porque é ordenada por Deus e errada porque é proibida por Ele. O fundamento último da moralidade reside puramente na vontade soberana divina. Isso implica que não há um padrão de bondade independente; a moral é definida estruturalmente pelo decreto de Deus.']},
-      r_divine_b:{type:'result', tag:'Ética normativa', title:'Teoria do Mandamento Divino (Modificada)', body:['Deus ordena o que é bom porque sua própria essência e natureza são perfeitamente amorosas, justas e boas. A vontade divina expressa a bondade, mas não a cria de forma puramente arbitrária. Há um padrão de bem intrínseco à própria natureza imutável de Deus.']},
-
-      t_deontology:{type:'question', text:'Qual dessas visões sobre deveres morais melhor descreve a sua?', options:[
-        {label:'Certas restrições morais jamais podem ser violadas, custe o que custar', next:'r_deon_a'},
-        {label:'Valem na maioria dos casos, mas cedem se as consequências forem catastróficas', next:'r_deon_b'},
-        {label:'O fundamental é respeitar direitos básicos como "trunfos" contra o cálculo de resultados', next:'r_deon_c'},
-        {label:'O que importa é se o dano foi pretendido intencionalmente ou só previsto como efeito colateral', next:'r_deon_d'},
-        {label:'Há vários deveres (não mentir, ser justo, reparar) que podem entrar em conflito sem hierarquia fixa', next:'r_deon_e'},
-      ]},
-      r_deon_a:{type:'result', tag:'Ética normativa', title:'Deontologia Absolutista', body:['Certas restrições morais (como não mentir, não torturar ou não matar inocentes) são deveres categóricos que jamais podem ser violados, mesmo que quebrá-los pudesse evitar um grande desastre. O dever moral é absoluto, inegociável e independente de cálculos utilitários sobre resultados — os fins nunca justificam os meios corruptos.']},
-      r_deon_b:{type:'result', tag:'Ética normativa', title:'Deontologia Moderada (de Limiar)', body:['As restrições e regras morais valem de forma estrita na imensa maioria dos casos diários e estruturam nossa vida social. No entanto, essas regras de ferro podem (e devem) ser violadas ou suspensas caso as consequências de segui-las rigidamente cruzem um limiar que se mostre flagrantemente catastrófico.']},
-      r_deon_c:{type:'result', tag:'Ética normativa', title:'Deontologia de Direitos', body:['O que fundamenta e legitima suas restrições morais é o respeito inviolável a direitos morais básicos e inerentes aos indivíduos. Esses direitos funcionam como verdadeiros "trunfos" protetores que bloqueiam qualquer tentativa de sacrificar o indivíduo em nome do bem maior ou da utilidade e conveniência do coletivo.']},
-      r_deon_d:{type:'result', tag:'Ética normativa', title:'Doutrina do Duplo Efeito', body:['A moralidade de uma ação frequentemente depende da intenção subjetiva por trás dela. Na sua visão, é moralmente muito diferente causar um dano intencionalmente (usando-o como um meio para um fim) do que prever racionalmente que um dano ocorrerá como um efeito colateral trágico, não intencional, de uma boa ação.']},
-      r_deon_e:{type:'result', tag:'Ética normativa', title:'Deontologia Pluralista (Deveres Prima Facie)', body:['Não existe apenas um princípio moral supremo e isolado, mas sim vários deveres fundamentais (como dizer a verdade, reparar danos passados, ser justo, promover a bondade). Quando esses deveres entram em conflito na vida real, não há um fluxograma rígido a seguir: cabe ao julgamento prático (sabedoria) discernir qual dever possui maior peso no contexto específico.']},
-
-      t_character:{type:'question', text:'Ao focar na pessoa que age, o que você considera mais fundamental?', options:[
-        {label:'Cultivar virtudes (coragem, justiça, compaixão) valiosas em si mesmas', next:'r_char_a'},
-        {label:'Cultivar a disposição de cuidar de relações e dos mais vulneráveis', next:'r_char_b'},
-      ]},
-      r_char_a:{type:'result', tag:'Ética normativa', title:'Ética das Virtudes', body:['O centro da vida moral não está na aplicação mecânica de regras restritivas ou no cálculo frio de consequências futuras, mas no esforço contínuo e orgânico para cultivar um caráter virtuoso (englobando traços como coragem, compaixão, sabedoria prática e justiça). O foco principal se volta para a pergunta formativa: "que tipo de pessoa eu devo me tornar para florescer?"']},
-      r_char_b:{type:'result', tag:'Ética normativa', title:'Ética do Cuidado', body:['O traço moral fundamental e mais valioso a se cultivar é a disposição genuína e atenta de cuidar daqueles que dependem de nós nas tramas da vida. A ética do cuidado rejeita abstrações excessivas e direciona a atenção empática para as relações interpessoais concretas, priorizando a vulnerabilidade, os laços afetivos e as necessidades reais imediatas.']},
-
-      t_egoism:{type:'question', text:'Qual versão sobre agir em interesse próprio descreve sua posição?', options:[
-        {label:'Toda pessoa deveria agir sempre em seu próprio interesse; essa é a regra para todos', next:'r_ego_a'},
-        {label:'Eu devo agir no meu próprio interesse; não estou prescrevendo isso para os outros', next:'r_ego_b'},
-      ]},
-      r_ego_a:{type:'result', tag:'Ética normativa', title:'Egoísmo Ético Universal', body:['Todo agente moral tem a estrita obrigação ética de agir constantemente buscando maximizar o seu próprio interesse pessoal a longo prazo. Esta visão postula que essa não é apenas uma preferência tática e prática, mas a lei universal correta que você prescreve normativa e dogmaticamente para todas as outras pessoas.']},
-      r_ego_b:{type:'result', tag:'Ética normativa', title:'Egoísmo Ético Individual', body:['Você adota internamente como princípio diretor de vida agir de forma fundamental em prol da maximização do seu próprio interesse e felicidade, mas encara isso essencialmente como uma escolha estratégica e individual. Você é cauteloso ou neutro em prescrever ou exigir universalmente que o resto da sociedade opere com esse mesmo tipo de egoísmo dogmático.']},
-
-      t3_ato_regra:{type:'question', text:'Para você, a análise das consequências deve ser feita avaliando cada ação individualmente, avaliando regras gerais, ou combinando ambos?', options:[
-        {label:'Ato a ato — importa o resultado da ação específica disponível no momento', next:'t_conseq', set:{key:'actRule', value:'Consequencialismo de Atos'}},
-        {label:'Regras gerais — importa qual regra, se seguida por todos, geraria o melhor resultado', next:'t_conseq', set:{key:'actRule', value:'Consequencialismo de Regras'}},
-        {label:'Dois níveis — regras gerais na prática diária, mas cálculo focado no ato para reflexão e situações críticas', next:'t_conseq', set:{key:'actRule', value:'Consequencialismo de Dois Níveis'}}
-      ]},
-
-      t_conseq:{
-        type:'multi_select',
-        text:'Como você avalia quais consequências são as "melhores" e devem ser priorizadas? (Selecione todas que aplicar)',
-        noneOption:'Nenhuma destas opções descreve minha visão',
-        options:[
-          {label:'A maior soma total de bem-estar acumulado', val:'Utilitarismo Clássico'},
-          {label:'A soma total, mas dando peso prioritário aos indivíduos que estão em pior situação', val:'Prioritarismo'},
-          {label:'Avalio apenas pelo nível de quem está na pior situação possível', val:'Maximin'},
-          {label:'O que mais importa é o grau de igualdade na distribuição', val:'Igualitarismo'},
-          {label:'Garantir que todos atinjam um nível mínimo e suficiente de bem-estar', val:'Suficientismo'},
-          {label:'A maior média de bem-estar por indivíduo', val:'Utilitarismo Médio'}
-        ],
-        nextIfSelected:'t_conseq_neg',
-        nextIfNone:'t_conseq_neg'
-      },
-
-      t_conseq_neg:{type:'question', text:'E sobre o peso do sofrimento em relação ao prazer ou bem-estar positivo?', options:[
-        {label:'Sofrimento e prazer devem ser considerados de forma simétrica no cálculo', next:'t_conseq_result', set:{key:'negChoice', value:'Visão Simétrica'}},
-        {label:'O sofrimento tem um peso maior que o prazer, mas pode ser compensado por grandes quantidades de bem-estar', next:'t_conseq_result', set:{key:'negChoice', value:'Prioridade ao Sofrimento'}},
-        {label:'O sofrimento tem prioridade absoluta: nenhuma quantidade de prazer compensa sofrimento extremo', next:'t_conseq_result', set:{key:'negChoice', value:'Prioridade Absoluta'}},
-        {label:'Devemos focar apenas em reduzir sofrimento; o prazer por si só não possui valor moral positivo', next:'t_conseq_result', set:{key:'negChoice', value:'Foco Exclusivo no Sofrimento'}},
-      ]},
-
-      t_conseq_result:{type:'dynamicResult', tag:'Ética normativa · Consequencialismo', render: function(a){
-        const aggs = a.t_conseq_selections || [];
-        const negChoice = a.negChoice || 'Visão Simétrica';
-
-        let actRule = a.actRule || 'Consequencialismo';
-
-        let isms = [];
-        if(aggs.includes('Utilitarismo Clássico')) isms.push('Utilitarista Clássico');
-        if(aggs.includes('Prioritarismo')) isms.push('Prioritarista');
-        if(aggs.includes('Maximin')) isms.push('Maximin');
-        if(aggs.includes('Igualitarismo')) isms.push('Igualitarista');
-        if(aggs.includes('Suficientismo')) isms.push('Suficientista');
-        if(aggs.includes('Utilitarismo Médio')) isms.push('Utilitarista Médio');
-
-        if(isms.length === 0) isms.push('Consequencialista');
-
-        let titleBase = isms.join(' ');
-
-        const negSuffixMap = {
-          'Foco Exclusivo no Sofrimento': ' com Foco Exclusivo no Sofrimento',
-          'Prioridade Absoluta': ' com Prioridade Absoluta ao Sofrimento (Negativista)',
-          'Prioridade ao Sofrimento': ' com Prioridade ao Sofrimento',
-          'Visão Simétrica': ' com Visão Simétrica entre Sofrimento e Prazer'
-        };
-        const negDescMap = {
-          'Foco Exclusivo no Sofrimento': 'um foco exclusivo na redução do sofrimento — para você, o prazer por si só não possui valor moral positivo próprio',
-          'Prioridade Absoluta': 'uma prioridade absoluta e lexical ao sofrimento, que nenhuma quantidade de prazer é capaz de compensar',
-          'Prioridade ao Sofrimento': 'uma prioridade ao sofrimento, que pesa mais que o prazer mas ainda pode ser compensado por grandes quantidades de bem-estar',
-          'Visão Simétrica': 'uma visão simétrica, na qual sofrimento e prazer entram no cálculo moral com o mesmo peso'
-        };
-
-        let finalTitle = titleBase + (negSuffixMap[negChoice] || '');
-
-        let bodyText = `Sua visão de mundo estrutural ancora-se no ${actRule}, determinando que o valor moral último de uma escolha ou regra é julgado puramente pelos resultados líquidos que ela instaura na realidade. Na sua matriz matemática de agregação, seus critérios ressaltam um foco direto no(a): ${aggs.join(', ')}. No que tange à calibragem filosófica do peso do sofrimento frente à geração de bem-estar extra, a sua posição reflete ${negDescMap[negChoice] || negDescMap['Visão Simétrica']}.`;
-
-
-        return {
-          title: finalTitle,
-          body: [ bodyText ]
-        };
-      }}
-    }
-  },
-  {
-    key:'circle', label:'Parte 2 · Fronteira do círculo moral', root:'c1',
-    nodes:{
-      c1:{type:'question', text:'Em um cenário ideal, você acha que as pessoas deveriam dar peso estritamente imparcial a todos os indivíduos, ou é moralmente correto e esperado dar maior consideração a si mesmo e a pessoas próximas (como a própria família)?', options:[
-        {label:'É correto dar prioridade absoluta a mim mesmo e aos meus próprios interesses', next:'r_c1_ego', set:{key:'circleLevel', value: 1}},
-        {label:'É correto dar maior consideração a mim mesmo e a pessoas próximas (como família e amigos)', next:'r_c1_tribal', set:{key:'circleLevel', value: 2}},
-        {label:'Deveríamos buscar a imparcialidade ideal e considerar o bem-estar de todos sem favorecimentos pessoais', next:'c3'},
-      ]},
-      r_c1_ego:{type:'result', level:1, tag:'Círculo moral', title:'Egoísmo Moral', body:['Sua bússola moral foca as energias exclusivamente no nível mais interno, legitimando a priorização estrita de si mesmo e rejeitando obrigações diretas de imparcialidade com os outros.'], oppose:'Altruísmo Imparcial / Universalismo'},
-      r_c1_tribal:{type:'result', level:2, tag:'Círculo moral', title:'Parcialismo Intimista / Tribalismo Familiar', body:['Sua bússola moral rejeita a imparcialidade radical, argumentando que as conexões interpessoais têm profundo peso ético e legitimando inteiramente a priorização daqueles que fazem parte do seu círculo afetivo direto e familiar.'], oppose:'Altruísmo Imparcial / Universalismo'},
-
-      c3:{
-        type:'multi_select',
-        text:'Quais destas características influenciam quem deve receber prioridade ou consideração moral no seu círculo? (Selecione todas que se aplicam)',
-        noneOption:'Nenhuma das opções abaixo (Considero todos igualmente sem restrições de grupo)',
-        options:[
-          {label:'Prioridade aos membros da minha nação', val:'nacionalista'},
-          {label:'Prioridade aos membros da minha raça', val:'racista'},
-          {label:'Prioridade aos membros da minha etnia', val:'etnocêntrica'},
-          {label:'Prioridade ao meu próprio sexo', val:'sexista'},
-          {label:'Prioridade a identidades de gênero normativas', val:'transfóbica'},
-          {label:'Prioridade a orientações sexuais normativas', val:'homofóbica'},
-          {label:'Prioridade a quem compartilha minha fé ou religião', val:'religiosa'},
-          {label:'Prioridade a quem compartilha minha visão político-econômica', val:'política'},
-          {label:'Prioridade a quem possui maior poder econômico ou classe social', val:'classista'},
-          {label:'Prioridade a pessoas sem deficiências ou com maior capacidade intelectual', val:'capacitista'},
-          {label:'Prioridade a padrões corporais ou estéticos específicos', val:'lookista'},
-          {label:'Prioridade a uma determinada faixa etária', val:'etarista'},
-          {label:'Prioridade a um determinado tamanho ou peso corporal', val:'tamanhista'},
-          {label:'Prioridade a quem fala determinada língua ou sotaque', val:'linguista'},
-          {label:'Prioridade a seres orgânicos contra outras formas de existência', val:'substratista'},
-          {label:'Prioridade exclusiva ou quase exclusiva a seres humanos em relação a outros animais', val:'antropocêntrica'},
-        ],
-        nextIfNone:'c4',
-        nextIfSelected:'r_parcialismo_multi'
-      },
-
-      r_parcialismo_multi:{
-        type:'dynamicResult',
-        level:3,
-        tag:'Círculo moral',
-        render: function(a){
-          const biases = a.c3_selections || [];
-          let comboStr = biases.join(', ');
-          if(biases.length > 1) comboStr = biases.slice(0, -1).join(', ') + ' e ' + biases[biases.length - 1];
-          const title = 'Tribalismo Estendido (' + comboStr.charAt(0).toUpperCase() + comboStr.slice(1) + ')';
-          return {
-            title: title,
-            level: 3,
-            body: [
-              'Sua ética estabelece limites de prioridade ou exclusão moral com base no pertencimento a grupos sociais e identidades específicas. A filiação identitária funciona como um forte filtro para a empatia e consideração de deveres.'
-            ],
-            oppose: 'Imparcialismo Moral / Universalismo / Sencientismo Pleno.',
-            accordion: [
-              { title: 'Entenda a sua estrutura de Parcialismo Moral', text: 'Ao adotar essa postura de Tribalismo Estendido, sua ética opera por círculos concêntricos e restritivos de grupo social. Você argumenta, implícita ou explicitamente, que é perfeitamente legítimo — ou mesmo obrigatório — priorizar e defender o bem-estar primário de quem compartilha de traços e alinhamentos identitários semelhantes aos seus, criando uma gradação moral baseada na similaridade em vez de princípios universais aplicáveis a todo sofredor.' },
-              { title: 'Por que diversos filósofos defendem que o círculo moral deve ser expandido?', text: 'Por razões essenciais de coerência lógica e universalidade ética. Filósofos defendem que o círculo moral deve ser expandido ativamente porque a consistência lógica, a imparcialidade e a universalidade exigem que tratemos casos fundamentalmente semelhantes (como a mera capacidade de sofrer de forma consciente) de maneira semelhante. Isso impede que preconceitos arbitrários — biológicos, geográficos ou culturais — limitem nossa empatia, criando uma base moral sólida e intersubjetiva que potencializa fortemente a cooperação pacífica global.' }
-            ]
-          };
-        }
-      },
-
-      c4:{
-        type:'multi_select',
-        text:'Quais destes seres, grupos ou entidades recebem consideração moral direta da sua parte? (Selecione todos que se aplicam)',
-        noneOption:'Nenhum destes',
-        options:[
-          {label:'Todos os seres humanos', val:'Humanos'},
-          {label:'Todos os animais sencientes (capazes de ter experiências positivas e negativas, como dor e prazer)', val:'Animais Sencientes'},
-          {label:'Todas as inteligências artificiais e robôs que forem capazes de ter experiências subjetivas (caso existam)', val:'IAs e Robôs Sencientes'},
-          {label:'Toda a vida orgânica e biológica, com ou sem consciência', val:'Toda Vida Orgânica'},
-          {label:'Espécies como um todo e ecossistemas complexos', val:'Ecossistemas'}
-        ],
-        exclusiveGroups:[
-          {vals:['Humanos','Animais Sencientes'], message:'Animais sencientes já inclui todos os humanos — selecione apenas uma dessas duas opções (ela pode ser combinada com as outras).'}
-        ],
-        nextIfSelected:'r_c4_multi',
-        nextIfNone:'r_c4_multi'
-      },
-
-      c4_gradualism:{type:'question', text:'Dentro do grupo de seres sencientes, a inteligência ou complexidade cognitiva deve alterar o peso dado ao sofrimento?', options:[
-        {label:'Sim — dor em seres com maior capacidade cognitiva importa mais', next:'c4_temporal', set:{key:'circleGradual', value:'gradualist'}},
-        {label:'Não — interesses e dores semelhantes importam igualmente, independente de quão inteligente o ser for', next:'c4_temporal', set:{key:'circleGradual', value:'nongradualist'}},
-      ]},
-
-      c4_temporal:{type:'question', text:'E quanto ao tempo: seres sencientes que existirão no futuro merecem a mesma consideração moral que os que existem agora?', options:[
-        {label:'Não — o bem-estar de seres contemporâneos pesa mais do que os do futuro', next:'r_c4_multi', set:{key:'circleTemporal', value:'temporalist'}},
-        {label:'Sim — a época em que alguém nasce não altera seu valor moral', next:'r_c4_multi', set:{key:'circleTemporal', value:'atemporal'}},
-      ]},
-
-      r_c4_multi:{
-        type:'dynamicResult',
-        tag:'Círculo moral',
-        render: function(a){
-          const sels = a.c4_selections || [];
-          let level = 4;
-          let conflito = false;
-          let title = '';
-          let desc = '';
-
-          const hasHum = sels.includes('Humanos');
-          const hasSen = sels.includes('Animais Sencientes');
-          const hasBio = sels.includes('Toda Vida Orgânica');
-          const hasEco = sels.includes('Ecossistemas');
-          const hasDig = sels.includes('IAs e Robôs Sencientes');
-
-          if (hasSen) {
-             const grad = a.circleGradual;
-             const temp = a.circleTemporal;
-             const ecoNote = hasEco ? ' Você também atribui grande valor ao equilíbrio dos ecossistemas como um todo, combinando essa visão com uma preocupação ecológica sistêmica.' : '';
-             const ecoSuffix = hasEco ? ' e Holismo Ecológico' : '';
-             level = hasDig ? 6 : 5;
-
-             if (hasDig) {
-               if (grad === 'gradualist' && temp === 'temporalist') {
-                  title = 'Sencientismo Parcial (Gradualista Temporalista)';
-                  desc = 'Sua consideração moral se estende a todos os seres capazes de sofrer ou sentir bem-estar, biológicos ou digitais, mas com duas restrições: seres com maior capacidade cognitiva recebem mais peso moral do que os demais, e o bem-estar de quem existe agora pesa mais do que o de seres sencientes que ainda vão existir no futuro.' + ecoNote;
-               } else if (grad === 'gradualist' && temp === 'atemporal') {
-                  title = 'Sencientismo Parcial (Gradualista Atemporal)';
-                  desc = 'Sua consideração moral se estende a todos os seres capazes de sofrer ou sentir bem-estar, biológicos ou digitais, ponderando o sofrimento pela complexidade cognitiva de cada ser — mas, diferentemente de uma visão apenas presentista, seres sencientes do futuro distante merecem para você o mesmo peso moral que os de hoje.' + ecoNote;
-               } else if (grad === 'nongradualist' && temp === 'temporalist') {
-                  title = 'Sencientismo Parcial (Pleno Temporalista)';
-                  desc = 'Sua consideração moral trata interesses semelhantes de forma igual, independentemente da inteligência ou espécie do ser — seres biológicos e digitais recebem o mesmo peso quando seus interesses são equivalentes. No entanto, você dá prioridade ao bem-estar de quem já existe hoje em relação ao de seres sencientes que só existirão no futuro.' + ecoNote;
-               } else {
-                  title = 'Sencientismo Pleno' + ecoSuffix;
-                  desc = 'Até onde se sabe, esse é o raio mais expansivo de consideração moral pautado na experiência: a senciência plena. Para essa visão, o que importa eticamente não é a raça, nação, sexo, ou mesmo o substrato biológico de um ser, mas puramente o fato de ele possuir a capacidade subjetiva de sofrer e sentir bem-estar. Interesses semelhantes, como o desejo de evitar a dor, recebem o mesmo peso moral, rejeitando a ideia de que possuir maior inteligência ou pertencer a uma espécie específica torne o sofrimento de um indivíduo mais importante. Além disso, essa consideração se estende através do tempo: os seres sencientes que existirão no futuro distante merecem a mesma consideração moral que os que existem no presente.' + ecoNote;
-               }
-             } else {
-               const carbonNote = ' Sua visão traça o limite do seu núcleo de empatia na biologia orgânica, sem reconhecer (por ora) a possibilidade de mentes dignas de consideração em substratos digitais.';
-               if (grad === 'gradualist' && temp === 'temporalist') {
-                  title = 'Sencientismo Parcial (Carbonismo Gradualista Temporalista)';
-                  desc = 'Sua consideração moral se estende a todos os animais sencientes, mas com duas restrições: seres com maior capacidade cognitiva recebem mais peso moral do que os demais, e o bem-estar de quem existe agora pesa mais do que o de seres sencientes que ainda vão existir no futuro.' + carbonNote + ecoNote;
-               } else if (grad === 'gradualist' && temp === 'atemporal') {
-                  title = 'Sencientismo Parcial (Carbonismo Gradualista Atemporal)';
-                  desc = 'Sua consideração moral se estende a todos os animais sencientes, ponderando o sofrimento pela complexidade cognitiva de cada ser — mas, diferentemente de uma visão apenas presentista, animais sencientes do futuro distante merecem para você o mesmo peso moral que os de hoje.' + carbonNote + ecoNote;
-               } else if (grad === 'nongradualist' && temp === 'temporalist') {
-                  title = 'Sencientismo Parcial (Carbonismo Pleno Temporalista)';
-                  desc = 'Sua consideração moral trata interesses semelhantes de forma igual entre os animais sencientes, independentemente de quão inteligente o ser seja. No entanto, você dá prioridade ao bem-estar de quem já existe hoje em relação ao de seres sencientes que só existirão no futuro.' + carbonNote + ecoNote;
-               } else {
-                  title = 'Sencientismo Pleno (Carbonismo)' + ecoSuffix;
-                  desc = 'Dentro da vida biológica, esse é o raio mais expansivo de consideração moral pautado na experiência: você trata o sofrimento de todo animal senciente com o mesmo peso, independente de espécie ou nível de inteligência, e estende essa consideração igualmente a animais sencientes que só existirão no futuro.' + carbonNote + ecoNote;
-               }
-             }
-          } else if (hasHum && hasBio) {
-             title = 'Antropocentrismo Biocêntrico';
-             desc = 'Sua visão valoriza primariamente os interesses dos seres humanos e estende alguma consideração à vida orgânica em geral, mas revela uma lacuna ética significativa: ao não marcar "animais sencientes", você deixa de fora, de forma direta e igualitária, os animais não-humanos capazes de sofrer — os próprios sujeitos de bem-estar dentro da vida biológica que você já valoriza.';
-             level = 4;
-          } else if (hasBio) {
-             title = 'Biocentrismo';
-             desc = 'Você sustenta que toda forma de vida biológica importa moralmente e possui valor intrínseco, independentemente de possuir um sistema nervoso ou a capacidade subjetiva de sentir dor ou prazer — o que inclui plantas, fungos e micro-organismos dentro do seu círculo de consideração.';
-             level = 4;
-          } else if (hasHum && hasEco) {
-             title = 'Antropocentrismo com Preocupação Ecológica';
-             desc = 'Você concentra sua consideração moral direta na espécie humana, mas também atribui valor ao equilíbrio dos ecossistemas como um todo — uma combinação que pode gerar tensão, já que não reconhece diretamente a senciência dos animais não-humanos que compõem esses próprios ecossistemas.';
-             level = 4;
-          } else if (hasEco) {
-             title = 'Ecocentrismo / Holismo Ambiental';
-             desc = 'O valor moral primário reside, na sua visão, no equilíbrio da rede ecológica como um todo. Você concebe a natureza como um sistema interdependente, podendo priorizar a saúde estrutural desse sistema sobre a vida de organismos individuais.';
-             level = 4;
-          } else if (hasHum) {
-             title = 'Antropocentrismo Exclusivo';
-             level = 3;
-             desc = 'Sua consideração ética central se restringe à espécie humana. Os demais animais e o meio ambiente são vistos primariamente sob um enfoque instrumental, recebendo no máximo consideração indireta, derivada do interesse que representam para as sociedades humanas.';
-          } else {
-             title = 'Pluralismo Moral Atípico';
-             level = 4;
-             desc = 'Sua consideração ética combina categorias de um modo pouco comum. Você marcou: ' + sels.join(', ') + '.';
-          }
-
-          if (hasEco && !hasSen) {
-            conflito = true;
-          }
-
-          let text = desc;
-
-          if (conflito) {
-            text += ' Atenção: há uma tensão em sua posição. Ao dar valor ao ecossistema como um todo sem incluir a senciência (animal ou humana) entre suas prioridades, sua teoria pode, em situações extremas, justificar sacrificar indivíduos sensíveis e inocentes em nome do equilíbrio do sistema. Vale refletir sobre qual desses valores deve prevalecer em caso de conflito real.';
-          }
-
-          return {
-            title: title,
-            level: level,
-            body: [text]
-          };
-        }
-      }
-    }
-  },
-  {
-    key:'meta', label:'Parte 3 · Fundamentos metaéticos', root:'m1',
-    nodes:{
-      m1:{type:'question', text:'Existem fatos morais objetivos que seriam verdadeiros independentemente do que qualquer pessoa ou cultura acredite?', options:[
-        {label:'Sim', next:'m2'},
-        {label:'Não, mas as afirmações morais ainda podem ser verdadeiras ou falsas dentro de algum referencial', next:'m3'},
-        {label:'Não, afirmações morais nem chegam a ser verdadeiras ou falsas — são apenas expressões de atitude', next:'m_noncog'}
-      ]},
-
-      m2:{type:'question', text:'Esses fatos morais objetivos podem ser reduzidos a fatos naturais (físicos, biológicos, como o bem-estar empírico) ou eles são de uma dimensão própria, irreduzível (sui generis)?', options:[
-        {label:'Eles podem ser reduzidos a fatos naturais perfeitamente investigáveis', next:'m2_epi', set:{key:'m_ontologia', value:'Naturalista'}},
-        {label:'Eles não são físicos/naturais, mas são fatos de uma dimensão própria (sui generis)', next:'m2_epi', set:{key:'m_ontologia', value:'Não-Naturalista'}},
-      ]},
-      
-      m2_epi:{type:'question', text:'Sendo objetivos, como podemos descobrir quais são os fatos morais corretos ou o critério fundamental para a moralidade?', options:[
-        {label:'Investigando as verdades do mundo empírica ou intuitivamente', next:'r_realismo_m2'},
-        {label:'Avaliando o que agentes perfeitamente racionais decidiriam em condições ideais', next:'t_contract'}
-      ]},
-
-      r_realismo_m2:{type:'dynamicResult', tag:'Metaética', render: function(a){
-        const tipo = a.m_ontologia || 'Naturalista';
-        const isNat = tipo === 'Naturalista';
-        const body = isNat
-          ? 'A verdade moral é um fato objetivo, mas reduzível a fatos naturais — como estados de bem-estar, dor, ou florescimento biológico e psicológico. Descobrimos essas verdades investigando o mundo empiricamente, da mesma forma como a ciência descobre outros fatos naturais complexos.'
-          : 'A verdade moral é um fato objetivo, mas de uma natureza própria e irredutível (sui generis) — ela não pode ser reduzida a propriedades físicas ou naturais, mesmo podendo depender delas. Descobrimos essas verdades por meio de uma faculdade especial de intuição racional, e não por observação empírica direta como nas ciências naturais.';
-        return {
-            title: 'Realismo Moral ' + tipo,
-            body: [body]
-        };
-      }},
-
-      t_contract:{
-        type:'multi_select',
-        text:'Você está usando a racionalidade como um critério para descobrir as regras morais corretas — imaginando o que pessoas racionais decidiriam sob certas condições. Quais dessas ideias fazem sentido para você? Pode escolher mais de uma.',
-        options:[
-          {label:'Regras justas são as que pessoas em busca de paz e segurança mútua topariam seguir', val:'Hobbesiano'},
-          {label:'Regras justas são as que escolheríamos por trás de um "véu da ignorância" — ou seja, imagine decidir as regras da sociedade sem saber, de antemão, qual posição você vai ocupar nela (rico ou pobre, maioria ou minoria)', val:'Rawlsiano'},
-          {label:'Uma regra só é válida se ninguém, agindo de boa-fé, pudesse recusá-la com uma razão de peso', val:'Escanloniano'},
-          {label:'Esse "véu da ignorância" deveria esconder também a espécie a que pertencemos, não só nossa posição social', val:'Estendido'}
-        ],
-        nextIfSelected:'r_contract_multi',
-        nextIfNone:'r_contract_multi'
-      },
-      r_contract_multi:{
-        type:'dynamicResult',
-        tag:'Metaética',
-        render: function(a){
-          const sels = a.t_contract_selections || [];
-          if(sels.length === 0){
-            return {
-              title:'Construtivismo Contratualista',
-              body:['Você usa a racionalidade como critério para descobrir as regras morais corretas, mesmo sem se identificar com nenhuma formulação específica do contrato social listada.']
-            };
-          }
-          const title = 'Construtivismo Contratualista (' + sels.join(' + ') + ')';
-          const descMap = {
-            'Hobbesiano': 'as regras corretas são os acordos pragmáticos que pessoas racionais, buscando escapar do conflito, aceitariam seguir para viver em paz',
-            'Rawlsiano': 'as regras corretas são as que escolheríamos por trás de um véu da ignorância sobre nossa própria posição social',
-            'Escanloniano': 'uma regra só é válida se ninguém, agindo de boa-fé, pudesse recusá-la com uma razão de peso',
-            'Estendido': 'esse véu da ignorância também deveria esconder a espécie a que pertencemos — por isso, o especismo não passaria no teste da imparcialidade, já que na prática só é defendido porque sabemos de antemão que somos humanos, que não seremos as vítimas desse arranjo e que colheremos seus benefícios'
-          };
-          const body = 'Você usa a racionalidade como critério para descobrir as regras morais corretas. Na sua visão: ' + sels.map(s => descMap[s]).join('; e ') + '.';
-          return { title: title, body: [body] };
-        }
-      },
-
-      m3:{type:'question', text:'Sendo a moralidade relativa a um referencial, qual é a natureza desse referencial?', options:[
-        {label:'A verdade de uma afirmação moral depende das normas da cultura que a enuncia', next:'r_mrelat'},
-        {label:'Toda afirmação moral tenta ser objetiva, mas todas são falsas, pois esses fatos não existem no mundo', next:'r_error'}
-      ]},
-      r_mrelat:{type:'result', tag:'Metaética', title:'Relativismo / Subjetivismo Metaético', body:['Não há uma verdade moral superior e universal. Os juízos morais só são verdadeiros ou falsos em relação a uma matriz cultural ou pessoal específica — não existe um ponto de vista externo a essas matrizes a partir do qual comparar ou julgar qual delas está certa.']},
-      r_error:{type:'result', tag:'Metaética', title:'Teoria do Erro (Ceticismo Moral)', body:['Sua visão reflete um ceticismo moral profundo. Toda afirmação moral (como "isso é errado") pressupõe a existência de fatos morais objetivos no universo — mas esses fatos simplesmente não existem. Por isso, todo julgamento moral já feito é, estritamente falando, falso, não porque nossa razão falhe em encontrá-los, mas porque não há nada desse tipo para ser encontrado.']},
-
-      m_noncog:{type:'question', text:'Se a moralidade não lida com verdades e falsidades, o que fazemos quando julgamos algo como moralmente errado?', options:[
-        {label:'Estamos expressando emoções (como um "Buuu!" afetivo)', next:'r_emotivismo'},
-        {label:'Estamos dando comandos universalizáveis (como um "Não faça isso!")', next:'r_prescritivismo'},
-        {label:'Expressamos atitudes, mas agimos e falamos como se houvesse objetividade e rigor lógico nisso', next:'r_quaserealismo'}
-      ]},
-      r_emotivismo:{type:'result', tag:'Metaética', title:'Emotivismo (Não-Cognitivismo)', body:['Afirmações morais não descrevem fatos: elas expressam emoções e reações afetivas. Dizer "matar é errado" equivale, em essência, a exclamar "matar, buuu!" — uma expressão de desaprovação, e não uma sentença que possa ser verdadeira ou falsa.']},
-      r_prescritivismo:{type:'result', tag:'Metaética', title:'Prescritivismo', body:['Ao fazer um juízo moral, você não está descrevendo um fato do mundo, mas prescrevendo uma regra universalizável — um comando disfarçado. Dizer "matar é errado" equivale, na prática, a ordenar "não mate, e ninguém deve matar, nessas mesmas circunstâncias".']},
-      r_quaserealismo:{type:'result', tag:'Metaética', title:'Quase-Realismo', body:['A moralidade nasce de atitudes e reações afetivas humanas, não de fatos externos ao mundo. Mas, ao longo da história, o debate moral estruturou essas atitudes com tanto rigor lógico, coerência e universalidade que a nossa prática ética passou a operar "como se" fatos morais objetivos realmente existissem — mesmo sem precisarmos postular entidades metafísicas para isso.']}
-    }
-  },
-  {
-    key:'openness', label:'Parte 4 · Abertura moral e intelectual', root:'o1',
-    nodes:{
-      o1:{type:'question', text:'Quando você encontra argumentos fortes e novas evidências que entram em conflito com uma crença moral sua, quão disposto está a mudar de ideia?', options:[
-        {label:'Muito disposto — se as razões forem melhores, devo revisar minha posição', next:'o2', set:{key:'o1Score', value:3}},
-        {label:'Moderadamente disposto — levo em consideração, mas exijo muitas evidências para mudar', next:'o2', set:{key:'o2Score', value:2}},
-        {label:'Pouco disposto — minhas convicções morais costumam se manter firmes', next:'o2', set:{key:'o1Score', value:1}}
-      ]},
-      o2:{type:'question', text:'Qual atitude descreve melhor o seu nível de ceticismo frente a ideias inovadoras ou de confiança frente a ideias estabelecidas?', options:[
-        {label:'Ceticismo equilibrado — questiono o que é novo e o que está estabelecido, aceitando ambos pela força lógica', next:'o3', set:{key:'o2Score', value:3}},
-        {label:'Ceticismo forte às novidades — mantenho baixíssima confiança em inovação moral até ter certeza absoluta', next:'o3', set:{key:'o2Score', value:2}},
-        {label:'Confiança profunda nas tradições — as ideias e intuições que sempre guiaram a sociedade são a melhor bússola', next:'o3', set:{key:'o2Score', value:1}}
-      ]},
-      o3:{type:'question', text:'Ao avaliar uma controvérsia ética complexa, qual sua postura prática?', options:[
-        {label:'Pensamento crítico sistemático — busco a melhor versão do argumento oponente', next:'r_openness', set:{key:'o3Score', value:3}},
-        {label:'Equilíbrio prático — faço verificações, mas não mergulho intensamente na lógica', next:'r_openness', set:{key:'o3Score', value:2}},
-        {label:'Intuição primeiro — confio no que parece moralmente certo à primeira vista', next:'r_openness', set:{key:'o3Score', value:1}}
-      ]},
-      r_openness:{type:'dynamicResult', tag:'Abertura Intelectual', render: function(a){
-        const score = (a.o1Score || 3) + (a.o2Score || 3) + (a.o3Score || 3);
-        
-        let res = 'alta';
-        if(score <= 4) res = 'conservadora';
-        else if(score <= 7) res = 'moderada';
-
-        if(res === 'alta'){
-          return {
-            title:'Alta Abertura e Flexibilidade Ética',
-            body:[
-              'Você demonstra um alto nível de pensamento crítico e uma disposição genuína para questionar suas próprias crenças mais arraigadas quando confrontado com bons contra-argumentos ou evidências sólidas. Sua bússola moral valoriza a consistência lógica acima do simples conforto de manter tradições e intuições não examinadas.'
-            ]
-          };
-        } else if(res === 'moderada'){
-          return {
-            title:'Abertura Moderada',
-            body:[
-              'Você demonstra flexibilidade intelectual, mas adota uma postura cautelosa: para de fato mudar uma crença moral estabelecida, você exige que os novos argumentos ou evidências apresentados sejam excepcionalmente fortes e consistentes, funcionando como uma barreira prudente contra mudanças precipitadas.'
-            ]
-          };
-        } else {
-          return {
-            title:'Postura Conservadora / Baixa Abertura',
-            body:[
-              'Sua postura de deliberação moral é dominada por uma forte confiança nas intuições e convenções já estabelecidas, dando grande peso à sabedoria tradicional e às normas testadas pelo tempo. Você tende a preservar essas bases herdadas, mantendo uma postura defensiva diante de ceticismo ou mudanças éticas rápidas e pouco fundamentadas.'
-            ]
-          };
-        }
-      }}
-    }
-  }
-];
-
-const PARTS_EN = [
-  {
-    key:'theory', label:'Part 1 · Normative Ethical Theory', root:'t1',
-    nodes:{
-      t1:{type:'question', text:'Do you believe there is some kind of objective moral truth that applies to everyone, regardless of culture or time?', options:[
-        {label:'No — right and wrong depend entirely on who is judging', next:'t_relativismo'},
-        {label:'Yes, or at least this possibility deserves serious investigation', next:'t2'},
-      ]},
-      t_relativismo:{type:'question', text:'Which description of relativism or skepticism best fits your view?', options:[
-        {label:'Right depends on the norms of each culture or society', next:'r_cultural'},
-        {label:'It depends on the judgment or feeling of each person', next:'r_individual'},
-        {label:'I recognize norms vary, without ruling out an underlying objective moral truth', next:'r_descritivo'},
-        {label:'Moral claims are neither true nor false — they just express attitudes', next:'r_apontar_meta'},
-      ]},
-      r_cultural:{type:'result', tag:'Normative Ethics · Relativism', title:'Cultural Relativism', body:['What is morally right or wrong depends on the prevailing norms in each culture or society.']},
-      r_individual:{type:'result', tag:'Normative Ethics · Relativism', title:'Individual Relativism (Subjectivism)', body:['What is right or wrong depends on personal judgment, feeling, or preference.']},
-      r_descritivo:{type:'result', tag:'Normative Ethics · Relativism', title:'Descriptive Relativism', body:['Norms vary across cultures, but this does not rule out underlying objective truths.']},
-      r_apontar_meta:{type:'result', tag:'Metaethics', title:'Non-Cognitivism', body:['This is a stance about the nature of moral judgments (metaethics), not a normative theory on how to act. We will explore this in Part 3.']},
-
-      t2:{type:'question', text:'When deciding if an action is right or wrong, what do you consider fundamental?', options:[
-        {label:'The outcome of the choice: whether the resulting world is better than alternatives', next:'t3_ato_regra'},
-        {label:'Whether it respects certain rules, duties, or rights — regardless of the outcome', next:'t2b'},
-        {label:'The kind of person performing it and the character traits it expresses', next:'t_character'},
-        {label:'Whether it promotes my self-interest', next:'t_egoism'},
-      ]},
-      t2b:{type:'question', text:'What grounds these rules or duties?', options:[
-        {label:'The will or commands of a divine authority', next:'t_divine'},
-        {label:'Reason, universal rights, or moral principles independent of religion', next:'t_deontology'},
-      ]},
-      
-      t_divine:{type:'question', text:'Which view on the relationship between goodness and God best describes yours?', options:[
-        {label:'Good is good simply because God commands it', next:'r_divine_a'},
-        {label:'God commands the good because His nature is perfectly loving', next:'r_divine_b'},
-      ]},
-      r_divine_a:{type:'result', tag:'Normative Ethics', title:'Divine Command Theory (Traditional)', body:['Actions are right because God commands them and wrong because He forbids them.']},
-      r_divine_b:{type:'result', tag:'Normative Ethics', title:'Divine Command Theory (Modified)', body:['God commands what is good because His nature is loving. His will expresses goodness.']},
-
-      t_deontology:{type:'question', text:'Which view on moral duties best describes yours?', options:[
-        {label:'Certain moral restrictions can never be violated, whatever the cost', next:'r_deon_a'},
-        {label:'They hold in most cases, but yield if consequences are catastrophic', next:'r_deon_b'},
-        {label:'Respecting basic rights acts as a "trump" against outcome calculation', next:'r_deon_c'},
-        {label:'It matters most whether harm was intended or merely foreseen as a side-effect', next:'r_deon_d'},
-        {label:'There are various duties that can conflict without a fixed hierarchy', next:'r_deon_e'},
-      ]},
-      r_deon_a:{type:'result', tag:'Normative Ethics', title:'Absolutist Deontology', body:['Certain restrictions can never be violated, even to produce a vastly better outcome.']},
-      r_deon_b:{type:'result', tag:'Normative Ethics', title:'Threshold Deontology', body:['Restrictions apply in most cases but can be overridden by catastrophic consequences.']},
-      r_deon_c:{type:'result', tag:'Normative Ethics', title:'Rights-based Deontology', body:['Violating a basic moral right is wrong regardless of the consequences.']},
-      r_deon_d:{type:'result', tag:'Normative Ethics', title:'Doctrine of Double Effect', body:['What matters is whether harm was intended as a means, or just foreseen as a side-effect.']},
-      r_deon_e:{type:'result', tag:'Normative Ethics', title:'Pluralist Deontology', body:['There are multiple independent duties. Practical judgment must weigh them when they conflict.']},
-
-      t_character:{type:'question', text:'When focusing on the person acting, what is most fundamental?', options:[
-        {label:'Cultivating virtues (courage, justice) that are valuable in themselves', next:'r_char_a'},
-        {label:'Cultivating the disposition to care for relationships and the vulnerable', next:'r_char_b'},
-      ]},
-      r_char_a:{type:'result', tag:'Normative Ethics', title:'Virtue Ethics', body:['Morality is about cultivating a virtuous character and practical wisdom.']},
-      r_char_b:{type:'result', tag:'Normative Ethics', title:'Ethics of Care', body:['The core of morality is caring for those dependent on us and focusing on relationships.']},
-
-      t_egoism:{type:'question', text:'Which version of acting in self-interest describes your view?', options:[
-        {label:'Everyone should always act in their own interest', next:'r_ego_a'},
-        {label:'I should act in my own interest, but don\'t prescribe it universally', next:'r_ego_b'},
-      ]},
-      r_ego_a:{type:'result', tag:'Normative Ethics', title:'Universal Ethical Egoism', body:['Every agent has a moral obligation to advance their own interest.']},
-      r_ego_b:{type:'result', tag:'Normative Ethics', title:'Individual Ethical Egoism', body:['You act in your own interest but do not universally prescribe it to others.']},
-
-      t3_ato_regra:{type:'question', text:'Should consequences be evaluated for each act individually, evaluated on general rules, or combining both?', options:[
-        {label:'Act by act — what matters is the outcome of the specific available action', next:'t_conseq', set:{key:'actRule', value:'Act Consequentialism'}},
-        {label:'General rules — what matters is which rule, if followed, generates the best outcome', next:'t_conseq', set:{key:'actRule', value:'Rule Consequentialism'}},
-        {label:'Two-level — general rules for daily practice, but act calculation for critical reflection', next:'t_conseq', set:{key:'actRule', value:'Two-Level Consequentialism'}},
-      ]},
-
-      t_conseq:{
-        type:'multi_select',
-        text:'How do you evaluate which outcome is "best" when a decision affects many? (Select all that apply)',
-        noneOption:'None of the above',
-        options:[
-          {label:'The greatest total sum of well-being across everyone affected', val:'Classical Utilitarianism'},
-          {label:'The total sum, but giving extra weight to those worst off', val:'Prioritarianism'},
-          {label:'I look only at raising the level of whoever is worst off', val:'Maximin'},
-          {label:'What matters most is the degree of equality in well-being distribution', val:'Egalitarianism'},
-          {label:'Ensuring everyone reaches a minimum sufficient level of well-being', val:'Sufficientarianism'},
-          {label:'The highest average well-being per individual', val:'Average Utilitarianism'}
-        ],
-        nextIfSelected:'t_conseq_neg',
-        nextIfNone:'t_conseq_neg'
-      },
-
-      t_conseq_neg:{type:'question', text:'What about the weight of suffering compared to positive well-being?', options:[
-        {label:'Suffering and pleasure should be weighed symmetrically', next:'t_conseq_result', set:{key:'negChoice', value:'Symmetric'}},
-        {label:'Suffering holds more weight, but can be outweighed by massive well-being', next:'t_conseq_result', set:{key:'negChoice', value:'Weak Priority to Suffering'}},
-        {label:'Suffering has absolute priority: immense pleasure cannot compensate for extreme suffering', next:'t_conseq_result', set:{key:'negChoice', value:'Absolute Priority'}},
-        {label:'We should focus only on reducing suffering; pleasure has no standalone positive moral value', next:'t_conseq_result', set:{key:'negChoice', value:'Exclusive Focus on Suffering'}},
-      ]},
-
-      t_conseq_result:{type:'dynamicResult', tag:'Normative Ethics · Consequentialism', render: function(a){
-        const aggs = a.t_conseq_selections || [];
-        const negChoice = a.negChoice || 'Symmetric';
-
-        let actRule = a.actRule || 'Consequentialism';
-
-        let isms = [];
-        if(aggs.includes('Classical Utilitarianism')) isms.push('Classical Utilitarian');
-        if(aggs.includes('Prioritarianism')) isms.push('Prioritarian');
-        if(aggs.includes('Maximin')) isms.push('Maximin');
-        if(aggs.includes('Egalitarianism')) isms.push('Egalitarian');
-        if(aggs.includes('Sufficientarianism')) isms.push('Sufficientarian');
-        if(aggs.includes('Average Utilitarianism')) isms.push('Average Utilitarian');
-
-        if(isms.length === 0) isms.push('Consequentialist');
-
-        let titleBase = isms.join(' ');
-
-        const negSuffixMap = {
-          'Exclusive Focus on Suffering': ' with Exclusive Focus on Suffering',
-          'Absolute Priority': ' with Absolute Priority to Suffering (Negative)',
-          'Weak Priority to Suffering': ' with Priority to Suffering',
-          'Symmetric': ' with a Symmetric View of Suffering and Pleasure'
-        };
-        const negDescMap = {
-          'Exclusive Focus on Suffering': 'an exclusive focus on reducing suffering — for you, pleasure holds no standalone positive moral value',
-          'Absolute Priority': 'an absolute, lexical priority to suffering that no amount of pleasure can offset',
-          'Weak Priority to Suffering': 'a priority to suffering that outweighs pleasure but can still be compensated by large amounts of well-being',
-          'Symmetric': 'a symmetric view, in which suffering and pleasure enter the moral calculation with equal weight'
-        };
-
-        let finalTitle = titleBase + (negSuffixMap[negChoice] || '');
-
-        let bodyText = `Your central view is ${actRule}. When evaluating consequences, your criteria indicate a focus on: ${aggs.join(', ')}. Regarding the philosophical weighting of suffering against generated well-being, your stance reflects ${negDescMap[negChoice] || negDescMap['Symmetric']}.`;
-
-
-        return {
-          title: finalTitle,
-          body: [ bodyText ]
-        };
-      }}
-    }
-  },
-  {
-    key:'circle', label:'Part 2 · Moral Circle Boundary', root:'c1',
-    nodes:{
-      c1:{type:'question', text:'In an ideal scenario, do you think people should give strictly impartial weight to all individuals, or is it morally correct and expected to give more consideration to oneself and close ones (like family)?', options:[
-        {label:'It is correct to give absolute priority to myself and my own interests', next:'r_c1_ego', set:{key:'circleLevel', value: 1}},
-        {label:'It is correct to give more consideration to myself and close ones (like family and friends)', next:'r_c1_tribal', set:{key:'circleLevel', value: 2}},
-        {label:'We should strive for ideal impartiality without personal favoritism', next:'c3'},
-      ]},
-      r_c1_ego:{type:'result', level:1, tag:'Moral Circle', title:'Ethical Egoism', body:['Your moral circle focuses strictly on yourself and your own interests.'], oppose:'Impartial Altruism'},
-      r_c1_tribal:{type:'result', level:2, tag:'Moral Circle', title:'Intimate Partialism / Familial Tribalism', body:['Your moral circle legitimizes prioritizing yourself and your inner circle.'], oppose:'Impartial Altruism'},
-
-      c3:{
-        type:'multi_select',
-        text:'Which characteristics influence who gets moral priority in your circle? (Select all that apply)',
-        noneOption:'None of the above (I consider everyone equally without group restrictions)',
-        options:[
-          {label:'Priority to my nation', val:'nationalist'},
-          {label:'Priority to my race', val:'racist'},
-          {label:'Priority to my ethnicity', val:'ethnocentric'},
-          {label:'Priority to my sex', val:'sexist'},
-          {label:'Priority to normative gender identities', val:'transphobic'},
-          {label:'Priority to normative sexual orientations', val:'homophobic'},
-          {label:'Priority to my religion', val:'religious'},
-          {label:'Priority to my political-economic view', val:'political'},
-          {label:'Priority to those with more economic power/class', val:'classist'},
-          {label:'Priority to those without disabilities / with higher intellect', val:'ableist'},
-          {label:'Priority to specific body or aesthetic standards', val:'lookist'},
-          {label:'Priority to a specific age group', val:'ageist'},
-          {label:'Priority to a specific body size/weight', val:'sizeist'},
-          {label:'Priority to speakers of a certain language/accent', val:'linguist'},
-          {label:'Priority to organic beings over other substrates', val:'substratist'},
-          {label:'Priority exclusive to humans over other animals', val:'anthropocentric'},
-        ],
-        nextIfNone:'c4',
-        nextIfSelected:'r_parcialismo_multi'
-      },
-      r_parcialismo_multi:{
-        type:'dynamicResult',
-        level:3,
-        tag:'Moral Circle',
-        render: function(a){
-          const biases = a.c3_selections || [];
-          let comboStr = biases.join(', ');
-          if(biases.length > 1) comboStr = biases.slice(0, -1).join(', ') + ' and ' + biases[biases.length - 1];
-          const title = 'Extended tribalism (' + comboStr.charAt(0).toUpperCase() + comboStr.slice(1) + ')';
-          
-          return {
-            title: title,
-            level: 3,
-            body: [
-              'Your ethics establishes boundaries of moral priority or exclusion based on membership in specific social groups.'
-            ],
-            oppose: 'Moral Impartialism / Universalism / Full Sentientism.',
-            accordion: [
-              { title: 'Understand your Moral Partialism structure', text: 'By adopting this stance, your ethics operate through restrictive social group circles, arguing it is legitimate to prioritize those who share our identity.' },
-              { title: 'Why do philosophers argue the moral circle MUST be expanded?', text: 'Impartialist ethical philosophy argues that the moral circle should be expanded for reasons of logical coherence and impartiality.' }
-            ]
-          };
-        }
-      },
-
-      c4:{
-        type:'multi_select',
-        text:'Which of these beings, groups or entities receive direct moral consideration from you? (Select all that apply)',
-        noneOption:'None of these',
-        options:[
-          {label:'All human beings', val:'Humans'},
-          {label:'All sentient animals (capable of positive and negative experiences, such as pain and pleasure)', val:'Sentient Animals'},
-          {label:'All artificial intelligences and robots capable of subjective experiences (if any exist)', val:'Sentient AIs and Robots'},
-          {label:'All organic and biological life, with or without consciousness', val:'All Organic Life'},
-          {label:'Species as a whole and complex ecosystems', val:'Ecosystems'}
-        ],
-        exclusiveGroups:[
-          {vals:['Humans','Sentient Animals'], message:'Sentient animals already includes all humans — please select only one of these two options (it can still be combined with the others).'}
-        ],
-        nextIfSelected:'r_c4_multi',
-        nextIfNone:'r_c4_multi'
-      },
-
-      c4_gradualism:{type:'question', text:'Within the group of sentient beings, should cognitive complexity change the weight given to suffering?', options:[
-        {label:'Yes — pain in beings with greater cognitive capacity matters more', next:'c4_temporal', set:{key:'circleGradual', value:'gradualist'}},
-        {label:'No — similar interests and pains matter equally, regardless of how intelligent the being is', next:'c4_temporal', set:{key:'circleGradual', value:'nongradualist'}},
-      ]},
-
-      c4_temporal:{type:'question', text:'And what about time: do sentient beings who will exist in the future deserve the same moral consideration as those who exist now?', options:[
-        {label:'No — the well-being of beings alive today outweighs that of beings in the future', next:'r_c4_multi', set:{key:'circleTemporal', value:'temporalist'}},
-        {label:'Yes — the era someone is born in does not change their moral worth', next:'r_c4_multi', set:{key:'circleTemporal', value:'atemporal'}},
-      ]},
-
-      r_c4_multi:{
-        type:'dynamicResult',
-        tag:'Moral Circle',
-        render: function(a){
-          const sels = a.c4_selections || [];
-          let level = 4;
-          let conflito = false;
-          let title = '';
-          let desc = '';
-
-          const hasHum = sels.includes('Humans');
-          const hasSen = sels.includes('Sentient Animals');
-          const hasBio = sels.includes('All Organic Life');
-          const hasEco = sels.includes('Ecosystems');
-          const hasDig = sels.includes('Sentient AIs and Robots');
-
-          if (hasSen) {
-             const grad = a.circleGradual;
-             const temp = a.circleTemporal;
-             const ecoNote = hasEco ? ' You also place great value on the balance of entire ecosystems, combining this view with a systemic ecological concern.' : '';
-             const ecoSuffix = hasEco ? ' & Ecological Holism' : '';
-             level = hasDig ? 6 : 5;
-
-             if (hasDig) {
-               if (grad === 'gradualist' && temp === 'temporalist') {
-                  title = 'Partial Sentientism (Gradualist Temporalist)';
-                  desc = 'Your moral consideration extends to all beings capable of suffering or well-being, biological or digital, but with two restrictions: beings with greater cognitive capacity receive more moral weight, and the well-being of those alive today outweighs that of sentient beings who will only exist in the future.' + ecoNote;
-               } else if (grad === 'gradualist' && temp === 'atemporal') {
-                  title = 'Partial Sentientism (Gradualist Atemporal)';
-                  desc = 'Your moral consideration extends to all beings capable of suffering or well-being, biological or digital, weighting suffering by each being\'s cognitive complexity — but unlike a purely present-biased view, sentient beings in the distant future deserve, for you, the same moral weight as those today.' + ecoNote;
-               } else if (grad === 'nongradualist' && temp === 'temporalist') {
-                  title = 'Partial Sentientism (Full Temporalist)';
-                  desc = 'Your moral consideration treats similar interests equally, regardless of a being\'s intelligence or species — biological and digital beings receive the same weight when their interests are equivalent. However, you prioritize the well-being of those alive today over that of sentient beings who will only exist in the future.' + ecoNote;
-               } else {
-                  title = 'Full Sentientism' + ecoSuffix;
-                  desc = 'As far as we know, this is the most expansive scope of experience-based moral consideration: full sentientism. On this view, what matters ethically is not race, nation, sex, or even a being\'s biological substrate, but purely the fact that it has the subjective capacity to suffer and experience well-being. Similar interests, such as the desire to avoid pain, receive the same moral weight, rejecting the idea that greater intelligence or belonging to a particular species makes an individual\'s suffering more important. This consideration also extends through time: sentient beings who will exist in the distant future deserve the same moral consideration as those who exist in the present.' + ecoNote;
-               }
-             } else {
-               const carbonNote = ' Your view draws the boundary of your empathy at organic biology, without recognizing (for now) the possibility of minds worthy of consideration in digital substrates.';
-               if (grad === 'gradualist' && temp === 'temporalist') {
-                  title = 'Partial Sentientism (Carbon-Based Gradualist Temporalist)';
-                  desc = 'Your moral consideration extends to all sentient animals, but with two restrictions: beings with greater cognitive capacity receive more moral weight, and the well-being of those alive today outweighs that of sentient beings who will only exist in the future.' + carbonNote + ecoNote;
-               } else if (grad === 'gradualist' && temp === 'atemporal') {
-                  title = 'Partial Sentientism (Carbon-Based Gradualist Atemporal)';
-                  desc = 'Your moral consideration extends to all sentient animals, weighting suffering by each being\'s cognitive complexity — but unlike a purely present-biased view, sentient animals in the distant future deserve, for you, the same moral weight as those today.' + carbonNote + ecoNote;
-               } else if (grad === 'nongradualist' && temp === 'temporalist') {
-                  title = 'Partial Sentientism (Carbon-Based Full Temporalist)';
-                  desc = 'Your moral consideration treats similar interests equally among sentient animals, regardless of how intelligent the being is. However, you prioritize the well-being of those alive today over that of sentient beings who will only exist in the future.' + carbonNote + ecoNote;
-               } else {
-                  title = 'Full Sentientism (Carbon-Based)' + ecoSuffix;
-                  desc = 'Within biological life, this is the most expansive scope of experience-based moral consideration: you treat the suffering of every sentient animal with equal weight, regardless of species or intelligence, and extend that consideration equally to sentient animals who will only exist in the future.' + carbonNote + ecoNote;
-               }
-             }
-          } else if (hasHum && hasBio) {
-             title = 'Biocentric Anthropocentrism';
-             desc = 'Your view values human interests primarily and extends some consideration to organic life in general, but reveals a significant ethical gap: by not marking "sentient animals", you leave out, directly and equally, the non-human animals capable of suffering — the very subjects of well-being within the biological life you already value.';
-             level = 4;
-          } else if (hasBio) {
-             title = 'Biocentrism';
-             desc = 'You hold that all biological life matters morally and has intrinsic value, regardless of whether it possesses a nervous system or the subjective capacity to feel pain or pleasure — including plants, fungi, and microorganisms within your circle of consideration.';
-             level = 4;
-          } else if (hasHum && hasEco) {
-             title = 'Anthropocentrism with Ecological Concern';
-             desc = 'You center your direct moral consideration on the human species, but also place value on the balance of entire ecosystems — a combination that can create tension, since it does not directly recognize the sentience of the non-human animals that make up those very ecosystems.';
-             level = 4;
-          } else if (hasEco) {
-             title = 'Ecocentrism / Environmental Holism';
-             desc = 'Primary moral value resides, in your view, in the balance of the ecological web as a whole. You see nature as an interdependent system, potentially prioritizing the structural health of that system over the lives of individual organisms.';
-             level = 4;
-          } else if (hasHum) {
-             title = 'Exclusive Anthropocentrism';
-             level = 3;
-             desc = 'Your core ethical consideration is restricted to the human species. Other animals and the environment are viewed primarily through an instrumental lens, receiving at most indirect consideration derived from the interest they hold for human societies.';
-          } else {
-             title = 'Atypical Moral Pluralism';
-             level = 4;
-             desc = 'Your ethical consideration combines categories in an unusual way. You selected: ' + sels.join(', ') + '.';
-          }
-
-          if (hasEco && !hasSen) {
-            conflito = true;
-          }
-
-          let text = desc;
-
-          if (conflito) {
-            text += ' Warning: there is a tension in your position. By valuing the ecosystem as a whole without including sentience (animal or human) among your priorities, your theory could, in extreme scenarios, justify sacrificing sentient, innocent individuals for the sake of the system\'s balance. It is worth reflecting on which of these values should prevail in a real conflict.';
-          }
-
-          return {
-            title: title,
-            level: level,
-            body: [text]
-          };
-        }
-      }
-    }
-  },
-  {
-    key:'meta', label:'Part 3 · Metaethical Foundations', root:'m1',
-    nodes:{
-      m1:{type:'question', text:'Are there objective moral facts that are true regardless of what anyone believes?', options:[
-        {label:'Yes', next:'m2'},
-        {label:'No, but moral claims can be true/false within a framework', next:'m3'},
-        {label:'No, moral claims aren\'t even true or false — they just express attitudes', next:'m_noncog'}
-      ]},
-      m2:{type:'question', text:'Can these objective moral facts be reduced to natural facts (physics, biology) or are they of their own irreducible dimension (sui generis)?', options:[
-        {label:'They can be reduced to natural, empirical facts', next:'m2_epi', set:{key:'m_ontologia', value:'Naturalist'}},
-        {label:'They are irreducible facts of their own dimension (sui generis)', next:'m2_epi', set:{key:'m_ontologia', value:'Non-Naturalist'}}
-      ]},
-      m2_epi:{type:'question', text:'Being objective, how can we discover these moral facts or determine the right criteria?', options:[
-        {label:'By investigating the world empirically or intuitively', next:'r_realismo_m2'},
-        {label:'By evaluating what perfectly rational agents would decide under ideal conditions', next:'t_contract'}
-      ]},
-
-      r_realismo_m2:{type:'dynamicResult', tag:'Metaethics', render: function(a){
-        const tipo = a.m_ontologia || 'Naturalist';
-        const isNat = tipo === 'Naturalist';
-        const body = isNat
-          ? 'Moral truth is an objective fact, but one reducible to natural facts — such as states of well-being, pain, or biological and psychological flourishing. We discover these truths by investigating the world empirically, the same way science discovers other complex natural facts.'
-          : 'Moral truth is an objective fact, but of its own irreducible nature (sui generis) — it cannot be reduced to physical or natural properties, even though it may depend on them. We discover these truths through a special faculty of rational intuition, not through direct empirical observation as in the natural sciences.';
-        return {
-            title: tipo + ' Moral Realism',
-            body: [body]
-        };
-      }},
-
-      t_contract:{
-        type:'multi_select',
-        text:'You are using rationality as a criterion for discovering the correct moral rules — imagining what rational people would decide under certain conditions. Which of these ideas make sense to you? You can pick more than one.',
-        options:[
-          {label:'Fair rules are the ones self-interested people seeking mutual peace and security would agree to follow', val:'Hobbesian'},
-          {label:'Fair rules are the ones we would choose behind a "veil of ignorance" — imagine deciding society\'s rules without knowing beforehand what position you\'ll occupy in it (rich or poor, majority or minority)', val:'Rawlsian'},
-          {label:'A rule is only valid if no one, acting in good faith, could reasonably reject it', val:'Scanlonian'},
-          {label:'That "veil of ignorance" should also hide which species we belong to, not just our social position', val:'Extended'}
-        ],
-        nextIfSelected:'r_contract_multi',
-        nextIfNone:'r_contract_multi'
-      },
-      r_contract_multi:{
-        type:'dynamicResult',
-        tag:'Metaethics',
-        render: function(a){
-          const sels = a.t_contract_selections || [];
-          if(sels.length === 0){
-            return {
-              title:'Contractualist Constructivism',
-              body:['You use rationality as a criterion for discovering the correct moral rules, even without identifying with any specific social-contract formulation listed.']
-            };
-          }
-          const title = 'Contractualist Constructivism (' + sels.join(' + ') + ')';
-          const descMap = {
-            'Hobbesian': 'the correct rules are the pragmatic agreements that rational people, seeking to escape conflict, would accept in order to live in peace',
-            'Rawlsian': 'the correct rules are the ones we would choose behind a veil of ignorance about our own social position',
-            'Scanlonian': 'a rule is only valid if no one, acting in good faith, could reasonably reject it',
-            'Extended': 'that veil of ignorance should also hide the species we belong to — so speciesism would fail the impartiality test, since in practice it is only defended because we already know we are human, that we will not be its victims, and that we will reap its benefits'
-          };
-          const body = 'You use rationality as a criterion for discovering the correct moral rules. In your view: ' + sels.map(s => descMap[s]).join('; and ') + '.';
-          return { title: title, body: [body] };
-        }
-      },
-
-      m3:{type:'question', text:'If morality is relative to a framework, what is the nature of that framework?', options:[
-        {label:'Truth depends on the norms of the culture stating it', next:'r_mrelat'},
-        {label:'Every moral claim aims at objectivity but all are false (facts don\'t exist)', next:'r_error'}
-      ]},
-      r_mrelat:{type:'result', tag:'Metaethics', title:'Metaethical Relativism / Subjectivism', body:['Moral judgments are true or false only relative to specific cultural or personal matrices.']},
-      r_error:{type:'result', tag:'Metaethics', title:'Error Theory (Moral Skepticism)', body:['Moral language presumes objective facts that simply do not exist in the universe.']},
-
-      m_noncog:{type:'question', text:'If morality doesn\'t deal with truth/falsity, what are we doing?', options:[
-        {label:'Expressing emotions (like an affective "Boo!")', next:'r_emotivismo'},
-        {label:'Giving universalizable commands ("Don\'t do this!")', next:'r_prescritivismo'},
-        {label:'Expressing attitudes, but acting "as if" there are facts', next:'r_quaserealismo'}
-      ]},
-      r_emotivismo:{type:'result', tag:'Metaethics', title:'Emotivism (Non-Cognitivism)', body:['Moral claims express pure emotions and affective reactions.']},
-      r_prescritivismo:{type:'result', tag:'Metaethics', title:'Prescriptivism', body:['When making a moral judgment, you are prescribing rules as a universal command.']},
-      r_quaserealismo:{type:'result', tag:'Metaethics', title:'Quasi-Realism', body:['Morality expresses attitudes but operates with rigor "as if" objective facts exist.']}
-    }
-  },
-  {
-    key:'openness', label:'Part 4 · Moral and Intellectual Openness', root:'o1',
-    nodes:{
-      o1:{type:'question', text:'When you find strong arguments conflicting with your moral belief, how willing are you to change your mind?', options:[
-        {label:'Very willing — better reasons mean I should revise', next:'o2', set:{key:'o1Score', value:3}},
-        {label:'Moderately willing — but I require a lot of evidence', next:'o2', set:{key:'o2Score', value:2}},
-        {label:'Not very willing — my convictions stand firm', next:'o2', set:{key:'o1Score', value:1}}
-      ]},
-      o2:{type:'question', text:'Which attitude best describes your skepticism towards innovative ideas vs trust in established ideas?', options:[
-        {label:'Balanced — I question both novel and established ideas, accepting good logic', next:'o3', set:{key:'o2Score', value:3}},
-        {label:'Strong skepticism toward novelties — I maintain very low trust in innovation until absolutely certain', next:'o3', set:{key:'o2Score', value:2}},
-        {label:'Deep trust in traditions — the intuitions that guided society are the best compass', next:'o3', set:{key:'o2Score', value:1}}
-      ]},
-      o3:{type:'question', text:'Evaluating a complex controversy, what is your stance?', options:[
-        {label:'Systematic critical thinking — seeking the strongest opposing argument', next:'r_openness', set:{key:'o3Score', value:3}},
-        {label:'Practical balance — verifying, but not diving intensely into logic', next:'r_openness', set:{key:'o3Score', value:2}},
-        {label:'Intuition first — trusting what feels right', next:'r_openness', set:{key:'o3Score', value:1}}
-      ]},
-      r_openness:{type:'dynamicResult', tag:'Intellectual Openness', render: function(a){
-        const score = (a.o1Score || 3) + (a.o2Score || 3) + (a.o3Score || 3);
-        let res = 'alta';
-        if(score <= 4) res = 'conservadora';
-        else if(score <= 7) res = 'moderada';
-
-        if(res === 'alta'){
-          return {
-            title:'High Openness and Ethical Flexibility',
-            body:[
-              'You show a high level of critical thinking and willingness to reevaluate beliefs when presented with strong evidence.'
-            ]
-          };
-        } else if(res === 'moderada'){
-          return {
-            title:'Moderate Openness',
-            body:[
-              'You demonstrate flexibility, but require new evidence and arguments to be exceptionally strong.'
-            ]
-          };
-        } else {
-          return {
-            title:'Conservative Stance / Low Openness',
-            body:[
-              'You demonstrate a strong trust in intuitions, established moral conventions, and the stability of beliefs.'
-            ]
-          };
-        }
-      }}
-    }
-  }
-];
-
-function getData(){ return currentLang === 'en' ? PARTS_EN : PARTS_PT; }
-function getUI(){ return currentLang === 'en' ? UI_EN : UI_PT; }
-
-let state = (typeof location !== 'undefined' && location.hash && location.hash.length > 1) ? 'shared' : 'intro'; 
-let partIndex = 0;
-let nodeId = null;
-let answers = {};
-let partResults = [];
-let navHistory = [];
-
-function esc(s){
-  if(!s) return '';
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+let mapLang = detectMapLang();
+
+function applyMapLang(){
+  const isEn = mapLang === 'en';
+  document.documentElement.lang = isEn ? 'en' : 'pt-BR';
+  document.getElementById('content-pt').style.display = isEn ? 'none' : '';
+  document.getElementById('content-en').style.display = isEn ? '' : 'none';
+  document.getElementById('back-link').textContent = isEn ? '← Back to the test' : '← Voltar ao teste';
+  document.getElementById('lang-prompt').textContent = isEn ? 'Language / Idioma:' : 'Idioma / Language:';
+  document.getElementById('lang-toggle-btn').textContent = isEn ? 'Mudar para Português' : 'Switch to English';
+  document.title = isEn
+    ? 'Test Map | Genealogical Dictionary of the Moral Outlook Test'
+    : 'Mapa do Teste | Dicionário Genealógico da Visão Moral';
 }
 
-function slugify(str){
-  if(!str) return '';
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g,'-')
-    .replace(/(^-+|-+$)/g,'');
+function toggleMapLang(){
+  mapLang = (mapLang === 'en') ? 'pt' : 'en';
+  applyMapLang();
 }
 
-function deslugify(str){
-  if(!str) return '';
-  return str.replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase());
-}
-
-const RESULT_CODE_LIST = [
-  ['rc','Relativismo cultural','Cultural Relativism'],
-  ['ri','Relativismo individual (Subjetivismo)','Individual Relativism (Subjectivism)'],
-  ['rd','Relativismo meramente descritivo','Descriptive Relativism'],
-  ['nce','Não-cognitivismo / Expressivismo','Non-Cognitivism'],
-  ['mdt','Teoria do Mandamento Divino (Tradicional)','Divine Command Theory (Traditional)'],
-  ['mdm','Teoria do Mandamento Divino (Modificada)','Divine Command Theory (Modified)'],
-  ['da','Deontologia Absolutista','Absolutist Deontology'],
-  ['dml','Deontologia Moderada (de Limiar)','Threshold Deontology'],
-  ['ddd','Deontologia de Direitos','Rights-based Deontology'],
-  ['dde','Doutrina do Duplo Efeito','Doctrine of Double Effect'],
-  ['dpf','Deontologia Pluralista (Deveres Prima Facie)','Pluralist Deontology'],
-  ['ev','Ética das Virtudes','Virtue Ethics'],
-  ['ec','Ética do Cuidado','Ethics of Care'],
-  ['eeu','Egoísmo Ético Universal','Universal Ethical Egoism'],
-  ['eei','Egoísmo Ético Individual','Individual Ethical Egoism'],
-  ['em','Egoísmo Moral','Ethical Egoism'],
-  ['pit','Parcialismo Intimista / Tribalismo Familiar','Intimate Partialism / Familial Tribalism'],
-  ['cch','Construtivismo Contratualista (Hobbesiano)','Contractualist Constructivism (Hobbesian)'],
-  ['ccr','Construtivismo Contratualista (Rawlsiano)','Contractualist Constructivism (Rawlsian)'],
-  ['cce','Construtivismo Contratualista (Escanloniano)','Contractualist Constructivism (Scanlonian)'],
-  ['ccx','Construtivismo Contratualista (Estendido)','Contractualist Constructivism (Extended)'],
-  ['rsm','Relativismo / Subjetivismo Metaético','Metaethical Relativism / Subjectivism'],
-  ['tec','Teoria do Erro (Ceticismo Moral)','Error Theory (Moral Skepticism)'],
-  ['emo','Emotivismo (Não-Cognitivismo)','Emotivism (Non-Cognitivism)'],
-  ['pre','Prescritivismo','Prescriptivism'],
-  ['qr','Quase-Realismo','Quasi-Realism'],
-  ['sgt','Sencientismo Parcial (Gradualista Temporalista)','Partial Sentientism (Gradualist Temporalist)'],
-  ['sga','Sencientismo Parcial (Gradualista Atemporal)','Partial Sentientism (Gradualist Atemporal)'],
-  ['spt','Sencientismo Parcial (Pleno Temporalista)','Partial Sentientism (Full Temporalist)'],
-  ['sp','Sencientismo Pleno','Full Sentientism'],
-  ['sph','Sencientismo Pleno e Holismo Ecológico','Full Sentientism & Ecological Holism'],
-  ['scgt','Sencientismo Parcial (Carbonismo Gradualista Temporalista)','Partial Sentientism (Carbon-Based Gradualist Temporalist)'],
-  ['scga','Sencientismo Parcial (Carbonismo Gradualista Atemporal)','Partial Sentientism (Carbon-Based Gradualist Atemporal)'],
-  ['scpt','Sencientismo Parcial (Carbonismo Pleno Temporalista)','Partial Sentientism (Carbon-Based Full Temporalist)'],
-  ['spb','Sencientismo Pleno (Carbonismo)','Full Sentientism (Carbon-Based)'],
-  ['spbe','Sencientismo Pleno (Carbonismo) e Holismo Ecológico','Full Sentientism (Carbon-Based) & Ecological Holism'],
-  ['spc','Sencientismo Parcial (Carbonismo)','Partial Sentientism (Carbon-Based)'],
-  ['abc','Antropocentrismo Biocêntrico','Biocentric Anthropocentrism'],
-  ['bio','Biocentrismo','Biocentrism'],
-  ['ape','Antropocentrismo com Preocupação Ecológica','Anthropocentrism with Ecological Concern'],
-  ['eco','Ecocentrismo / Holismo Ambiental','Ecocentrism / Environmental Holism'],
-  ['ae','Antropocentrismo Exclusivo','Exclusive Anthropocentrism'],
-  ['pma','Pluralismo Moral Atípico','Atypical Moral Pluralism'],
-  ['rmn','Realismo Moral Naturalista','Naturalist Moral Realism'],
-  ['rmnn','Realismo Moral Não-Naturalista','Non-Naturalist Moral Realism'],
-  ['aaf','Alta Abertura e Flexibilidade Ética','High Openness and Ethical Flexibility'],
-  ['amo','Abertura Moderada','Moderate Openness'],
-  ['pcb','Postura Conservadora / Baixa Abertura','Conservative Stance / Low Openness'],
-];
-
-const RESULT_CODE_MAP = {};
-const RESULT_LABEL_MAP = {};
-RESULT_CODE_LIST.forEach(([code, pt, en]) => {
-  RESULT_CODE_MAP[pt] = code;
-  RESULT_CODE_MAP[en] = code;
-  RESULT_LABEL_MAP[code] = { pt, en };
-});
-
-function shortCode(title){
-  const full = slugify(title);
-  if(full.length <= 20) return full;
-  const stop = new Set(['e','de','da','do','das','dos','com','a','o','no','na','nos','nas','para','ou','ao','à','um','uma','the','and','with','of','to','in','on','for','a']);
-  const words = title.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
-  const sig = words.filter(w => !stop.has(w));
-  const source = sig.length ? sig : words;
-  const acronym = source.map(w => w[0]).join('');
-  return acronym || full.slice(0, 20);
-}
-
-function buildShareUrl(){
-  const codes = partResults.map(r => RESULT_CODE_MAP[r.title] || shortCode(r.title));
-  return location.origin + location.pathname + '#' + currentLang + ':' + codes.join(',');
-}
-
-window.copyShareLink = function(){
-  const input = document.getElementById('share-link-input');
-  const btn = document.getElementById('share-copy-btn');
-  if(!input || !btn) return;
-  const url = input.value;
-  const ui = getUI();
-  const originalText = btn.textContent;
-
-  function showCopied(){
-    btn.textContent = ui.linkCopied;
-    setTimeout(() => { btn.textContent = originalText; }, 1800);
-  }
-
-  function fallbackCopy(){
-    try {
-      input.removeAttribute('readonly');
-      input.focus();
-      input.select();
-      input.setSelectionRange(0, 99999);
-      const ok = document.execCommand('copy');
-      input.setAttribute('readonly', 'readonly');
-      if(ok) showCopied();
-    } catch(e){
-      input.focus();
-      input.select();
-    }
-  }
-
-  if(navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext){
-    navigator.clipboard.writeText(url).then(showCopied).catch(fallbackCopy);
-  } else {
-    fallbackCopy();
-  }
-};
-
-function init(){
-  const app = document.getElementById('app');
-  app.innerHTML = '';
-  
-  const topbar = document.createElement('div');
-  topbar.className = 'topbar';
-  
-  const backBtn = document.createElement('button');
-  backBtn.id = 'back-btn';
-  backBtn.style.visibility = 'hidden';
-  backBtn.textContent = getUI().backBtn;
-  backBtn.onclick = goBack;
-  
-  const progText = document.createElement('div');
-  progText.id = 'top-progress';
-  
-  topbar.appendChild(backBtn);
-  topbar.appendChild(progText);
-  app.appendChild(topbar);
-
-  const main = document.createElement('main');
-  main.id = 'main-content';
-  app.appendChild(main);
-
-  render();
-}
-
-function updateTopbar(){
-  const backBtn = document.getElementById('back-btn');
-  const progText = document.getElementById('top-progress');
-  const topbar = document.querySelector('.topbar');
-  const main = document.getElementById('main-content');
-  const app = document.getElementById('app');
-  const ui = getUI();
-
-  const isIntro = (state === 'intro');
-  if(main) main.classList.toggle('intro-view', isIntro);
-  if(app) app.classList.toggle('intro-app', isIntro);
-
-  if(topbar) topbar.style.display = isIntro ? 'none' : '';
-
-  if(state === 'intro' || state === 'final' || state === 'shared'){
-    backBtn.style.visibility = 'hidden';
-    progText.textContent = '';
-  } else {
-    backBtn.style.visibility = 'visible';
-    const totalParts = getData().length;
-    progText.textContent = `${ui.progressLabel} — ${partIndex + 1} / ${totalParts}`;
-  }
-}
-
-function render(){
-  updateTopbar();
-  const main = document.getElementById('main-content');
-  if(state === 'intro') return renderIntro(main);
-  if(state === 'shared') return renderShared(main);
-  if(state === 'question') return renderQuestion(main);
-  if(state === 'part_result') return renderPartResult(main);
-  if(state === 'final') return renderFinal(main);
-}
-
-function renderShared(container){
-  const ui = getUI();
-  const raw = decodeURIComponent((location.hash || '').replace(/^#/, '')).replace(/^(pt|en):/, '');
-  const slugs = raw.split(',').map(s => s.trim()).filter(Boolean);
-
-  const items = slugs.map((s, i) => {
-    const info = RESULT_LABEL_MAP[s];
-    const label = info ? (currentLang === 'en' ? info.en : info.pt) : deslugify(s);
-    const stage = ui.stages[i] || '';
-    return `
-      <div class="summary-card">
-        <p class="stage">${esc(stage)}</p>
-        <h3>${esc(label)}</h3>
-      </div>
-    `;
-  }).join('');
-
-  let html = `
-    <div class="card-container" style="padding:40px 32px;">
-      <p class="kicker" style="text-align:center;">${ui.sharedKicker}</p>
-      <h1 style="text-align:center;">${ui.sharedTitle}</h1>
-      <p class="lede" style="text-align:center; max-width:540px; margin:0 auto 24px;">${ui.sharedLede}</p>
-
-      <div style="margin-top:24px;">
-        ${items}
-      </div>
-
-      <div style="text-align:center; margin-top:32px;">
-        <button class="cta" onclick="location.hash=''; startTest();">${ui.ctaStart}</button>
-      </div>
-    </div>
-  `;
-  container.innerHTML = html;
-}
-
-function renderIntro(container){
-  const ui = getUI();
-  
-  let html = `
-    <div class="lang-card">
-      <p>${ui.langPrompt}</p>
-      <button class="lang-btn" onclick="switchLang()">${ui.langSwitchText}</button>
-    </div>
-    <div class="card-container">
-      <div style="text-align:center;">
-        <svg class="rings" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="15"></circle>
-          <circle cx="50" cy="50" r="28"></circle>
-          <circle cx="50" cy="50" r="41"></circle>
-        </svg>
-      </div>
-      <p class="kicker" style="text-align:center;">${ui.kickerIntro}</p>
-      <h1 style="text-align:center;">${ui.titleIntro}</h1>
-      <p class="lede" style="text-align:center; max-width:540px; margin:0 auto 24px;">${ui.ledeIntro}</p>
-      
-      <ul class="parts-list">
-        ${ui.partsListItems.map(item => `
-          <li>
-            <div class="num">${item[0]}</div>
-            <div class="txt"><strong>${item[1]}</strong><span>${item[2]}</span></div>
-          </li>
-        `).join('')}
-      </ul>
-
-      <div style="text-align:center;">
-        <button class="cta" onclick="startTest()">${ui.ctaStart}</button>
-        <p class="privacy-note">${ui.privacyNote}</p>
-      </div>
-    </div>
-  `;
-  container.innerHTML = html;
-}
-
-function switchLang(){
-  currentLang = currentLang === 'en' ? 'pt' : 'en';
-  document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
-  init();
-}
-
-function startTest(){
-  partIndex = 0;
-  answers = {};
-  partResults = [];
-  navHistory = [];
-  state = 'question';
-  nodeId = getData()[partIndex].root;
-  render();
-}
-
-function goBack(){
-  if(navHistory.length === 0){
-    state = 'intro';
-    render();
-    return;
-  }
-  const last = navHistory.pop();
-  partIndex = last.partIndex;
-  nodeId = last.nodeId;
-  answers = last.answers;
-  state = last.state;
-  render();
-}
-
-function currentPart(){ return getData()[partIndex]; }
-
-function renderQuestion(container){
-  const ui = getUI();
-  const p = currentPart();
-  const n = p.nodes[nodeId];
-
-  let html = `
-    <div class="test-progress">
-      <div class="test-progress-row">
-        <span>${p.label}</span>
-      </div>
-      <div class="test-progress-track">
-        <div class="test-progress-fill" style="width: ${(partIndex / getData().length) * 100}%"></div>
-      </div>
-    </div>
-    
-    <div class="card-container">
-      <p class="part-label">${p.label}</p>
-      <h2 class="qtext">${esc(n.text)}</h2>
-  `;
-
-  if(n.type === 'multi_select' || n.type === 'multi_bias'){
-    html += `<ul class="options" id="multi-opts">`;
-    n.options.forEach((opt, i) => {
-      html += `<li><button class="opt-btn multi-btn" data-val="${opt.val}"><span class="check-icon"></span>${esc(opt.label)}</button></li>`;
-    });
-    if(n.noneOption){
-      html += `<li><button class="opt-btn none-btn" style="margin-top:12px; font-weight:500;" data-val="none"><span class="check-icon"></span>${esc(n.noneOption)}</button></li>`;
-    }
-    html += `</ul>`;
-    html += `<div class="error-msg" id="error-msg">${ui.errorSelectRequired}</div>`;
-    html += `<button class="cta" style="margin-top:24px; width:100%;" onclick="submitMultiSelect()">${ui.continuePartPrefix}${partIndex+1} →</button>`;
-  } else {
-    html += `<ul class="options">`;
-    n.options.forEach((opt, i) => {
-      html += `<li><button class="opt-btn" onclick="selectOption(${i})"><span class="letter">${String.fromCharCode(65+i)}</span>${esc(opt.label)}</button></li>`;
-    });
-    html += `</ul>`;
-  }
-
-  html += `</div>`;
-  container.innerHTML = html;
-
-  if(n.type === 'multi_select' || n.type === 'multi_bias'){
-    const btns = container.querySelectorAll('.multi-btn');
-    const noneBtn = container.querySelector('.none-btn');
-    btns.forEach(b => {
-      b.onclick = () => {
-        b.classList.toggle('selected');
-        if(noneBtn) noneBtn.classList.remove('selected');
-      };
-    });
-    if(noneBtn){
-      noneBtn.onclick = () => {
-        btns.forEach(b => b.classList.remove('selected'));
-        noneBtn.classList.add('selected');
-      };
-    }
-  }
-}
-
-window.selectOption = function(idx){
-  const n = currentPart().nodes[nodeId];
-  const opt = n.options[idx];
-  
-  navHistory.push({partIndex, nodeId, answers:{...answers}, state});
-  
-  if(opt.set) answers[opt.set.key] = opt.set.value;
-  
-  nodeId = opt.next;
-  const nextNode = currentPart().nodes[nodeId];
-  
-  if(nextNode.type === 'result' || nextNode.type === 'dynamicResult'){
-    state = 'part_result';
-  } else {
-    state = 'question';
-  }
-  render();
-};
-
-window.submitMultiSelect = function(){
-  const n = currentPart().nodes[nodeId];
-  const container = document.getElementById('main-content');
-  const selected = Array.from(container.querySelectorAll('.multi-btn.selected')).map(b => b.dataset.val);
-  const noneSel = container.querySelector('.none-btn.selected');
-  const err = document.getElementById('error-msg');
-
-  if(selected.length === 0 && !noneSel){
-    err.textContent = getUI().errorSelectRequired;
-    err.style.display = 'block';
-    return;
-  }
-
-  if(n.exclusiveGroups){
-    for(const group of n.exclusiveGroups){
-      const count = group.vals.filter(v => selected.includes(v)).length;
-      if(count > 1){
-        err.textContent = group.message;
-        err.style.display = 'block';
-        return;
-      }
-    }
-  }
-
-  err.style.display = 'none';
-
-  navHistory.push({partIndex, nodeId, answers:{...answers}, state});
-
-  const thisNodeId = nodeId;
-
-  if(noneSel){
-    answers[nodeId + '_selections'] = [n.noneOptionValue || 'Nenhuma opção'];
-    nodeId = n.nextIfNone;
-  } else {
-    answers[nodeId + '_selections'] = selected;
-    nodeId = n.nextIfSelected;
-  }
-
-  if(thisNodeId === 'c4' &&
-     (selected.includes('Animais Sencientes') || selected.includes('Sentient Animals'))){
-    nodeId = 'c4_gradualism';
-  }
-
-  const nextNode = currentPart().nodes[nodeId];
-  if(nextNode.type === 'result' || nextNode.type === 'dynamicResult'){
-    state = 'part_result';
-  } else {
-    state = 'question';
-  }
-  render();
-};
-
-function renderPartResult(container){
-  const ui = getUI();
-  const p = currentPart();
-  const n = p.nodes[nodeId];
-  let r = n.type === 'dynamicResult' ? n.render(answers) : n;
-
-  let html = `
-    <div class="test-progress">
-      <div class="test-progress-row">
-        <span>${p.label} — Resultado</span>
-      </div>
-      <div class="test-progress-track">
-        <div class="test-progress-fill" style="width: ${((partIndex+1) / getData().length) * 100}%"></div>
-      </div>
-    </div>
-    <div class="card-container">
-      <p class="result-tag">${esc(r.tag || p.label)}</p>
-      <h2 class="result-title">${esc(r.title)}</h2>
-      ${r.body.map(para => `<p class="lede">${esc(para)}</p>`).join('')}
-  `;
-
-  if(r.oppose){
-    html += `<div class="result-oppose"><b>${ui.opposeLabel}</b> ${esc(r.oppose)}</div>`;
-  }
-
-  if(r.accordion && r.accordion.length > 0){
-    html += `<div class="accordion-container">`;
-    r.accordion.forEach((acc, i) => {
-      html += `
-        <div class="accordion-item" id="acc-${i}">
-          <button class="accordion-header" onclick="document.getElementById('acc-${i}').classList.toggle('active')">
-            ${esc(acc.title)}
-          </button>
-          <div class="accordion-body"><p>${esc(acc.text)}</p></div>
-        </div>
-      `;
-    });
-    html += `</div>`;
-  }
-
-  const isLast = partIndex === getData().length - 1;
-  const btnText = isLast ? ui.continueFinal : (ui.continuePartPrefix + (partIndex + 2) + ' →');
-
-  html += `<button class="cta" style="margin-top:20px;" onclick="continuePart()">${btnText}</button>`;
-  html += `</div>`;
-  
-  container.innerHTML = html;
-}
-
-window.continuePart = function(){
-  const p = currentPart(), n = p.nodes[nodeId]; 
-  let r = n.type === 'dynamicResult' ? n.render(answers) : n;
-  
-  const level = r.level || answers.circleLevel || 3;
-  
-  partResults[partIndex] = {
-    title: r.title, 
-    tag: r.tag, 
-    level: level, 
-    desc: (r.body && r.body.length > 0) ? r.body[0] : ''
-  };
-  
-  navHistory.push({partIndex, nodeId, answers:{...answers}, state});
-  
-  if(partIndex < getData().length - 1){
-    partIndex++;
-    state = 'question';
-    nodeId = currentPart().root;
-    render();
-  } else {
-    state = 'final';
-    render();
-  }
-};
-
-function renderMoralMapSvg(level){
-  const levelsCount = 6;
-  const cx = 200, cy = 180, maxR = 150;
-  let svg = `<svg class="moral-map-svg" viewBox="0 0 400 340">`;
-  svg += `<defs>`;
-  
-  const labels = currentLang === 'en' 
-    ? ['Self', 'Intimate Group', 'Social Group(s)', 'Species / Life', 'Partial Sentience', 'Broad Sentience']
-    : ['Eu', 'Grupo Íntimo', 'Grupo(s) Social(is)', 'Espécie / Vida', 'Senciência parcial', 'Senciência ampla'];
-
-  for(let i = 1; i <= levelsCount; i++){
-    const r = (i / levelsCount) * maxR;
-    svg += `<path id="circle-arc-${i}" d="M ${cx - r},${cy} A ${r},${r} 0 0,1 ${cx + r},${cy}" fill="none" stroke="none" />`;
-  }
-  svg += `</defs>`;
-
-  for(let i = levelsCount; i >= 1; i--){
-    const r = (i / levelsCount) * maxR;
-    const isYou = (i === level);
-    const fill = isYou ? 'rgba(217,119,6,0.12)' : 'transparent';
-    const stroke = isYou ? 'var(--ethical-yellow)' : 'var(--line)';
-    const strokeWidth = isYou ? '2.5' : '1';
-    
-    svg += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"/>`;
-    
-    const labelClass = isYou ? 'map-you' : 'map-label';
-    svg += `
-      <text class="${labelClass}" dy="-3">
-        <textPath href="#circle-arc-${i}" startOffset="50%" text-anchor="middle">
-          ${esc(labels[i-1])}${isYou ? ' ★' : ''}
-        </textPath>
-      </text>
-    `;
-  }
-
-  svg += `</svg>`;
-  return svg;
-}
-
-function renderFinal(container){
-  const ui = getUI();
-  const circleResult = partResults[1];
-  const circleLevel = circleResult ? circleResult.level : 3;
-  
-  const cards = partResults.map((r, i) => {
-    let graphHtml = '';
-    if (i === 1) { 
-      graphHtml = `
-        <div class="moral-map-inline">
-          <h4>${ui.stages[1]}</h4>
-          ${renderMoralMapSvg(circleLevel)}
-        </div>
-      `;
-    }
-
-    return `
-      <div class="summary-card">
-        <p class="stage">${esc(ui.stages[i] || ('Part ' + (i+1)))}</p>
-        <h3>${esc(r.title || '')}</h3>
-        ${r.tag ? `<p class="lede" style="font-size:13px; margin:0 0 8px 0; color:var(--ethical-blue);">${esc(r.tag)}</p>` : ''}
-        ${r.desc ? `<p class="lede" style="font-size:14px; margin:0;">${esc(r.desc)}</p>` : ''}
-        ${graphHtml}
-      </div>
-    `;
-  }).join('');
-
-  let html = `
-    <div class="card-container" style="padding:40px 32px;">
-      <p class="kicker" style="text-align:center;">${ui.finalKicker}</p>
-      <h1 style="text-align:center;">${ui.finalTitle}</h1>
-
-      <div style="margin-top:32px;">
-        ${cards}
-      </div>
-
-      <p class="lede" style="margin-top:32px; text-align:center;">${ui.closing[0]}</p>
-
-      <div class="share-box">
-        <h3 style="font-size:16px; margin:0 0 8px;">${ui.shareTitle}</h3>
-        <p style="font-size:14px; margin:0; color:var(--muted);">${ui.shareText}</p>
-        <div class="share-row">
-          <input type="text" id="share-link-input" readonly value="${esc(buildShareUrl())}">
-          <button class="lang-btn" id="share-copy-btn" onclick="copyShareLink()">${ui.copyLink}</button>
-        </div>
-      </div>
-
-      <div style="text-align:center; margin-top:16px;">
-        <a class="lang-btn" style="text-decoration:none; display:inline-block;" href="mapa-do-teste.html" target="_blank" rel="noopener">${ui.mapButton}</a>
-      </div>
-
-      <div class="restart-btn-wrap">
-        <button class="lang-btn" onclick="state='intro'; init()">${ui.restartBtn}</button>
-      </div>
-
-      <div class="credits-footer">
-        <p style="margin:0 0 6px; font-weight:500;">${ui.offeringLabel}</p>
-        <p style="margin:0 0 16px;">
-          <a href="https://biblioverse.org" target="_blank" rel="noopener">biblioverse.org</a> &nbsp;|&nbsp; 
-          <a href="https://senciencia.org" target="_blank" rel="noopener">senciencia.org</a> &nbsp;|&nbsp; 
-          <a href="https://vegpedia.org" target="_blank" rel="noopener">vegpedia.org</a>
-        </p>
-        <p style="margin:0; font-size:13px; color:var(--ink-dim);">${ui.idealizedBy}</p>
-      </div>
-    </div>
-  `;
-  container.innerHTML = html;
-}
-
-window.addEventListener('DOMContentLoaded', init);
+applyMapLang();
 </script>
+
 </body>
 </html>
