@@ -42,32 +42,10 @@
     background: linear-gradient(90deg, var(--ethical-blue) 0%, var(--ethical-yellow) 33%, var(--ethical-red) 66%, var(--ethical-teal) 100%);
   }
 
-  .topbar {
-    max-width: var(--maxw);
-    margin: 0 auto;
-    padding: 20px 24px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .back-link {
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--muted);
-    text-decoration: none;
-    padding: 8px 14px;
-    border-radius: 20px;
-    border: 1px solid var(--line);
-    background: var(--panel);
-    transition: border-color 0.2s ease, color 0.2s ease;
-  }
-  .back-link:hover { border-color: var(--ethical-blue); color: var(--ethical-blue); }
-
   .lang-card-wrap {
     max-width: var(--maxw);
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 12px 24px 0;
   }
   .lang-card {
     margin: 16px 0 0;
@@ -128,7 +106,7 @@
   main {
     max-width: var(--maxw);
     margin: 0 auto;
-    padding: 12px 24px 80px;
+    padding: 12px 24px 20px;
   }
 
   section.part {
@@ -275,12 +253,21 @@
 
   footer.page-footer {
     max-width: var(--maxw);
-    margin: 40px auto 0;
+    margin: 20px auto 0;
     padding: 24px;
     text-align: center;
   }
-  footer.page-footer a.cta {
-    display: inline-block;
+  footer.page-footer .footer-btn-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  footer.page-footer .footer-btn-row button.cta,
+  footer.page-footer .footer-btn-row a.cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: var(--ethical-blue);
     color: #fff;
     text-decoration: none;
@@ -288,7 +275,27 @@
     border-radius: 24px;
     font-weight: 600;
     font-size: 15px;
+    font-family: var(--sans);
+    border: none;
+    cursor: pointer;
   }
+  footer.page-footer .footer-btn-row .secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--panel);
+    color: var(--ink);
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 15px;
+    font-family: var(--sans);
+    border: 1px solid var(--line);
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  footer.page-footer .footer-btn-row .secondary-btn:hover { border-color: var(--ethical-blue); color: var(--ethical-blue); }
 
   @media (max-width: 600px) {
     header.hero h1 { font-size: 27px; }
@@ -299,10 +306,6 @@
 <body>
 
 <div class="ethical-bar"></div>
-
-<div class="topbar">
-  <a class="back-link" id="back-link" href="index.html">← Voltar ao teste</a>
-</div>
 
 <div class="lang-card-wrap">
   <div class="lang-card">
@@ -538,7 +541,10 @@
 </main>
 
 <footer class="page-footer">
-  <a class="cta" href="index.html">Fazer o teste</a>
+  <div class="footer-btn-row">
+    <button class="cta" onclick="window.close()">← Voltar ao Resultado</button>
+    <a class="secondary-btn" href="index.html">↻ Reiniciar o Teste Ético</a>
+  </div>
 </footer>
 </div>
 
@@ -768,7 +774,10 @@
 </main>
 
 <footer class="page-footer">
-  <a class="cta" href="index.html">Take the test</a>
+  <div class="footer-btn-row">
+    <button class="cta" onclick="window.close()">← Back to the Result</button>
+    <a class="secondary-btn" href="index.html">↻ Restart the Ethics Test</a>
+  </div>
 </footer>
 </div>
 
@@ -788,7 +797,6 @@ function applyMapLang(){
   document.documentElement.lang = isEn ? 'en' : 'pt-BR';
   document.getElementById('content-pt').style.display = isEn ? 'none' : '';
   document.getElementById('content-en').style.display = isEn ? '' : 'none';
-  document.getElementById('back-link').textContent = isEn ? '← Back to the test' : '← Voltar ao teste';
   document.getElementById('lang-prompt').textContent = isEn ? 'Language / Idioma:' : 'Idioma / Language:';
   document.getElementById('lang-toggle-btn').textContent = isEn ? 'Mudar para Português' : 'Switch to English';
   document.title = isEn
