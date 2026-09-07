@@ -1741,7 +1741,7 @@ function shortCode(title){
 
 function buildShareUrl(){
   const parts = partResults.map(r => {
-    const code = RESULT_CODE_MAP[r.title] || shortCode(r.title);
+    const code = RESULT_CODE_MAP[r.title] || slugify(r.title);
     const desc = encodeURIComponent(r.desc || '');
     const meta = r.meta && r.meta.length > 0 ? encodeURIComponent(JSON.stringify(r.meta)) : '';
     return code + '|' + desc + '|' + meta;
