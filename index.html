@@ -493,7 +493,7 @@ let currentLang = detectLang();
 (function applySharedLangOverride(){
   try {
     const raw = (typeof location !== 'undefined' && location.hash) ? location.hash.slice(1) : '';
-    const m = raw.match(/^(pt|en):/);
+    const m = raw.match(/^(?:z:|n:)?(pt|en):/);
     if(m) currentLang = m[1];
   } catch(e){}
 })();
@@ -522,6 +522,8 @@ const UI_PT = {
   sharedKicker:'RESULTADO COMPARTILHADO',
   sharedTitle:'Alguém compartilhou este mapa ético com você',
   sharedLede:'Esta pessoa respondeu ao teste de visão moral e chegou a este perfil. Faça o teste você também para descobrir o seu.',
+  sharedLoading:'Carregando o resultado compartilhado…',
+  sharedError:'Não foi possível abrir este link de resultado. Ele pode estar incompleto ou corrompido.',
   finalKicker:'SEU MAPA ÉTICO',
   finalTitle:'Assim você enxerga o certo e o errado:',
   stages:['Teoria ética normativa','Fronteira do círculo moral','Fundamentos metaéticos','Abertura moral e intelectual'],
@@ -562,6 +564,8 @@ const UI_EN = {
   sharedKicker:'SHARED RESULT',
   sharedTitle:'Someone shared this ethical map with you',
   sharedLede:'This person took the moral outlook test and reached this profile. Take the test yourself to discover your own.',
+  sharedLoading:'Loading the shared result…',
+  sharedError:'This result link could not be opened. It may be incomplete or corrupted.',
   finalKicker:'YOUR ETHICAL MAP',
   finalTitle:'This is how you view right and wrong:',
   stages:['Normative ethical theory','Moral circle boundary','Metaethical foundations','Moral and intellectual openness'],
@@ -1623,7 +1627,95 @@ let answers = {};
 let partResults = [];
 let navHistory = [];
 let stepsInPart = 0;
+let currentPartMoves = [];
 const ESTIMATED_STEPS_PER_PART = { theory: 4, circle: 4, meta: 4, openness: 3 };
+
+function radixForNode(node){
+  return (node.type === 'multi_select' || node.type === 'multi_bias') ? Math.pow(2, node.options.length) : node.options.length;
+}
+
+function applySingleChoice(baseAnswers, node, idx){
+  const opt = node.options[idx];
+  const newAnswers = { ...baseAnswers };
+  if(opt.set) newAnswers[opt.set.key] = opt.set.value;
+  return { answers: newAnswers, nextNodeId: opt.next };
+}
+
+function applyMultiChoice(baseAnswers, mNodeId, node, bitmask){
+  const newAnswers = { ...baseAnswers };
+  let nextNodeId;
+  if(bitmask === 0){
+    newAnswers[mNodeId + '_selections'] = [];
+    nextNodeId = node.nextIfNone;
+  } else {
+    const selected = node.options.filter((opt, i) => (bitmask >> i) & 1).map(opt => opt.val);
+    newAnswers[mNodeId + '_selections'] = selected;
+    nextNodeId = node.nextIfSelected;
+    if(mNodeId === 'c4' && (selected.includes('Animais Sencientes') || selected.includes('Sentient Animals'))){
+      nextNodeId = 'c4_gradualism';
+    }
+  }
+  return { answers: newAnswers, nextNodeId };
+}
+
+function encodePartMoves(moves){
+  let index = 0n;
+  let radixAccum = 1n;
+  for(const mv of moves){
+    index += BigInt(mv.value) * radixAccum;
+    radixAccum *= BigInt(mv.radix);
+  }
+  return index;
+}
+
+function decodePartFromIndex(partsData, partIdx, indexBigInt){
+  let idx = indexBigInt;
+  let nodeId2 = partsData[partIdx].root;
+  let answers2 = {};
+  let guard = 0;
+  while(guard++ < 50){
+    const node = partsData[partIdx].nodes[nodeId2];
+    if(node.type === 'result' || node.type === 'dynamicResult'){
+      return node.type === 'dynamicResult' ? node.render(answers2) : node;
+    }
+    const radix = BigInt(radixForNode(node));
+    const value = Number(idx % radix);
+    idx = idx / radix;
+    if(node.type === 'multi_select' || node.type === 'multi_bias'){
+      const applied = applyMultiChoice(answers2, nodeId2, node, value);
+      answers2 = applied.answers;
+      nodeId2 = applied.nextNodeId;
+    } else {
+      const applied = applySingleChoice(answers2, node, value);
+      answers2 = applied.answers;
+      nodeId2 = applied.nextNodeId;
+    }
+  }
+  return null;
+}
+
+function bigIntToBase36(n){
+  if(n === 0n) return '0';
+  const digits = '0123456789abcdefghijklmnopqrstuvwxyz';
+  let s = '';
+  let x = n;
+  while(x > 0n){
+    s = digits[Number(x % 36n)] + s;
+    x = x / 36n;
+  }
+  return s;
+}
+
+function base36ToBigInt(s){
+  const digits = '0123456789abcdefghijklmnopqrstuvwxyz';
+  let n = 0n;
+  for(const ch of String(s).toLowerCase()){
+    const d = digits.indexOf(ch);
+    if(d < 0) continue;
+    n = n * 36n + BigInt(d);
+  }
+  return n;
+}
 
 function esc(s){
   if(!s) return '';
@@ -1739,7 +1831,7 @@ function shortCode(title){
   return acronym || full.slice(0, 20);
 }
 
-function buildShareUrl(){
+function buildShareUrlLegacy(){
   const parts = partResults.map(r => {
     const code = RESULT_CODE_MAP[r.title] || slugify(r.title);
     const desc = encodeURIComponent(r.desc || '');
@@ -1747,6 +1839,63 @@ function buildShareUrl(){
     return code + '|' + desc + '|' + meta;
   });
   return location.origin + location.pathname + '#' + currentLang + ':' + parts.join(',');
+}
+
+function buildShareUrl(){
+  const idxParts = partResults.map(r => r.shareIndex || '0');
+  return location.origin + location.pathname + '#n:' + currentLang + ':' + idxParts.join('-');
+}
+
+function bytesToBase64Url(bytes){
+  let binary = '';
+  for(let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+function base64UrlToBytes(b64){
+  const padded = b64.replace(/-/g, '+').replace(/_/g, '/');
+  const binary = atob(padded);
+  const bytes = new Uint8Array(binary.length);
+  for(let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes;
+}
+
+async function compressToBase64Url(str){
+  if(typeof CompressionStream === 'undefined') return null;
+  try {
+    const bytes = new TextEncoder().encode(str);
+    const cs = new CompressionStream('gzip');
+    const writer = cs.writable.getWriter();
+    writer.write(bytes);
+    writer.close();
+    const buffer = await new Response(cs.readable).arrayBuffer();
+    return bytesToBase64Url(new Uint8Array(buffer));
+  } catch(e){
+    return null;
+  }
+}
+
+async function decompressFromBase64Url(b64){
+  const bytes = base64UrlToBytes(b64);
+  const ds = new DecompressionStream('gzip');
+  const writer = ds.writable.getWriter();
+  writer.write(bytes);
+  writer.close();
+  const buffer = await new Response(ds.readable).arrayBuffer();
+  return new TextDecoder().decode(buffer);
+}
+
+async function buildShareUrlCompressed(){
+  if(typeof CompressionStream === 'undefined') return null;
+  const items = partResults.map(r => ({
+    c: RESULT_CODE_MAP[r.title] || slugify(r.title),
+    d: r.desc || '',
+    m: r.meta && r.meta.length > 0 ? r.meta : undefined
+  }));
+  const json = JSON.stringify(items);
+  const b64 = await compressToBase64Url(json);
+  if(!b64) return null;
+  return location.origin + location.pathname + '#z:' + currentLang + ':' + b64;
 }
 
 window.copyShareLink = function(){
@@ -1845,22 +1994,16 @@ function render(){
   if(state === 'final') return renderFinal(main);
 }
 
-function renderShared(container){
-  const ui = getUI();
-  const raw = (location.hash || '').replace(/^#/, '').replace(/^(pt|en):/, '');
-  const parts = raw.split(',').map(s => s.trim()).filter(Boolean);
-
-  const items = parts.map((p, i) => {
-    const segs = p.split('|');
-    const code = segs[0] || '';
-    const encDesc = segs[1] || '';
-    const encMeta = segs[2] || '';
-    const info = RESULT_LABEL_MAP[code];
-    const label = info ? (currentLang === 'en' ? info.en : info.pt) : deslugify(code);
-    let desc = '';
-    try { desc = encDesc ? decodeURIComponent(encDesc) : ''; } catch(e){ desc = ''; }
-    let meta = null;
-    try { meta = encMeta ? JSON.parse(decodeURIComponent(encMeta)) : null; } catch(e){ meta = null; }
+function renderSharedItems(container, ui, items){
+  const cards = items.map((it, i) => {
+    let label = it.title;
+    if(!label){
+      const code = it.code || '';
+      const info = RESULT_LABEL_MAP[code];
+      label = info ? (currentLang === 'en' ? info.en : info.pt) : deslugify(code);
+    }
+    const desc = it.desc || '';
+    const meta = it.meta || null;
     const stage = ui.stages[i] || '';
     return `
       <div class="summary-card">
@@ -1872,14 +2015,14 @@ function renderShared(container){
     `;
   }).join('');
 
-  let html = `
+  container.innerHTML = `
     <div class="card-container" style="padding:40px 32px;">
       <p class="kicker" style="text-align:center;">${ui.sharedKicker}</p>
       <h1 style="text-align:center;">${ui.sharedTitle}</h1>
       <p class="lede" style="text-align:center; max-width:540px; margin:0 auto 24px;">${ui.sharedLede}</p>
 
       <div style="margin-top:24px;">
-        ${items}
+        ${cards}
       </div>
 
       <div style="text-align:center; margin-top:32px;">
@@ -1887,7 +2030,57 @@ function renderShared(container){
       </div>
     </div>
   `;
-  container.innerHTML = html;
+}
+
+function renderShared(container){
+  const ui = getUI();
+  const raw = (location.hash || '').replace(/^#/, '');
+
+  if(raw.startsWith('n:')){
+    try {
+      const rest = raw.slice(2);
+      const sepIdx = rest.indexOf(':');
+      const lang = rest.slice(0, sepIdx);
+      const idxStr = rest.slice(sepIdx + 1);
+      const partsData = lang === 'en' ? PARTS_EN : PARTS_PT;
+      const codes = idxStr.split('-');
+      const items = codes.map((c, i) => {
+        const r = decodePartFromIndex(partsData, i, base36ToBigInt(c));
+        return { title: r ? r.title : '', desc: (r && r.body && r.body.length) ? r.body[0] : '', meta: r ? (r.meta || null) : null };
+      });
+      renderSharedItems(container, ui, items);
+    } catch(e){
+      container.innerHTML = `<div class="card-container" style="padding:40px 32px; text-align:center;"><p class="lede">${esc(ui.sharedError)}</p><button class="cta" style="margin-top:16px;" onclick="location.hash=''; startTest();">${esc(ui.ctaStart)}</button></div>`;
+    }
+    return;
+  }
+
+  if(raw.startsWith('z:')){
+    container.innerHTML = `<div class="card-container" style="padding:60px 32px; text-align:center; color:var(--muted);">${esc(ui.sharedLoading)}</div>`;
+    const b64 = raw.slice(raw.indexOf(':', 2) + 1);
+    decompressFromBase64Url(b64).then(json => {
+      const items = JSON.parse(json).map(it => ({ code: it.c, desc: it.d, meta: it.m }));
+      renderSharedItems(container, ui, items);
+    }).catch(() => {
+      container.innerHTML = `<div class="card-container" style="padding:40px 32px; text-align:center;"><p class="lede">${esc(ui.sharedError)}</p><button class="cta" style="margin-top:16px;" onclick="location.hash=''; startTest();">${esc(ui.ctaStart)}</button></div>`;
+    });
+    return;
+  }
+
+  const legacyRaw = raw.replace(/^(pt|en):/, '');
+  const parts = legacyRaw.split(',').map(s => s.trim()).filter(Boolean);
+  const items = parts.map(p => {
+    const segs = p.split('|');
+    const code = segs[0] || '';
+    const encDesc = segs[1] || '';
+    const encMeta = segs[2] || '';
+    let desc = '';
+    try { desc = encDesc ? decodeURIComponent(encDesc) : ''; } catch(e){ desc = ''; }
+    let meta = null;
+    try { meta = encMeta ? JSON.parse(decodeURIComponent(encMeta)) : null; } catch(e){ meta = null; }
+    return { code, desc, meta };
+  });
+  renderSharedItems(container, ui, items);
 }
 
 function renderIntro(container){
@@ -1940,6 +2133,7 @@ function startTest(){
   partResults = [];
   navHistory = [];
   stepsInPart = 0;
+  currentPartMoves = [];
   state = 'question';
   nodeId = getData()[partIndex].root;
   render();
@@ -1957,6 +2151,7 @@ function goBack(){
   answers = last.answers;
   state = last.state;
   stepsInPart = last.stepsInPart || 0;
+  currentPartMoves = last.currentPartMoves || [];
   render();
 }
 
@@ -2031,13 +2226,13 @@ function renderQuestion(container){
 
 window.selectOption = function(idx){
   const n = currentPart().nodes[nodeId];
-  const opt = n.options[idx];
   
-  navHistory.push({partIndex, nodeId, answers:{...answers}, state, stepsInPart});
+  navHistory.push({partIndex, nodeId, answers:{...answers}, state, stepsInPart, currentPartMoves:[...currentPartMoves]});
   
-  if(opt.set) answers[opt.set.key] = opt.set.value;
-  
-  nodeId = opt.next;
+  currentPartMoves.push({ radix: radixForNode(n), value: idx });
+  const applied = applySingleChoice(answers, n, idx);
+  answers = applied.answers;
+  nodeId = applied.nextNodeId;
   const nextNode = currentPart().nodes[nodeId];
   
   if(nextNode.type === 'result' || nextNode.type === 'dynamicResult'){
@@ -2075,22 +2270,14 @@ window.submitMultiSelect = function(){
 
   err.style.display = 'none';
 
-  navHistory.push({partIndex, nodeId, answers:{...answers}, state, stepsInPart});
+  navHistory.push({partIndex, nodeId, answers:{...answers}, state, stepsInPart, currentPartMoves:[...currentPartMoves]});
 
-  const thisNodeId = nodeId;
+  const bitmask = noneSel ? 0 : n.options.reduce((mask, opt, i) => selected.includes(opt.val) ? (mask | (1 << i)) : mask, 0);
+  currentPartMoves.push({ radix: radixForNode(n), value: bitmask });
 
-  if(noneSel){
-    answers[nodeId + '_selections'] = [];
-    nodeId = n.nextIfNone;
-  } else {
-    answers[nodeId + '_selections'] = selected;
-    nodeId = n.nextIfSelected;
-  }
-
-  if(thisNodeId === 'c4' &&
-     (selected.includes('Animais Sencientes') || selected.includes('Sentient Animals'))){
-    nodeId = 'c4_gradualism';
-  }
+  const applied = applyMultiChoice(answers, nodeId, n, bitmask);
+  answers = applied.answers;
+  nodeId = applied.nextNodeId;
 
   const nextNode = currentPart().nodes[nodeId];
   if(nextNode.type === 'result' || nextNode.type === 'dynamicResult'){
@@ -2157,21 +2344,24 @@ window.continuePart = function(){
   let r = n.type === 'dynamicResult' ? n.render(answers) : n;
   
   const level = r.level || answers.circleLevel || 3;
+  const shareIndex = encodePartMoves(currentPartMoves);
   
   partResults[partIndex] = {
     title: r.title, 
     tag: r.tag, 
     level: level, 
     desc: (r.body && r.body.length > 0) ? r.body[0] : '',
-    meta: r.meta || null
+    meta: r.meta || null,
+    shareIndex: bigIntToBase36(shareIndex)
   };
   
-  navHistory.push({partIndex, nodeId, answers:{...answers}, state, stepsInPart});
+  navHistory.push({partIndex, nodeId, answers:{...answers}, state, stepsInPart, currentPartMoves:[...currentPartMoves]});
   
   if(partIndex < getData().length - 1){
     partIndex++;
     state = 'question';
     stepsInPart = 0;
+    currentPartMoves = [];
     nodeId = currentPart().root;
     render();
   } else {
