@@ -163,14 +163,14 @@
     flex-shrink: 0;
   }
   .parts-list .txt { line-height: 1; }
-  .parts-list .txt strong { display: block; font-size: 13.5px; color: var(--ink); font-weight: 600; margin: 0 0 2px; line-height: 1.15; }
-  .parts-list .txt span { display: block; font-size: 12px; color: var(--muted); line-height: 1.2; }
+  .parts-list .txt strong { display: block; font-size: 14.5px; color: var(--ink); font-weight: 600; margin: 0 0 5px; line-height: 1.15; }
+  .parts-list .txt span { display: block; font-size: 13px; color: var(--muted); line-height: 1.4; }
 
   @media (max-width: 640px) {
     .parts-list { grid-template-columns: 1fr; }
   }
 
-  button.cta {
+  button.cta, a.cta {
     font-family: var(--sans);
     font-weight: 600;
     font-size: 15px;
@@ -185,9 +185,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
   }
-  button.cta:hover { filter: brightness(1.1); box-shadow: 0 3px 8px rgba(42,82,190,0.25); }
-  button.cta:active { transform: translateY(1px); }
+  button.cta:hover, a.cta:hover { filter: brightness(1.1); box-shadow: 0 3px 8px rgba(42,82,190,0.25); }
+  button.cta:active, a.cta:active { transform: translateY(1px); }
 
   .lang-card {
     margin: 16px 0 24px;
@@ -439,7 +440,7 @@
     margin-top: 36px;
     padding: 24px;
     border: 1px solid var(--line);
-    background: var(--panel);
+    background: var(--panel-2);
     border-radius: 12px;
   }
   .share-row { display: flex; gap: 10px; margin-top: 12px; }
@@ -589,12 +590,18 @@ const PARTS_PT = [
         {label:'O certo depende das normas de cada cultura ou sociedade', next:'r_cultural'},
         {label:'Depende do julgamento ou sentimento de cada pessoa', next:'r_individual'},
         {label:'Reconheço que as normas variam, sem descartar uma verdade moral objetiva por trás disso', next:'r_descritivo'},
-        {label:'Na verdade, acho que juízos morais nem chegam a ser verdadeiros ou falsos — só expressam atitudes', next:'r_apontar_meta'},
+        {label:'Na verdade, acho que juízos morais nem chegam a ser verdadeiros ou falsos — só expressam atitudes', next:'r_norm_skeptic_q'},
       ]},
+      r_norm_skeptic_q:{type:'question', text:'Mesmo sendo cético quanto a isso, você quer descobrir quais seriam suas preferências práticas sobre como agir?',
+        options:[
+          {label:'Sim', next:'t2', set:{key:'normSkeptic', value:true}},
+          {label:'Não, isso não é importante', next:'r_norm_skeptic'}
+        ]
+      },
+      r_norm_skeptic:{type:'result', tag:'Ética normativa · Ceticismo', title:'Ceticismo Normativo', body:['Ao afirmar que juízos morais não são verdadeiros nem falsos, você assume uma postura cética em relação à própria pergunta que sustenta a ética normativa: "qual é a teoria correta sobre como agir?" Se frases como "as consequências são o que importa" ou "certas regras nunca podem ser violadas" não descrevem fatos, elas não podem estar certas ou erradas no sentido usual — não há, para você, uma "teoria normativa verdadeira" à espera de ser descoberta. Isso não significa que você não tenha preferências práticas sobre como agir; apenas que, na sua visão, essas preferências expressam atitudes e compromissos pessoais, não descobertas sobre uma verdade moral independente. Essa mesma questão é explorada com mais profundidade na Parte 3 deste teste, sobre os fundamentos metaéticos.']},
       r_cultural:{type:'result', tag:'Ética normativa · Relativismo', title:'Relativismo cultural', body:['O que é moralmente certo ou errado depende estritamente das normas, crenças e práticas vigentes em cada cultura ou sociedade. Sob essa ótica, não existe um padrão moral universal ou externo válido para julgar culturas a partir de fora. A moralidade é vista puramente como uma construção coletiva e histórica.']},
       r_individual:{type:'result', tag:'Ética normativa · Relativismo', title:'Relativismo individual (Subjetivismo)', body:['O que é certo ou errado depende exclusivamente do julgamento, sentimento ou preferência pessoal de cada indivíduo. A moralidade é, em última instância, uma escolha inteiramente subjetiva. O que é "verdade" moral para uma pessoa pode não ser para outra, não havendo base para imposição.']},
       r_descritivo:{type:'result', tag:'Ética normativa · Relativismo', title:'Relativismo meramente descritivo', body:['Você reconhece a profunda variação sociocultural das normas como um fato empírico inegável da humanidade, mas acredita que essa diversidade de opiniões não exclui necessariamente a existência de uma verdade moral objetiva subjacente que talvez ainda estejamos tentando descobrir.']},
-      r_apontar_meta:{type:'result', tag:'Isso é metaética, não teoria normativa', title:'Não-cognitivismo / Expressivismo', body:['Essa é uma posição focada na natureza da própria linguagem moral (metaética), e não uma teoria normativa primária sobre como devemos agir de fato. Ela sugere que nossos juízos morais apenas expressam atitudes. Essa visão será profundamente explorada na Parte 3 deste teste.']},
 
       t2:{type:'question', text:'Ao decidir se uma ação é certa ou errada, o que você considera fundamental?',
         help: '<p>Pense em um exemplo: contar uma mentira pequena para poupar os sentimentos de um amigo.</p><p>Focar no <b>resultado</b> significa perguntar: essa mentira deixa as coisas melhores ou piores no total, considerando todos os afetados?</p><p>Focar em <b>regras ou deveres</b> significa perguntar: mentir é errado em si, então não deveria fazer isso — mesmo que pareça produzir um resultado bom.</p><p>Focar no <b>caráter</b> significa perguntar: que tipo de pessoa eu sou ao mentir aqui — estou sendo gentil, ou covarde por evitar uma conversa difícil?</p><p>Focar no <b>próprio interesse</b> significa perguntar: o que é melhor para mim nessa situação, independente do efeito nos outros?</p>',
@@ -613,8 +620,8 @@ const PARTS_PT = [
         {label:'Algo é bom simplesmente porque Deus o ordena; não há padrão de bondade independente da vontade divina', next:'r_divine_a'},
         {label:'Deus ordena o que é bom porque é, por natureza, perfeitamente amoroso; a vontade divina expressa a bondade, não a cria arbitrariamente', next:'r_divine_b'},
       ]},
-      r_divine_a:{type:'result', tag:'Ética normativa', title:'Teoria do Mandamento Divino (Tradicional)', body:['Uma ação é certa simplesmente porque é ordenada por Deus e errada porque é proibida por Ele. O fundamento último da moralidade reside puramente na vontade soberana divina. Isso implica que não há um padrão de bondade independente; a moral é definida estruturalmente pelo decreto de Deus.']},
-      r_divine_b:{type:'result', tag:'Ética normativa', title:'Teoria do Mandamento Divino (Modificada)', body:['Deus ordena o que é bom porque sua própria essência e natureza são perfeitamente amorosas, justas e boas. A vontade divina expressa a bondade, mas não a cria de forma puramente arbitrária. Há um padrão de bem intrínseco à própria natureza imutável de Deus.']},
+      r_divine_a:{type:'dynamicResult', render: function(a){ return skepticFramePT(a, 'Deontológica', 'à deontologia', 'Teoria do Mandamento Divino (Tradicional)', 'Teoria do Mandamento Divino (Tradicional)', 'Ética normativa', 'Uma ação é certa simplesmente porque é ordenada por Deus e errada porque é proibida por Ele. O fundamento último da moralidade reside puramente na vontade soberana divina. Isso implica que não há um padrão de bondade independente; a moral é definida estruturalmente pelo decreto de Deus.'); }},
+      r_divine_b:{type:'dynamicResult', render: function(a){ return skepticFramePT(a, 'Deontológica', 'à deontologia', 'Teoria do Mandamento Divino (Modificada)', 'Teoria do Mandamento Divino (Modificada)', 'Ética normativa', 'Deus ordena o que é bom porque sua própria essência e natureza são perfeitamente amorosas, justas e boas. A vontade divina expressa a bondade, mas não a cria de forma puramente arbitrária. Há um padrão de bem intrínseco à própria natureza imutável de Deus.'); }},
 
       t_deontology:{type:'question', text:'Qual dessas visões sobre deveres morais melhor descreve a sua?', options:[
         {label:'Certas restrições morais jamais podem ser violadas, custe o que custar', next:'r_deon_a'},
@@ -623,25 +630,25 @@ const PARTS_PT = [
         {label:'O que importa é se o dano foi pretendido intencionalmente ou só previsto como efeito colateral', next:'r_deon_d'},
         {label:'Há vários deveres (não mentir, ser justo, reparar) que podem entrar em conflito sem hierarquia fixa', next:'r_deon_e'},
       ]},
-      r_deon_a:{type:'result', tag:'Ética normativa', title:'Deontologia Absolutista', body:['Certas restrições morais (como não mentir, não torturar ou não matar inocentes) são deveres categóricos que jamais podem ser violados, mesmo que quebrá-los pudesse evitar um grande desastre. O dever moral é absoluto, inegociável e independente de cálculos utilitários sobre resultados — os fins nunca justificam os meios corruptos.']},
-      r_deon_b:{type:'result', tag:'Ética normativa', title:'Deontologia Moderada (de Limiar)', body:['As restrições e regras morais valem de forma estrita na imensa maioria dos casos diários e estruturam nossa vida social. No entanto, essas regras de ferro podem (e devem) ser violadas ou suspensas caso as consequências de segui-las rigidamente cruzem um limiar que se mostre flagrantemente catastrófico.']},
-      r_deon_c:{type:'result', tag:'Ética normativa', title:'Deontologia de Direitos', body:['O que fundamenta e legitima suas restrições morais é o respeito inviolável a direitos morais básicos e inerentes aos indivíduos. Esses direitos funcionam como verdadeiros "trunfos" protetores que bloqueiam qualquer tentativa de sacrificar o indivíduo em nome do bem maior ou da utilidade e conveniência do coletivo.']},
-      r_deon_d:{type:'result', tag:'Ética normativa', title:'Doutrina do Duplo Efeito', body:['A moralidade de uma ação frequentemente depende da intenção subjetiva por trás dela. Na sua visão, é moralmente muito diferente causar um dano intencionalmente (usando-o como um meio para um fim) do que prever racionalmente que um dano ocorrerá como um efeito colateral trágico, não intencional, de uma boa ação.']},
-      r_deon_e:{type:'result', tag:'Ética normativa', title:'Deontologia Pluralista (Deveres Prima Facie)', body:['Não existe apenas um princípio moral supremo e isolado, mas sim vários deveres fundamentais (como dizer a verdade, reparar danos passados, ser justo, promover a bondade). Quando esses deveres entram em conflito na vida real, não há um fluxograma rígido a seguir: cabe ao julgamento prático (sabedoria) discernir qual dever possui maior peso no contexto específico.']},
+      r_deon_a:{type:'dynamicResult', render: function(a){ return skepticFramePT(a, 'Deontológica', 'à deontologia', 'Deontologia Absolutista', 'Deontologia Absolutista', 'Ética normativa', 'Certas restrições morais (como não mentir, não torturar ou não matar inocentes) são deveres categóricos que jamais podem ser violados, mesmo que quebrá-los pudesse evitar um grande desastre. O dever moral é absoluto, inegociável e independente de cálculos utilitários sobre resultados — os fins nunca justificam os meios corruptos.'); }},
+      r_deon_b:{type:'dynamicResult', render: function(a){ return skepticFramePT(a, 'Deontológica', 'à deontologia', 'Deontologia Moderada (de Limiar)', 'Deontologia Moderada (de Limiar)', 'Ética normativa', 'As restrições e regras morais valem de forma estrita na imensa maioria dos casos diários e estruturam nossa vida social. No entanto, essas regras de ferro podem (e devem) ser violadas ou suspensas caso as consequências de segui-las rigidamente cruzem um limiar que se mostre flagrantemente catastrófico.'); }},
+      r_deon_c:{type:'dynamicResult', render: function(a){ return skepticFramePT(a, 'Deontológica', 'à deontologia', 'Deontologia de Direitos', 'Deontologia de Direitos', 'Ética normativa', 'O que fundamenta e legitima suas restrições morais é o respeito inviolável a direitos morais básicos e inerentes aos indivíduos. Esses direitos funcionam como verdadeiros "trunfos" protetores que bloqueiam qualquer tentativa de sacrificar o indivíduo em nome do bem maior ou da utilidade e conveniência do coletivo.'); }},
+      r_deon_d:{type:'dynamicResult', render: function(a){ return skepticFramePT(a, 'Deontológica', 'à deontologia', 'Doutrina do Duplo Efeito', 'Doutrina do Duplo Efeito', 'Ética normativa', 'A moralidade de uma ação frequentemente depende da intenção subjetiva por trás dela. Na sua visão, é moralmente muito diferente causar um dano intencionalmente (usando-o como um meio para um fim) do que prever racionalmente que um dano ocorrerá como um efeito colateral trágico, não intencional, de uma boa ação.'); }},
+      r_deon_e:{type:'dynamicResult', render: function(a){ return skepticFramePT(a, 'Deontológica', 'à deontologia', 'Deontologia Pluralista (Deveres Prima Facie)', 'Deontologia Pluralista (Deveres Prima Facie)', 'Ética normativa', 'Não existe apenas um princípio moral supremo e isolado, mas sim vários deveres fundamentais (como dizer a verdade, reparar danos passados, ser justo, promover a bondade). Quando esses deveres entram em conflito na vida real, não há um fluxograma rígido a seguir: cabe ao julgamento prático (sabedoria) discernir qual dever possui maior peso no contexto específico.'); }},
 
       t_character:{type:'question', text:'Ao focar na pessoa que age, o que você considera mais fundamental?', options:[
         {label:'Cultivar virtudes (coragem, justiça, compaixão) valiosas em si mesmas', next:'r_char_a'},
         {label:'Cultivar a disposição de cuidar de relações e dos mais vulneráveis', next:'r_char_b'},
       ]},
-      r_char_a:{type:'result', tag:'Ética normativa', title:'Ética das Virtudes', body:['O centro da vida moral não está na aplicação mecânica de regras restritivas ou no cálculo frio de consequências futuras, mas no esforço contínuo e orgânico para cultivar um caráter virtuoso (englobando traços como coragem, compaixão, sabedoria prática e justiça). O foco principal se volta para a pergunta formativa: "que tipo de pessoa eu devo me tornar para florescer?"']},
-      r_char_b:{type:'result', tag:'Ética normativa', title:'Ética do Cuidado', body:['O traço moral fundamental e mais valioso a se cultivar é a disposição genuína e atenta de cuidar daqueles que dependem de nós nas tramas da vida. A ética do cuidado rejeita abstrações excessivas e direciona a atenção empática para as relações interpessoais concretas, priorizando a vulnerabilidade, os laços afetivos e as necessidades reais imediatas.']},
+      r_char_a:{type:'dynamicResult', render: function(a){ return skepticFramePT(a, 'de Caráter', 'às éticas centradas no caráter', 'Ética das Virtudes', 'Ética das Virtudes', 'Ética normativa', 'O centro da vida moral não está na aplicação mecânica de regras restritivas ou no cálculo frio de consequências futuras, mas no esforço contínuo e orgânico para cultivar um caráter virtuoso (englobando traços como coragem, compaixão, sabedoria prática e justiça). O foco principal se volta para a pergunta formativa: "que tipo de pessoa eu devo me tornar para florescer?"'); }},
+      r_char_b:{type:'dynamicResult', render: function(a){ return skepticFramePT(a, 'de Caráter', 'às éticas centradas no caráter', 'Ética do Cuidado', 'Ética do Cuidado', 'Ética normativa', 'O traço moral fundamental e mais valioso a se cultivar é a disposição genuína e atenta de cuidar daqueles que dependem de nós nas tramas da vida. A ética do cuidado rejeita abstrações excessivas e direciona a atenção empática para as relações interpessoais concretas, priorizando a vulnerabilidade, os laços afetivos e as necessidades reais imediatas.'); }},
 
       t_egoism:{type:'question', text:'Qual versão sobre agir em interesse próprio descreve sua posição?', options:[
         {label:'Toda pessoa deveria agir sempre em seu próprio interesse; essa é a regra para todos', next:'r_ego_a'},
         {label:'Eu devo agir no meu próprio interesse; não estou prescrevendo isso para os outros', next:'r_ego_b'},
       ]},
-      r_ego_a:{type:'result', tag:'Ética normativa', title:'Egoísmo Ético Universal', body:['Todo agente moral tem a estrita obrigação ética de agir constantemente buscando maximizar o seu próprio interesse pessoal a longo prazo. Esta visão postula que essa não é apenas uma preferência tática e prática, mas a lei universal correta que você prescreve normativa e dogmaticamente para todas as outras pessoas.']},
-      r_ego_b:{type:'result', tag:'Ética normativa', title:'Egoísmo Ético Individual', body:['Você adota internamente como princípio diretor de vida agir de forma fundamental em prol da maximização do seu próprio interesse e felicidade, mas encara isso essencialmente como uma escolha estratégica e individual. Você é cauteloso ou neutro em prescrever ou exigir universalmente que o resto da sociedade opere com esse mesmo tipo de egoísmo dogmático.']},
+      r_ego_a:{type:'dynamicResult', render: function(a){ return skepticFramePT(a, 'Egoísta', 'ao egoísmo ético', 'Egoísmo Ético Universal', 'Egoísmo Ético Universal', 'Ética normativa', 'Todo agente moral tem a estrita obrigação ética de agir constantemente buscando maximizar o seu próprio interesse pessoal a longo prazo. Esta visão postula que essa não é apenas uma preferência tática e prática, mas a lei universal correta que você prescreve normativa e dogmaticamente para todas as outras pessoas.'); }},
+      r_ego_b:{type:'dynamicResult', render: function(a){ return skepticFramePT(a, 'Egoísta', 'ao egoísmo ético', 'Egoísmo Ético Individual', 'Egoísmo Ético Individual', 'Ética normativa', 'Você adota internamente como princípio diretor de vida agir de forma fundamental em prol da maximização do seu próprio interesse e felicidade, mas encara isso essencialmente como uma escolha estratégica e individual. Você é cauteloso ou neutro em prescrever ou exigir universalmente que o resto da sociedade opere com esse mesmo tipo de egoísmo dogmático.'); }},
 
       t3_ato_regra:{type:'question', text:'Para você, a análise das consequências deve ser feita avaliando cada ação individualmente, avaliando regras gerais, ou combinando ambos?',
         help: '<p>Pense em um exemplo: decidir se está certo quebrar uma promessa quando, só dessa vez, isso parece trazer um resultado melhor.</p><p>Avaliar <b>caso a caso</b> significa julgar essa situação específica pelo resultado que ela produz agora, sem se prender a um padrão geral.</p><p>Avaliar por <b>regra geral</b> significa perguntar: se todo mundo pudesse quebrar promessas nessas condições, o resultado geral seria bom? Se não, você mantém a promessa mesmo aqui.</p><p>O caminho <b>híbrido</b> significa seguir a regra geral na maioria das vezes, mas abrir uma exceção em situações realmente extremas.</p>',
@@ -724,13 +731,24 @@ const PARTS_PT = [
 
         const bodyText = `Você julga o valor moral de uma escolha pelo resultado que ela produz, ${methodDescMap[actRule] || methodDescMap['Consequencialismo de Atos']}. Dentro disso: ${subcorrentesExplain}. Quanto ao peso do sofrimento frente ao prazer, sua posição é que ${focusDescMap[negChoice] || focusDescMap['Visão Simétrica']}.`;
 
+        const meta = [
+          { label: 'Método', value: methodMap[actRule] || actRule },
+          { label: 'Subcorrentes', value: subcorrentes },
+          { label: 'Enfoque', value: focusMap[negChoice] || focusMap['Visão Simétrica'] }
+        ];
+
+        if(a.normSkeptic){
+          return {
+            title: 'Ceticismo Normativo (de tendência Consequencialista)',
+            tag: 'Ética normativa · Ceticismo',
+            meta: meta,
+            body: [ SKEPTIC_INTRO_PT + ' Seu compromisso prático tende ao consequencialismo, e dentro disso, especificamente: ' + bodyText ]
+          };
+        }
+
         return {
           title: 'Consequencialismo',
-          meta: [
-            { label: 'Método', value: methodMap[actRule] || actRule },
-            { label: 'Subcorrentes', value: subcorrentes },
-            { label: 'Enfoque', value: focusMap[negChoice] || focusMap['Visão Simétrica'] }
-          ],
+          meta: meta,
           body: [ bodyText ]
         };
       }}
@@ -744,8 +762,8 @@ const PARTS_PT = [
         {label:'É correto dar maior consideração a mim mesmo e a pessoas próximas (como família e amigos)', next:'r_c1_tribal', set:{key:'circleLevel', value: 2}},
         {label:'Deveríamos buscar a imparcialidade ideal e considerar o bem-estar de todos sem favorecimentos pessoais', next:'c3'},
       ]},
-      r_c1_ego:{type:'result', level:1, tag:'Círculo moral', title:'Egoísmo Moral', body:['Sua bússola moral foca as energias exclusivamente no nível mais interno, legitimando a priorização estrita de si mesmo e rejeitando obrigações diretas de imparcialidade com os outros.'], oppose:'Altruísmo Imparcial / Universalismo'},
-      r_c1_tribal:{type:'result', level:2, tag:'Círculo moral', title:'Tribalismo Familiar', body:['Essa é uma postura parcial que dá ênfase àquilo que é familiar — família de sangue e amigos, por exemplo. Sua bússola moral rejeita a imparcialidade radical, argumentando que as conexões interpessoais têm profundo peso ético e legitimando a priorização daqueles que fazem parte do seu círculo afetivo direto e familiar.'], oppose:'Altruísmo Imparcial / Universalismo'},
+      r_c1_ego:{type:'result', level:1, tag:'', title:'Egoísmo Moral', body:['Sua bússola moral foca as energias exclusivamente no nível mais interno, legitimando a priorização estrita de si mesmo e rejeitando obrigações diretas de imparcialidade com os outros.'], oppose:'Altruísmo Imparcial / Universalismo'},
+      r_c1_tribal:{type:'result', level:2, tag:'', title:'Tribalismo Familiar', body:['Essa é uma postura parcial que dá ênfase àquilo que é familiar — família de sangue e amigos, por exemplo. Sua bússola moral rejeita a imparcialidade radical, argumentando que as conexões interpessoais têm profundo peso ético e legitimando a priorização daqueles que fazem parte do seu círculo afetivo direto e familiar.'], oppose:'Altruísmo Imparcial / Universalismo'},
 
       c3:{
         type:'multi_select',
@@ -776,7 +794,7 @@ const PARTS_PT = [
       r_parcialismo_multi:{
         type:'dynamicResult',
         level:3,
-        tag:'Círculo moral',
+        tag:'',
         render: function(a){
           const biases = a.c3_selections || [];
           let comboStr = biases.join(', ');
@@ -828,7 +846,7 @@ const PARTS_PT = [
 
       r_c4_multi:{
         type:'dynamicResult',
-        tag:'Círculo moral',
+        tag:'',
         render: function(a){
           const sels = a.c4_selections || [];
           let level = 4;
@@ -1091,12 +1109,18 @@ const PARTS_EN = [
         {label:'Right depends on the norms of each culture or society', next:'r_cultural'},
         {label:'It depends on the judgment or feeling of each person', next:'r_individual'},
         {label:'I recognize norms vary, without ruling out an underlying objective moral truth', next:'r_descritivo'},
-        {label:'Moral claims are neither true nor false — they just express attitudes', next:'r_apontar_meta'},
+        {label:'Moral claims are neither true nor false — they just express attitudes', next:'r_norm_skeptic_q'},
       ]},
+      r_norm_skeptic_q:{type:'question', text:'Even though you are skeptical about it, do you want to find out what your practical preferences about how to act would be?',
+        options:[
+          {label:'Yes', next:'t2', set:{key:'normSkeptic', value:true}},
+          {label:'No, that is not important', next:'r_norm_skeptic'}
+        ]
+      },
+      r_norm_skeptic:{type:'result', tag:'Normative Ethics · Skepticism', title:'Normative Skepticism', body:['By claiming that moral judgments are neither true nor false, you take a skeptical stance toward the very question that underlies normative ethics: "what is the correct theory of how to act?" If statements like "consequences are what matters" or "certain rules can never be violated" do not describe facts, they cannot be right or wrong in the usual sense — there is, for you, no "true normative theory" waiting to be discovered. This does not mean you lack practical preferences about how to act; only that, in your view, those preferences express attitudes and personal commitments, not discoveries about an independent moral truth. This same question is explored in more depth in Part 3 of this test, on metaethical foundations.']},
       r_cultural:{type:'result', tag:'Normative Ethics · Relativism', title:'Cultural Relativism', body:['What is morally right or wrong depends on the prevailing norms in each culture or society.']},
       r_individual:{type:'result', tag:'Normative Ethics · Relativism', title:'Individual Relativism (Subjectivism)', body:['What is right or wrong depends on personal judgment, feeling, or preference.']},
       r_descritivo:{type:'result', tag:'Normative Ethics · Relativism', title:'Descriptive Relativism', body:['Norms vary across cultures, but this does not rule out underlying objective truths.']},
-      r_apontar_meta:{type:'result', tag:'Metaethics', title:'Non-Cognitivism', body:['This is a stance about the nature of moral judgments (metaethics), not a normative theory on how to act. We will explore this in Part 3.']},
 
       t2:{type:'question', text:'When deciding if an action is right or wrong, what do you consider fundamental?',
         help: '<p>Think of an example: telling a small lie to spare a friend\'s feelings.</p><p>Focusing on the <b>outcome</b> means asking: does this lie make things better or worse overall, considering everyone affected?</p><p>Focusing on <b>rules or duties</b> means asking: lying is wrong in itself, so you should not do it — even if it seems to produce a good result.</p><p>Focusing on <b>character</b> means asking: what kind of person am I by lying here — am I being kind, or cowardly for avoiding a hard conversation?</p><p>Focusing on <b>self-interest</b> means asking: what is best for me in this situation, regardless of the effect on others?</p>',
@@ -1115,8 +1139,8 @@ const PARTS_EN = [
         {label:'Good is good simply because God commands it', next:'r_divine_a'},
         {label:'God commands the good because His nature is perfectly loving', next:'r_divine_b'},
       ]},
-      r_divine_a:{type:'result', tag:'Normative Ethics', title:'Divine Command Theory (Traditional)', body:['Actions are right because God commands them and wrong because He forbids them.']},
-      r_divine_b:{type:'result', tag:'Normative Ethics', title:'Divine Command Theory (Modified)', body:['God commands what is good because His nature is loving. His will expresses goodness.']},
+      r_divine_a:{type:'dynamicResult', render: function(a){ return skepticFrameEN(a, 'Deontological', 'toward deontology', 'Divine Command Theory (Traditional)', 'Divine Command Theory (Traditional)', 'Normative Ethics', 'Actions are right because God commands them and wrong because He forbids them.'); }},
+      r_divine_b:{type:'dynamicResult', render: function(a){ return skepticFrameEN(a, 'Deontological', 'toward deontology', 'Divine Command Theory (Modified)', 'Divine Command Theory (Modified)', 'Normative Ethics', 'God commands what is good because His nature is loving. His will expresses goodness.'); }},
 
       t_deontology:{type:'question', text:'Which view on moral duties best describes yours?', options:[
         {label:'Certain moral restrictions can never be violated, whatever the cost', next:'r_deon_a'},
@@ -1125,25 +1149,25 @@ const PARTS_EN = [
         {label:'It matters most whether harm was intended or merely foreseen as a side-effect', next:'r_deon_d'},
         {label:'There are various duties that can conflict without a fixed hierarchy', next:'r_deon_e'},
       ]},
-      r_deon_a:{type:'result', tag:'Normative Ethics', title:'Absolutist Deontology', body:['Certain restrictions can never be violated, even to produce a vastly better outcome.']},
-      r_deon_b:{type:'result', tag:'Normative Ethics', title:'Threshold Deontology', body:['Restrictions apply in most cases but can be overridden by catastrophic consequences.']},
-      r_deon_c:{type:'result', tag:'Normative Ethics', title:'Rights-based Deontology', body:['Violating a basic moral right is wrong regardless of the consequences.']},
-      r_deon_d:{type:'result', tag:'Normative Ethics', title:'Doctrine of Double Effect', body:['What matters is whether harm was intended as a means, or just foreseen as a side-effect.']},
-      r_deon_e:{type:'result', tag:'Normative Ethics', title:'Pluralist Deontology', body:['There are multiple independent duties. Practical judgment must weigh them when they conflict.']},
+      r_deon_a:{type:'dynamicResult', render: function(a){ return skepticFrameEN(a, 'Deontological', 'toward deontology', 'Absolutist Deontology', 'Absolutist Deontology', 'Normative Ethics', 'Certain restrictions can never be violated, even to produce a vastly better outcome.'); }},
+      r_deon_b:{type:'dynamicResult', render: function(a){ return skepticFrameEN(a, 'Deontological', 'toward deontology', 'Threshold Deontology', 'Threshold Deontology', 'Normative Ethics', 'Restrictions apply in most cases but can be overridden by catastrophic consequences.'); }},
+      r_deon_c:{type:'dynamicResult', render: function(a){ return skepticFrameEN(a, 'Deontological', 'toward deontology', 'Rights-based Deontology', 'Rights-based Deontology', 'Normative Ethics', 'Violating a basic moral right is wrong regardless of the consequences.'); }},
+      r_deon_d:{type:'dynamicResult', render: function(a){ return skepticFrameEN(a, 'Deontological', 'toward deontology', 'Doctrine of Double Effect', 'Doctrine of Double Effect', 'Normative Ethics', 'What matters is whether harm was intended as a means, or just foreseen as a side-effect.'); }},
+      r_deon_e:{type:'dynamicResult', render: function(a){ return skepticFrameEN(a, 'Deontological', 'toward deontology', 'Pluralist Deontology', 'Pluralist Deontology', 'Normative Ethics', 'There are multiple independent duties. Practical judgment must weigh them when they conflict.'); }},
 
       t_character:{type:'question', text:'When focusing on the person acting, what is most fundamental?', options:[
         {label:'Cultivating virtues (courage, justice) that are valuable in themselves', next:'r_char_a'},
         {label:'Cultivating the disposition to care for relationships and the vulnerable', next:'r_char_b'},
       ]},
-      r_char_a:{type:'result', tag:'Normative Ethics', title:'Virtue Ethics', body:['Morality is about cultivating a virtuous character and practical wisdom.']},
-      r_char_b:{type:'result', tag:'Normative Ethics', title:'Ethics of Care', body:['The core of morality is caring for those dependent on us and focusing on relationships.']},
+      r_char_a:{type:'dynamicResult', render: function(a){ return skepticFrameEN(a, 'Character-based', 'toward character-based ethics', 'Virtue Ethics', 'Virtue Ethics', 'Normative Ethics', 'Morality is about cultivating a virtuous character and practical wisdom.'); }},
+      r_char_b:{type:'dynamicResult', render: function(a){ return skepticFrameEN(a, 'Character-based', 'toward character-based ethics', 'Ethics of Care', 'Ethics of Care', 'Normative Ethics', 'The core of morality is caring for those dependent on us and focusing on relationships.'); }},
 
       t_egoism:{type:'question', text:'Which version of acting in self-interest describes your view?', options:[
         {label:'Everyone should always act in their own interest', next:'r_ego_a'},
         {label:'I should act in my own interest, but don\'t prescribe it universally', next:'r_ego_b'},
       ]},
-      r_ego_a:{type:'result', tag:'Normative Ethics', title:'Universal Ethical Egoism', body:['Every agent has a moral obligation to advance their own interest.']},
-      r_ego_b:{type:'result', tag:'Normative Ethics', title:'Individual Ethical Egoism', body:['You act in your own interest but do not universally prescribe it to others.']},
+      r_ego_a:{type:'dynamicResult', render: function(a){ return skepticFrameEN(a, 'Egoist', 'toward ethical egoism', 'Universal Ethical Egoism', 'Universal Ethical Egoism', 'Normative Ethics', 'Every agent has a moral obligation to advance their own interest.'); }},
+      r_ego_b:{type:'dynamicResult', render: function(a){ return skepticFrameEN(a, 'Egoist', 'toward ethical egoism', 'Individual Ethical Egoism', 'Individual Ethical Egoism', 'Normative Ethics', 'You act in your own interest but do not universally prescribe it to others.'); }},
 
       t3_ato_regra:{type:'question', text:'Should consequences be evaluated for each act individually, evaluated on general rules, or combining both?',
         help: '<p>Think of an example: deciding whether it is right to break a promise when, just this once, doing so seems to produce a better outcome.</p><p>Judging <b>case by case</b> means evaluating this specific situation by the outcome it produces right now, without sticking to a general pattern.</p><p>Judging by <b>general rule</b> means asking: if everyone could break promises under these conditions, would the overall result be good? If not, you keep the promise even here.</p><p>The <b>hybrid</b> path means following the general rule most of the time, but allowing an exception in truly extreme situations.</p>',
@@ -1226,13 +1250,24 @@ const PARTS_EN = [
 
         const bodyText = `You judge the moral worth of a choice by the outcome it produces, ${methodDescMap[actRule] || methodDescMap['Act Consequentialism']}. Within that: ${subcurrentsExplain}. As for the weight of suffering against pleasure, your position is that ${focusDescMap[negChoice] || focusDescMap['Symmetric']}.`;
 
+        const meta = [
+          { label: 'Method', value: methodMap[actRule] || actRule },
+          { label: 'Subcurrents', value: subcurrents },
+          { label: 'Focus', value: focusMap[negChoice] || focusMap['Symmetric'] }
+        ];
+
+        if(a.normSkeptic){
+          return {
+            title: 'Normative Skepticism (Consequentialist-leaning)',
+            tag: 'Normative Ethics · Skepticism',
+            meta: meta,
+            body: [ SKEPTIC_INTRO_EN + ' Your practical commitment leans toward consequentialism, and specifically: ' + bodyText ]
+          };
+        }
+
         return {
           title: 'Consequentialism',
-          meta: [
-            { label: 'Method', value: methodMap[actRule] || actRule },
-            { label: 'Subcurrents', value: subcurrents },
-            { label: 'Focus', value: focusMap[negChoice] || focusMap['Symmetric'] }
-          ],
+          meta: meta,
           body: [ bodyText ]
         };
       }}
@@ -1246,8 +1281,8 @@ const PARTS_EN = [
         {label:'It is correct to give more consideration to myself and close ones (like family and friends)', next:'r_c1_tribal', set:{key:'circleLevel', value: 2}},
         {label:'We should strive for ideal impartiality without personal favoritism', next:'c3'},
       ]},
-      r_c1_ego:{type:'result', level:1, tag:'Moral Circle', title:'Ethical Egoism', body:['Your moral circle focuses strictly on yourself and your own interests.'], oppose:'Impartial Altruism'},
-      r_c1_tribal:{type:'result', level:2, tag:'Moral Circle', title:'Familial Tribalism', body:['This is a partial stance that emphasizes what is familiar — blood family and friends, for example. Your moral compass rejects radical impartiality, arguing that interpersonal connections carry deep ethical weight and legitimizing prioritizing those in your direct, familial circle.'], oppose:'Impartial Altruism'},
+      r_c1_ego:{type:'result', level:1, tag:'', title:'Ethical Egoism', body:['Your moral circle focuses strictly on yourself and your own interests.'], oppose:'Impartial Altruism'},
+      r_c1_tribal:{type:'result', level:2, tag:'', title:'Familial Tribalism', body:['This is a partial stance that emphasizes what is familiar — blood family and friends, for example. Your moral compass rejects radical impartiality, arguing that interpersonal connections carry deep ethical weight and legitimizing prioritizing those in your direct, familial circle.'], oppose:'Impartial Altruism'},
 
       c3:{
         type:'multi_select',
@@ -1277,7 +1312,7 @@ const PARTS_EN = [
       r_parcialismo_multi:{
         type:'dynamicResult',
         level:3,
-        tag:'Moral Circle',
+        tag:'',
         render: function(a){
           const biases = a.c3_selections || [];
           let comboStr = biases.join(', ');
@@ -1330,7 +1365,7 @@ const PARTS_EN = [
 
       r_c4_multi:{
         type:'dynamicResult',
-        tag:'Moral Circle',
+        tag:'',
         render: function(a){
           const sels = a.c4_selections || [];
           let level = 4;
@@ -1587,10 +1622,40 @@ let nodeId = null;
 let answers = {};
 let partResults = [];
 let navHistory = [];
+let stepsInPart = 0;
+const ESTIMATED_STEPS_PER_PART = { theory: 4, circle: 4, meta: 4, openness: 3 };
 
 function esc(s){
   if(!s) return '';
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+const SKEPTIC_INTRO_PT = 'Ao afirmar que juízos morais não são verdadeiros nem falsos, você assume uma postura cética (Não-cognitivismo) em relação à própria pergunta que sustenta a ética normativa: "qual é a teoria correta sobre como agir?" Se frases como "as consequências são o que importa" ou "certas regras nunca podem ser violadas" não descrevem fatos, elas não podem estar certas ou erradas no sentido usual — não há, para você, uma "teoria normativa verdadeira" à espera de ser descoberta. Isso não significa que você não tenha preferências práticas sobre como agir; apenas que, na sua visão, essas preferências expressam atitudes e compromissos pessoais, não descobertas sobre uma verdade moral independente.';
+
+const SKEPTIC_INTRO_EN = 'By claiming that moral judgments are neither true nor false, you take a skeptical stance (Non-Cognitivism) toward the very question that underlies normative ethics: "what is the correct theory of how to act?" If statements like "consequences are what matters" or "certain rules can never be violated" do not describe facts, they cannot be right or wrong in the usual sense — there is, for you, no "true normative theory" waiting to be discovered. This does not mean you lack practical preferences about how to act; only that, in your view, those preferences express attitudes and personal commitments, not discoveries about an independent moral truth.';
+
+function skepticFramePT(a, tendencyAdj, tendencyPhrase, subcorrente, baseTitle, baseTag, baseBody){
+  if(!a.normSkeptic){
+    return { title: baseTitle, tag: baseTag, body: [baseBody] };
+  }
+  return {
+    title: 'Ceticismo Normativo (de tendência ' + tendencyAdj + ')',
+    tag: 'Ética normativa · Ceticismo',
+    meta: [{ label: 'Subcorrente', value: subcorrente }],
+    body: [SKEPTIC_INTRO_PT + ' Seu compromisso prático tende ' + tendencyPhrase + ', e dentro disso, especificamente: ' + baseBody]
+  };
+}
+
+function skepticFrameEN(a, tendencyAdj, tendencyPhrase, subcorrente, baseTitle, baseTag, baseBody){
+  if(!a.normSkeptic){
+    return { title: baseTitle, tag: baseTag, body: [baseBody] };
+  }
+  return {
+    title: 'Normative Skepticism (' + tendencyAdj + '-leaning)',
+    tag: 'Normative Ethics · Skepticism',
+    meta: [{ label: 'Subcurrent', value: subcorrente }],
+    body: [SKEPTIC_INTRO_EN + ' Your practical commitment leans ' + tendencyPhrase + ', and specifically: ' + baseBody]
+  };
 }
 
 function slugify(str){
@@ -1610,7 +1675,11 @@ const RESULT_CODE_LIST = [
   ['rc','Relativismo cultural','Cultural Relativism'],
   ['ri','Relativismo individual (Subjetivismo)','Individual Relativism (Subjectivism)'],
   ['rd','Relativismo meramente descritivo','Descriptive Relativism'],
-  ['nce','Não-cognitivismo / Expressivismo','Non-Cognitivism'],
+  ['cn','Ceticismo Normativo','Normative Skepticism'],
+  ['cnc','Ceticismo Normativo (de tendência Consequencialista)','Normative Skepticism (Consequentialist-leaning)'],
+  ['cnd','Ceticismo Normativo (de tendência Deontológica)','Normative Skepticism (Deontological-leaning)'],
+  ['cnch','Ceticismo Normativo (de tendência de Caráter)','Normative Skepticism (Character-based-leaning)'],
+  ['cne','Ceticismo Normativo (de tendência Egoísta)','Normative Skepticism (Egoist-leaning)'],
   ['mdt','Teoria do Mandamento Divino (Tradicional)','Divine Command Theory (Traditional)'],
   ['mdm','Teoria do Mandamento Divino (Modificada)','Divine Command Theory (Modified)'],
   ['da','Deontologia Absolutista','Absolutist Deontology'],
@@ -1870,6 +1939,7 @@ function startTest(){
   answers = {};
   partResults = [];
   navHistory = [];
+  stepsInPart = 0;
   state = 'question';
   nodeId = getData()[partIndex].root;
   render();
@@ -1886,6 +1956,7 @@ function goBack(){
   nodeId = last.nodeId;
   answers = last.answers;
   state = last.state;
+  stepsInPart = last.stepsInPart || 0;
   render();
 }
 
@@ -1896,13 +1967,19 @@ function renderQuestion(container){
   const p = currentPart();
   const n = p.nodes[nodeId];
 
+  const totalParts = getData().length;
+  const perPart = 100 / totalParts;
+  const estimated = ESTIMATED_STEPS_PER_PART[p.key] || 4;
+  const withinPart = Math.min(stepsInPart / estimated, 0.92);
+  const progressPct = (partIndex / totalParts) * 100 + withinPart * perPart;
+
   let html = `
     <div class="test-progress">
       <div class="test-progress-row">
         <span>${p.label}</span>
       </div>
       <div class="test-progress-track">
-        <div class="test-progress-fill" style="width: ${(partIndex / getData().length) * 100}%"></div>
+        <div class="test-progress-fill" style="width: ${progressPct}%"></div>
       </div>
     </div>
     
@@ -1956,7 +2033,7 @@ window.selectOption = function(idx){
   const n = currentPart().nodes[nodeId];
   const opt = n.options[idx];
   
-  navHistory.push({partIndex, nodeId, answers:{...answers}, state});
+  navHistory.push({partIndex, nodeId, answers:{...answers}, state, stepsInPart});
   
   if(opt.set) answers[opt.set.key] = opt.set.value;
   
@@ -1967,6 +2044,7 @@ window.selectOption = function(idx){
     state = 'part_result';
   } else {
     state = 'question';
+    stepsInPart++;
   }
   render();
 };
@@ -1997,7 +2075,7 @@ window.submitMultiSelect = function(){
 
   err.style.display = 'none';
 
-  navHistory.push({partIndex, nodeId, answers:{...answers}, state});
+  navHistory.push({partIndex, nodeId, answers:{...answers}, state, stepsInPart});
 
   const thisNodeId = nodeId;
 
@@ -2019,6 +2097,7 @@ window.submitMultiSelect = function(){
     state = 'part_result';
   } else {
     state = 'question';
+    stepsInPart++;
   }
   render();
 };
@@ -2087,11 +2166,12 @@ window.continuePart = function(){
     meta: r.meta || null
   };
   
-  navHistory.push({partIndex, nodeId, answers:{...answers}, state});
+  navHistory.push({partIndex, nodeId, answers:{...answers}, state, stepsInPart});
   
   if(partIndex < getData().length - 1){
     partIndex++;
     state = 'question';
+    stepsInPart = 0;
     nodeId = currentPart().root;
     render();
   } else {
@@ -2187,7 +2267,7 @@ function renderFinal(container){
       </div>
 
       <div style="text-align:center; margin-top:16px;">
-        <a class="lang-btn" style="text-decoration:none; display:inline-block;" href="mapa-do-teste.html" target="_blank" rel="noopener">${ui.mapButton}</a>
+        <a class="cta" style="display:inline-flex;" href="mapa-do-teste.html" target="_blank" rel="noopener">${ui.mapButton}</a>
       </div>
 
       <div class="restart-btn-wrap">
